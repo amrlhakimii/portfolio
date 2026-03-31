@@ -141,8 +141,8 @@ export default function Career() {
             <p className="text-[#acbac4] text-sm">education, work, and milestones — newest first</p>
           </div>
           <a
-            href="/cv.pdf"
-            download
+            href="/AmirulHakimiCV.pdf"
+            download="AmirulHakimiCV.pdf"
             className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#4a5278] text-xs text-[#acbac4] hover:text-[#f0f0db] hover:border-[#f0f0db] transition-all duration-150 shrink-0 mt-1"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
