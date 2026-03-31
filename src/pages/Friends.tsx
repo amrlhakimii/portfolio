@@ -101,7 +101,7 @@ function FriendCard({ person }: { person: Friend }) {
           className="absolute inset-0 rounded-xl border p-4 space-y-3 flex flex-col"
           style={{
             backfaceVisibility: 'hidden',
-            background: 'rgba(48,54,79,0.5)',
+            background: 'rgba(var(--bg-rgb),0.5)',
             borderColor: cfg.border,
           }}
         >
@@ -114,13 +114,13 @@ function FriendCard({ person }: { person: Friend }) {
                 {person.emoji}
               </div>
               <div>
-                <p className="text-sm font-medium text-[#e1d9bc]">{person.name}</p>
+                <p className="text-sm font-medium text-[var(--text-pri)]">{person.name}</p>
                 <p className="text-[10px]" style={{ color: cfg.color }}>{person.relation}</p>
               </div>
             </div>
-            <span className="text-[9px] text-[#4a5278] mt-1">tap to flip</span>
+            <span className="text-[9px] text-[var(--border-hover)] mt-1">tap to flip</span>
           </div>
-          <p className="text-xs text-[#acbac4] leading-relaxed flex-1">{person.description}</p>
+          <p className="text-xs text-[var(--text-sec)] leading-relaxed flex-1">{person.description}</p>
           <div className="flex items-center justify-between">
             {person.highlight && (
               <span
@@ -131,7 +131,7 @@ function FriendCard({ person }: { person: Friend }) {
               </span>
             )}
             {person.since && (
-              <span className="text-[10px] text-[#4a5278] ml-auto">{person.since}</span>
+              <span className="text-[10px] text-[var(--border-hover)] ml-auto">{person.since}</span>
             )}
           </div>
         </div>
@@ -148,8 +148,8 @@ function FriendCard({ person }: { person: Friend }) {
         >
           <span className="text-4xl">{person.emoji}</span>
           <p className="text-sm font-medium" style={{ color: cfg.color }}>{person.name}</p>
-          <p className="text-[10px] text-[#acbac4]">{person.relation} · {person.since}</p>
-          <p className="text-[9px] text-[#606880] mt-1">tap to flip back</p>
+          <p className="text-[10px] text-[var(--text-sec)]">{person.relation} · {person.since}</p>
+          <p className="text-[9px] text-[var(--muted)] mt-1">tap to flip back</p>
         </div>
       </div>
     </div>
@@ -165,7 +165,7 @@ export default function Friends() {
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Friends</h1>
-        <p className="text-[#acbac4] text-sm">people i build with, learn from, and grow alongside</p>
+        <p className="text-[var(--text-sec)] text-sm">people i build with, learn from, and grow alongside</p>
       </header>
 
       {/* Stats row */}
@@ -176,9 +176,9 @@ export default function Friends() {
           { value: friends.filter(f => f.relation === 'groupmate').length, label: 'groupmates' },
           { value: friends.filter(f => f.relation === 'community').length, label: 'communities' },
         ].map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
-            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
+            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
           </div>
         ))}
       </section>
@@ -195,11 +195,11 @@ export default function Friends() {
               style={filter === f ? {
                 background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
                 borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : '#f0f0db',
+                color: cfg ? cfg.color : 'var(--accent)',
               } : {
-                background: 'rgba(48,54,79,0.3)',
-                borderColor: '#3a4060',
-                color: '#606880',
+                background: 'rgba(var(--bg-rgb),0.3)',
+                borderColor: 'var(--border)',
+                color: 'var(--muted)',
               }}
             >
               {f}
@@ -215,7 +215,7 @@ export default function Friends() {
         ))}
       </div>
 
-      <p className="fade-up fade-up-5 text-[10px] text-[#3a4060]">
+      <p className="fade-up fade-up-5 text-[10px] text-[var(--border)]">
         grateful for everyone here · still meeting more along the way
       </p>
     </div>

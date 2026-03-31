@@ -86,14 +86,14 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
   return (
     <div
       ref={ref}
-      className="border border-[#3a4060] rounded-xl p-4 text-center hover:border-[#4a5278] transition-colors duration-150"
-      style={{ background: 'rgba(48,54,79,0.6)' }}
+      className="border border-[var(--border)] rounded-xl p-4 text-center hover:border-[var(--border-hover)] transition-colors duration-150"
+      style={{ background: 'rgba(var(--bg-rgb),0.6)' }}
     >
       <p className="text-xl font-semibold" style={{
         background: 'linear-gradient(135deg, #f0f0db, #818cf8)',
         WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
       }}>{display}</p>
-      <p className="text-[10px] uppercase tracking-widest text-[#acbac4] mt-1">{label}</p>
+      <p className="text-[10px] uppercase tracking-widest text-[var(--text-sec)] mt-1">{label}</p>
     </div>
   )
 }
@@ -114,7 +114,7 @@ export default function About() {
       <header className="fade-up fade-up-1">
         <div className="relative h-40 rounded-xl overflow-hidden">
           <div className="absolute inset-0" style={{
-            background: 'linear-gradient(135deg, #30364f 0%, #1e2d4a 40%, #0c2a3a 100%)',
+            background: 'linear-gradient(135deg, var(--bg) 0%, #1e2d4a 40%, #0c2a3a 100%)',
           }} />
           <div className="absolute inset-0 opacity-40" style={{
             backgroundImage: 'radial-gradient(circle, rgba(172,186,196,0.35) 1px, transparent 1px)',
@@ -130,7 +130,7 @@ export default function About() {
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
           />
           <div className="absolute bottom-0 left-0 right-0 h-16"
-            style={{ background: 'linear-gradient(to top, rgba(48,54,79,0.7), transparent)' }} />
+            style={{ background: 'linear-gradient(to top, rgba(var(--bg-rgb),0.7), transparent)' }} />
         </div>
 
         {/* Avatar + socials row */}
@@ -140,7 +140,7 @@ export default function About() {
             <img
               src="/avatar.jpg"
               alt="Amirul Hakimi"
-              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-[#30364f] object-cover bg-[#3a4060] shrink-0"
+              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-[var(--bg)] object-cover bg-[var(--border)] shrink-0"
               onError={(e) => {
                 const el = e.currentTarget as HTMLImageElement
                 el.src = "https://placehold.co/96x96/3a4060/acbac4?text=AH"
@@ -149,18 +149,18 @@ export default function About() {
 
             {/* Fan cards — always top-right */}
             <div className="flex items-center gap-1.5 pb-1">
-              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
+              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg)]/60">
                 <img src="/arsenal.png" alt="Arsenal" className="w-8 h-5 sm:w-12 sm:h-7 object-contain shrink-0" />
                 <div className="hidden sm:block">
-                  <p className="text-xs font-medium text-[#e1d9bc] leading-none">Arsenal FC</p>
-                  <p className="text-[10px] text-[#acbac4]">die-hard gooner</p>
+                  <p className="text-xs font-medium text-[var(--text-pri)] leading-none">Arsenal FC</p>
+                  <p className="text-[10px] text-[var(--text-sec)]">die-hard gooner</p>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
+              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg)]/60">
                 <img src="/merccedes.png" alt="Mercedes" className="w-8 h-5 sm:w-12 sm:h-7 object-contain shrink-0" />
                 <div className="hidden sm:block">
-                  <p className="text-xs font-medium text-[#e1d9bc] leading-none">Mercedes F1</p>
-                  <p className="text-[10px] text-[#acbac4]">silver arrows</p>
+                  <p className="text-xs font-medium text-[var(--text-pri)] leading-none">Mercedes F1</p>
+                  <p className="text-[10px] text-[var(--text-sec)]">silver arrows</p>
                 </div>
               </div>
             </div>
@@ -222,9 +222,9 @@ export default function About() {
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[#acbac4] hover:text-[#e1d9bc] transition-all duration-150 hover:scale-110"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[var(--text-sec)] hover:text-[var(--text-pri)] transition-all duration-150 hover:scale-110"
                 style={{
-                  background: 'rgba(58,64,96,0.8)',
+                  background: 'rgba(var(--border-rgb),0.8)',
                   border: '1px solid rgba(255,255,255,0.08)',
                   backdropFilter: 'blur(8px)',
                 }}
@@ -237,7 +237,7 @@ export default function About() {
 
         {/* Name + status badge */}
         <div className="flex items-start gap-2">
-          <h1 className="text-2xl leading-snug text-[#e1d9bc]" style={{ fontFamily: "'Minecraft', monospace" }}>
+          <h1 className="text-2xl leading-snug text-[var(--text-pri)]" style={{ fontFamily: "'Minecraft', monospace" }}>
             hi, my name is{' '}
             <span style={{
               background: 'linear-gradient(270deg, #f9a8d4 0%, #d8b4fe 40%, #a855f7 100%)',
@@ -253,10 +253,10 @@ export default function About() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mt-2">
-          <p className="text-[#acbac4] text-sm">
+          <p className="text-[var(--text-sec)] text-sm">
             software engineer · malaysia ·{' '}
-            <span className="text-[#e1d9bc]">{typed}</span>
-            <span className="inline-block w-0.5 h-3.5 bg-[#f0f0db] ml-0.5 align-middle animate-pulse" />
+            <span className="text-[var(--text-pri)]">{typed}</span>
+            <span className="inline-block w-0.5 h-3.5 bg-[var(--accent)] ml-0.5 align-middle animate-pulse" />
           </p>
           {/* Live status badge */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-emerald-300 border border-emerald-500/20 bg-emerald-500/10">
@@ -278,21 +278,21 @@ export default function About() {
       {/* Terminal block */}
       <section className="fade-up fade-up-3">
         <div
-          className="rounded-xl overflow-hidden border border-[#3a4060]"
+          className="rounded-xl overflow-hidden border border-[var(--border)]"
           style={{ background: 'rgba(10,15,28,0.8)', backdropFilter: 'blur(8px)' }}
         >
           {/* Terminal title bar */}
-          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[#3a4060]">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[var(--border)]">
             <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-            <span className="ml-3 text-[11px] text-[#606880]" style={{ fontFamily: 'monospace' }}>zsh — amrlhakimii</span>
+            <span className="ml-3 text-[11px] text-[var(--muted)]" style={{ fontFamily: 'monospace' }}>zsh — amrlhakimii</span>
           </div>
           <div className="px-4 py-4 space-y-3">
             {terminal.map(({ prompt, out }) => (
               <div key={prompt}>
-                <p className="text-xs text-[#f0f0db]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
-                <p className="text-xs text-[#acbac4] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
+                <p className="text-xs text-[var(--accent)]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
+                <p className="text-xs text-[var(--text-sec)] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
               </div>
             ))}
           </div>
@@ -302,26 +302,26 @@ export default function About() {
       {/* Now playing */}
       <section className="fade-up fade-up-4">
         <div
-          className="flex items-center gap-4 rounded-xl border border-[#3a4060] hover:border-[#4a5278] p-4 transition-colors duration-150"
-          style={{ background: 'rgba(48,54,79,0.6)' }}
+          className="flex items-center gap-4 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 transition-colors duration-150"
+          style={{ background: 'rgba(var(--bg-rgb),0.6)' }}
         >
           {/* Album art */}
           <div className="relative shrink-0 w-12 h-12 rounded-lg overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a2e, #16213e)' }}>
             <img src="/am.jpg" alt="Album art" className="absolute inset-0 w-full h-full object-cover" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
             {/* Pulse ring */}
-            <div className="absolute inset-0 rounded-lg border border-[#f0f0db]/30" style={{ animation: 'pulseRing 2s ease-out infinite' }} />
+            <div className="absolute inset-0 rounded-lg border border-[var(--accent)]/30" style={{ animation: 'pulseRing 2s ease-out infinite' }} />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] uppercase tracking-widest text-[#606880] mb-0.5">currently listening</p>
-            <p className="text-sm font-medium text-[#e1d9bc] truncate">Mardy Bum</p>
-            <p className="text-xs text-[#acbac4] truncate">Arctic Monkeys · Whatever People Say, That's What I'm Not</p>
+            <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-0.5">currently listening</p>
+            <p className="text-sm font-medium text-[var(--text-pri)] truncate">Mardy Bum</p>
+            <p className="text-xs text-[var(--text-sec)] truncate">Arctic Monkeys · Whatever People Say, That's What I'm Not</p>
           </div>
           {/* Sound bars */}
           <div className="flex items-end gap-0.5 h-5 shrink-0">
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="w-1 rounded-full bg-[#f0f0db]"
+                className="w-1 rounded-full bg-[var(--accent)]"
                 style={{
                   animation: `soundBar ${0.6 + i * 0.15}s ease-in-out infinite alternate`,
                   animationDelay: `${i * 0.1}s`,
@@ -334,40 +334,40 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-5 space-y-4">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">who i am</h2>
-        <p className="text-[#acbac4] leading-relaxed text-sm">
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">who i am</h2>
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           I'm a final-year Bachelor of Computer Science (Hons.) student at UiTM Tapah, currently
-          interning as an Associate Project Coordinator at <span className="text-[#e1d9bc]">The Access Group APAC</span>. I graduated with
+          interning as an Associate Project Coordinator at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I graduated with
           First Class Honours in my Diploma of Computer Science (CGPA 3.54) and am on track to
-          finish my degree with a <span className="text-[#e1d9bc]">CGPA of 3.76</span>.
+          finish my degree with a <span className="text-[var(--text-pri)]">CGPA of 3.76</span>.
         </p>
-        <p className="text-[#acbac4] leading-relaxed text-sm">
-          On the tech side, I build with <span className="text-[#e1d9bc]">React, TypeScript, React Native, and Node.js</span> — ranging
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
+          On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, and Node.js</span> — ranging
           from mobile apps to web platforms. My final year project is a QR-based attendance system
           for UiTM students, built with React Native (iOS) and a React web dashboard backed by MySQL
           and Firebase.
         </p>
-        <p className="text-[#acbac4] leading-relaxed text-sm">
-          Before this, I interned at <span className="text-[#e1d9bc]">Rev Media Group & Media Prima</span>, where I edited OBTV — a
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
+          Before this, I interned at <span className="text-[var(--text-pri)]">Rev Media Group & Media Prima</span>, where I edited OBTV — a
           5-minute TV show on TV9 — and worked as videographer and gaffer for OhBulan!'s YouTube
           podcast. I was also the official photographer for VOCKET at events like Hausboom Music
           2023 and Aina Abdul's solo concert press conference.
         </p>
-        <p className="text-[#acbac4] leading-relaxed text-sm">
-          Creatively, I've been freelancing since before uni. I run <span className="text-[#e1d9bc]">Blugrafix</span>, my own graphic
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
+          Creatively, I've been freelancing since before uni. I run <span className="text-[var(--text-pri)]">Blugrafix</span>, my own graphic
           design and jersey sublimation printing business, and I've been shooting weddings,
           corporate events, and product launches as a freelance photographer since 2018. I also
           volunteered as a designer for Youths.My for over four years.
         </p>
-        <p className="text-[#acbac4] leading-relaxed text-sm">
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           I speak Malay, English, Bahasa Indonesia, and some Mandarin. Off the screen, you'll find
-          me watching <span className="text-[#e1d9bc]">Arsenal</span> grind out a last-minute winner or obsessing over <span className="text-[#e1d9bc]">Mercedes'</span> latest
+          me watching <span className="text-[var(--text-pri)]">Arsenal</span> grind out a last-minute winner or obsessing over <span className="text-[var(--text-pri)]">Mercedes'</span> latest
           race strategy.
         </p>
       </section>
 
       <section className="fade-up fade-up-6 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">what i build</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">what i build</h2>
         <ul className="space-y-2">
           {[
             'web and mobile apps with React, React Native, and TypeScript',
@@ -376,8 +376,8 @@ export default function About() {
             'graphic designs, jerseys, and print-ready artwork via Blugrafix',
             'small utilities that scratch my own itch',
           ].map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-[#acbac4]">
-              <span className="text-[#e1d9bc] shrink-0">—</span>
+            <li key={item} className="flex items-start gap-2 text-sm text-[var(--text-sec)]">
+              <span className="text-[var(--text-pri)] shrink-0">—</span>
               <span>{item}</span>
             </li>
           ))}
@@ -387,28 +387,28 @@ export default function About() {
       {/* Blugrafix card */}
       <section className="fade-up fade-up-6">
         <div
-          className="rounded-xl border border-[#3a4060] hover:border-[#4a5278] p-5 flex items-center justify-between gap-4 transition-colors duration-150"
-          style={{ background: 'rgba(48,54,79,0.6)' }}
+          className="rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-5 flex items-center justify-between gap-4 transition-colors duration-150"
+          style={{ background: 'rgba(var(--bg-rgb),0.6)' }}
         >
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="text-base">🎨</span>
-              <p className="text-sm font-medium text-[#e1d9bc]">Blugrafix</p>
+              <p className="text-sm font-medium text-[var(--text-pri)]">Blugrafix</p>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">founder</span>
             </div>
-            <p className="text-xs text-[#acbac4] leading-relaxed">
+            <p className="text-xs text-[var(--text-sec)] leading-relaxed">
               My own graphic design & jersey sublimation printing business — from client brief to final print-ready artwork. Running since 2019.
             </p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-xs text-[#606880]">est.</p>
-            <p className="text-lg font-semibold text-[#4a5278]">2019</p>
+            <p className="text-xs text-[var(--muted)]">est.</p>
+            <p className="text-lg font-semibold text-[var(--border-hover)]">2019</p>
           </div>
         </div>
       </section>
 
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">stack</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">stack</h2>
         <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
           {/* Row 1 — scrolls left */}
           {(() => {
@@ -417,7 +417,7 @@ export default function About() {
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 28s linear infinite', gap: '8px' }}>
                 {items.map((t, i) => (
-                  <span key={i} className="text-xs text-[#acbac4] border border-[#3a4060] px-2 py-1 rounded whitespace-nowrap shrink-0">
+                  <span key={i} className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-1 rounded whitespace-nowrap shrink-0">
                     {t}
                   </span>
                 ))}
@@ -431,7 +431,7 @@ export default function About() {
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
                 {items.map((t, i) => (
-                  <span key={i} className="text-xs text-[#acbac4] border border-[#3a4060] px-2 py-1 rounded whitespace-nowrap shrink-0">
+                  <span key={i} className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-1 rounded whitespace-nowrap shrink-0">
                     {t}
                   </span>
                 ))}
@@ -442,26 +442,26 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-8 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">interests</h2>
-        <div className="space-y-2 text-sm text-[#acbac4] leading-relaxed">
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">interests</h2>
+        <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed">
           <p>
-            On the tech side: <span className="text-[#e1d9bc]">frontend engineering</span>, building mobile apps, and tinkering with AI/ML tools.
+            On the tech side: <span className="text-[var(--text-pri)]">frontend engineering</span>, building mobile apps, and tinkering with AI/ML tools.
             I enjoy the craft of making interfaces feel fast, clean, and intentional.
           </p>
           <p>
-            Creatively: <span className="text-[#e1d9bc]">photography</span> has been a big part of my life since school — I shoot weddings,
-            events, and products, and I genuinely love the process of finding the right frame. <span className="text-[#e1d9bc]">Graphic
+            Creatively: <span className="text-[var(--text-pri)]">photography</span> has been a big part of my life since school — I shoot weddings,
+            events, and products, and I genuinely love the process of finding the right frame. <span className="text-[var(--text-pri)]">Graphic
             design</span> runs alongside that, from brand identities to jersey sublimation artwork via Blugrafix.
             I also mess around in After Effects more than I probably should.
           </p>
           <p>
-            Culturally: I follow <span className="text-[#e1d9bc]">Arsenal</span> religiously — the kind of fan that watches every match,
+            Culturally: I follow <span className="text-[var(--text-pri)]">Arsenal</span> religiously — the kind of fan that watches every match,
             checks the lineup 30 minutes before kickoff, and feels physical pain during injury time.
-            I also follow <span className="text-[#e1d9bc]">Formula 1</span> closely, specifically Mercedes AMG Petronas. The overlap between
+            I also follow <span className="text-[var(--text-pri)]">Formula 1</span> closely, specifically Mercedes AMG Petronas. The overlap between
             race strategy, engineering, and split-second decision-making genuinely fascinates me.
           </p>
           <p>
-            Other things I enjoy: good playlists, discovering new music, and <span className="text-[#e1d9bc]">videography</span> — especially
+            Other things I enjoy: good playlists, discovering new music, and <span className="text-[var(--text-pri)]">videography</span> — especially
             the editing side. I find the narrative structure of a well-cut video as satisfying as shipping
             clean code.
           </p>
@@ -470,7 +470,7 @@ export default function About() {
 
       {/* Work with me */}
       <section className="fade-up fade-up-9 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">work with me</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">work with me</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {[
             { icon: '💻', title: 'Frontend Dev', desc: 'React, React Native, TypeScript — web or mobile' },
@@ -479,22 +479,22 @@ export default function About() {
           ].map(({ icon, title, desc }) => (
             <div
               key={title}
-              className="border border-[#3a4060] hover:border-[#4a5278] rounded-xl p-4 space-y-1.5 transition-colors duration-150"
-              style={{ background: 'rgba(48,54,79,0.5)' }}
+              className="border border-[var(--border)] hover:border-[var(--border-hover)] rounded-xl p-4 space-y-1.5 transition-colors duration-150"
+              style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
             >
               <p className="text-base">{icon}</p>
-              <p className="text-sm font-medium text-[#e1d9bc]">{title}</p>
-              <p className="text-xs text-[#acbac4] leading-relaxed">{desc}</p>
+              <p className="text-sm font-medium text-[var(--text-pri)]">{title}</p>
+              <p className="text-xs text-[var(--text-sec)] leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
-        <p className="text-sm text-[#acbac4]">
+        <p className="text-sm text-[var(--text-sec)]">
           Reach out at{' '}
-          <a href="mailto:amirulxhakimi@gmail.com" className="text-[#f0f0db] hover:underline">
+          <a href="mailto:amirulxhakimi@gmail.com" className="text-[var(--accent)] hover:underline">
             amirulxhakimi@gmail.com
           </a>{' '}
           or on{' '}
-          <a href="https://www.linkedin.com/in/amrlhakimii/" target="_blank" rel="noopener noreferrer" className="text-[#f0f0db] hover:underline">
+          <a href="https://www.linkedin.com/in/amrlhakimii/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">
             LinkedIn
           </a>.
         </p>
@@ -512,14 +512,14 @@ function RandomQuote() {
   return (
     <section className="fade-up fade-up-9">
       <div
-        className="rounded-xl border border-[#3a4060] p-5 relative overflow-hidden"
-        style={{ background: 'rgba(48,54,79,0.4)' }}
+        className="rounded-xl border border-[var(--border)] p-5 relative overflow-hidden"
+        style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
       >
-        <div className="absolute top-2 left-4 text-5xl text-[#3a4060] select-none font-serif leading-none">"</div>
+        <div className="absolute top-2 left-4 text-5xl text-[var(--border)] select-none font-serif leading-none">"</div>
         <blockquote className="relative z-10 pl-4">
-          <p className="text-sm text-[#acbac4] leading-relaxed italic">{quote.text}</p>
+          <p className="text-sm text-[var(--text-sec)] leading-relaxed italic">{quote.text}</p>
           {quote.author && (
-            <p className="text-xs text-[#606880] mt-2">— {quote.author}</p>
+            <p className="text-xs text-[var(--muted)] mt-2">— {quote.author}</p>
           )}
         </blockquote>
         <p className="text-[10px] uppercase tracking-widest text-[#505870] mt-3 text-right">refreshes each visit</p>

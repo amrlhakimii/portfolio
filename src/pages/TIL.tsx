@@ -117,7 +117,7 @@ function HighlightedContent({ text }: { text: string }) {
         part.startsWith('`') && part.endsWith('`') ? (
           <code
             key={i}
-            className="text-[#f0f0db] px-1 py-0.5 rounded text-[11px]"
+            className="text-[var(--accent)] px-1 py-0.5 rounded text-[11px]"
             style={{ background: 'rgba(240,240,219,0.1)', fontFamily: 'monospace' }}
           >
             {part.slice(1, -1)}
@@ -155,7 +155,7 @@ export default function TIL() {
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">TIL</h1>
-        <p className="text-[#acbac4] text-sm">today i learned — short notes on things that made me stop and think</p>
+        <p className="text-[var(--text-sec)] text-sm">today i learned — short notes on things that made me stop and think</p>
       </header>
 
       {/* Stats */}
@@ -165,16 +165,16 @@ export default function TIL() {
           { value: allTags.length - 1, label: 'topics' },
           { value: new Set(entries.map(e => e.date.slice(0, 7))).size, label: 'months' },
         ].map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
-            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
+            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
           </div>
         ))}
       </section>
 
       {/* Search */}
       <div className="fade-up fade-up-3 relative">
-        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#606880]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <input
@@ -182,13 +182,13 @@ export default function TIL() {
           placeholder="search entries..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-[#3a4060] text-sm text-[#e1d9bc] placeholder-[#4a5278] outline-none transition-colors duration-150 focus:border-[#4a5278]"
-          style={{ background: 'rgba(48,54,79,0.5)', fontFamily: 'inherit' }}
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-pri)] placeholder-[var(--border-hover)] outline-none transition-colors duration-150 focus:border-[var(--border-hover)]"
+          style={{ background: 'rgba(var(--bg-rgb),0.5)', fontFamily: 'inherit' }}
         />
         {search && (
           <button
             onClick={() => setSearch('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#4a5278] hover:text-[#acbac4] transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors"
           >✕</button>
         )}
       </div>
@@ -206,11 +206,11 @@ export default function TIL() {
               style={activeTag === tag ? {
                 background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
                 borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : '#f0f0db',
+                color: cfg ? cfg.color : 'var(--accent)',
               } : {
-                background: 'rgba(48,54,79,0.3)',
-                borderColor: '#3a4060',
-                color: '#606880',
+                background: 'rgba(var(--bg-rgb),0.3)',
+                borderColor: 'var(--border)',
+                color: 'var(--muted)',
               }}
             >
               #{tag}
@@ -223,7 +223,7 @@ export default function TIL() {
       {/* Entries */}
       <div className="space-y-3 fade-up fade-up-5">
         {filtered.length === 0 && (
-          <div className="text-center py-12 text-[#4a5278] text-sm">no entries match "{search}"</div>
+          <div className="text-center py-12 text-[var(--border-hover)] text-sm">no entries match "{search}"</div>
         )}
         {filtered.map((entry) => {
           const cfg = TAG_COLORS[entry.tag] ?? fallbackTag
@@ -231,19 +231,19 @@ export default function TIL() {
             <div
               key={entry.id}
               className="group border rounded-xl p-4 space-y-3 transition-all duration-150 hover:-translate-y-0.5"
-              style={{ borderColor: '#3a4060', background: 'rgba(48,54,79,0.45)' }}
+              style={{ borderColor: 'var(--border)', background: 'rgba(var(--bg-rgb),0.45)' }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = cfg.border}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = '#3a4060'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'}
             >
               {/* Number + content */}
               <div className="flex gap-3">
                 <span
                   className="text-[11px] tabular-nums shrink-0 mt-0.5 w-5 text-right"
-                  style={{ color: '#4a5278', fontFamily: 'monospace' }}
+                  style={{ color: 'var(--border-hover)', fontFamily: 'monospace' }}
                 >
                   {String(entry.id).padStart(2, '0')}
                 </span>
-                <p className="text-[#e1d9bc] text-sm leading-relaxed flex-1">
+                <p className="text-[var(--text-pri)] text-sm leading-relaxed flex-1">
                   <HighlightedContent text={entry.content} />
                 </p>
               </div>
@@ -258,14 +258,14 @@ export default function TIL() {
                     #{entry.tag}
                   </span>
                   {entry.source && (
-                    <span className="text-[10px] text-[#4a5278]">via {entry.source}</span>
+                    <span className="text-[10px] text-[var(--border-hover)]">via {entry.source}</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] text-[#4a5278]">{entry.date}</span>
+                  <span className="text-[10px] text-[var(--border-hover)]">{entry.date}</span>
                   <button
                     onClick={() => handleCopy(entry)}
-                    className="text-[10px] text-[#4a5278] hover:text-[#acbac4] transition-colors duration-150 opacity-0 group-hover:opacity-100"
+                    className="text-[10px] text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 opacity-0 group-hover:opacity-100"
                   >
                     {copied === entry.id ? '✓ copied' : 'copy'}
                   </button>
@@ -277,7 +277,7 @@ export default function TIL() {
       </div>
 
       {filtered.length > 0 && (
-        <p className="text-[10px] text-[#3a4060]">
+        <p className="text-[10px] text-[var(--border)]">
           showing {filtered.length} of {entries.length} entries
           {activeTag !== 'all' && ` · filtered by #${activeTag}`}
           {search && ` · searching "${search}"`}

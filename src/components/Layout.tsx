@@ -166,14 +166,14 @@ function Ticker() {
       className="fixed top-0 left-0 right-0 z-40 overflow-hidden flex items-center"
       style={{
         height: '28px',
-        background: 'rgba(48,54,79,0.85)',
+        background: 'rgba(var(--bg-rgb), 0.85)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        borderBottom: '1px solid rgba(var(--border-rgb), 0.2)',
       }}
     >
       <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 35s linear infinite', alignItems: 'center' }}>
         {items.map((item, i) => (
-          <span key={i} style={{ fontFamily: 'monospace' }} className="text-[10px] text-[#606880] px-5 whitespace-nowrap">
+          <span key={i} style={{ fontFamily: 'monospace', color: 'var(--muted)' }} className="text-[10px] px-5 whitespace-nowrap">
             {item}
             <span className="text-[#505870] mx-3">·</span>
           </span>
@@ -235,7 +235,7 @@ function SideDecorations() {
       {leftCodeLines.map((line, i) => (
         <span key={`code-${i}`} className="fixed top-0 z-0" style={{
           left: line.left, opacity: line.opacity, fontSize: '10px',
-          fontFamily: 'monospace', color: '#f0f0db', whiteSpace: 'nowrap',
+          fontFamily: 'monospace', color: 'var(--accent)', whiteSpace: 'nowrap',
           animation: `driftDown ${line.duration} linear infinite`,
           animationDelay: line.delay,
           writingMode: 'vertical-rl', textOrientation: 'mixed',
@@ -251,7 +251,7 @@ function SideDecorations() {
       {rightDesignTokens.map((token, i) => (
         <span key={`token-${i}`} className="fixed top-0 z-0" style={{
           right: token.right, opacity: token.opacity, fontSize: '10px',
-          fontFamily: 'monospace', color: '#acbac4', whiteSpace: 'nowrap',
+          fontFamily: 'monospace', color: 'var(--text-sec)', whiteSpace: 'nowrap',
           animation: `driftDown ${token.duration} linear infinite`,
           animationDelay: token.delay,
           writingMode: 'vertical-rl', textOrientation: 'mixed',
@@ -354,8 +354,8 @@ function EasterEgg() {
       {message && (
         <div className="pointer-events-none fixed inset-0 z-[91] flex items-center justify-center">
           <div style={{
-            background: 'rgba(48,54,79,0.92)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(var(--bg-rgb), 0.92)',
+            border: '1px solid rgba(var(--border-rgb), 0.4)',
             backdropFilter: 'blur(20px)',
             padding: '18px 36px',
             borderRadius: '16px',
@@ -375,7 +375,7 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation()
 
   return (
-    <div className="relative min-h-screen bg-[#30364f] text-[#e1d9bc]">
+    <div className="relative min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text-pri)' }}>
       <DotGrid />
       <GradientMesh />
       <NoiseOverlay />

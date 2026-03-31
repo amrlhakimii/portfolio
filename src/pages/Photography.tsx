@@ -45,18 +45,18 @@ export default function Photography() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Photography</h1>
-            <p className="text-[#acbac4] text-sm">frames i've kept — weddings, events, street, everyday moments</p>
+            <p className="text-[var(--text-sec)] text-sm">frames i've kept — weddings, events, street, everyday moments</p>
           </div>
           <a
             href="https://www.instagram.com/kimiflickr/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#3a4060] hover:border-[#4a5278] transition-all duration-150 hover:-translate-y-0.5 shrink-0 mt-1 group"
-            style={{ background: 'rgba(48,54,79,0.6)', backdropFilter: 'blur(8px)' }}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] transition-all duration-150 hover:-translate-y-0.5 shrink-0 mt-1 group"
+            style={{ background: 'rgba(var(--bg-rgb),0.6)', backdropFilter: 'blur(8px)' }}
           >
             <img src="/insta.svg.png" alt="Instagram" className="w-4 h-4 object-contain" onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-            <span className="text-xs text-[#acbac4] group-hover:text-[#e1d9bc] transition-colors duration-150">@kimiflickr</span>
-            <span className="text-xs text-[#4a5278] group-hover:text-[#acbac4] transition-colors duration-150">→</span>
+            <span className="text-xs text-[var(--text-sec)] group-hover:text-[var(--text-pri)] transition-colors duration-150">@kimiflickr</span>
+            <span className="text-xs text-[var(--border-hover)] group-hover:text-[var(--text-sec)] transition-colors duration-150">→</span>
           </a>
         </div>
       </header>
@@ -64,9 +64,9 @@ export default function Photography() {
       {/* Stats */}
       <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
         {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
-            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
+            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
           </div>
         ))}
       </section>
@@ -79,7 +79,7 @@ export default function Photography() {
             className="shrink-0 rounded-sm"
             style={{
               width: i % 5 === 0 ? '4px' : '16px',
-              background: i % 5 === 0 ? '#30364f' : `rgba(225,217,188,${0.1 + (i % 3) * 0.05})`,
+              background: i % 5 === 0 ? 'var(--bg)' : `rgba(225,217,188,${0.1 + (i % 3) * 0.05})`,
             }}
           />
         ))}
@@ -95,11 +95,11 @@ export default function Photography() {
             style={activeCategory === cat ? {
               background: 'rgba(240,240,219,0.1)',
               borderColor: 'rgba(240,240,219,0.25)',
-              color: '#f0f0db',
+              color: 'var(--accent)',
             } : {
-              background: 'rgba(48,54,79,0.3)',
-              borderColor: '#3a4060',
-              color: '#606880',
+              background: 'rgba(var(--bg-rgb),0.3)',
+              borderColor: 'var(--border)',
+              color: 'var(--muted)',
             }}
           >
             {cat} {cat !== 'all' && `(${photos.filter(p => p.category === cat).length})`}
@@ -124,19 +124,19 @@ export default function Photography() {
             />
             {/* Overlay on hover */}
             <div className="absolute inset-0 flex flex-col justify-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-              style={{ background: 'linear-gradient(to top, rgba(48,54,79,0.85) 0%, transparent 60%)' }}
+              style={{ background: 'linear-gradient(to top, rgba(var(--bg-rgb),0.85) 0%, transparent 60%)' }}
             >
-              <p className="text-[10px] text-[#f0f0db] font-medium">{photo.alt}</p>
+              <p className="text-[10px] text-[var(--accent)] font-medium">{photo.alt}</p>
               <div className="flex items-center justify-between mt-0.5">
-                <span className="text-[9px] text-[#acbac4] capitalize">{photo.category}</span>
-                {photo.location && <span className="text-[9px] text-[#606880]">📍 {photo.location}</span>}
+                <span className="text-[9px] text-[var(--text-sec)] capitalize">{photo.category}</span>
+                {photo.location && <span className="text-[9px] text-[var(--muted)]">📍 {photo.location}</span>}
               </div>
             </div>
             {/* Expand icon */}
             <div className="absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-              style={{ background: 'rgba(48,54,79,0.8)', border: '1px solid rgba(240,240,219,0.2)' }}
+              style={{ background: 'rgba(var(--bg-rgb),0.8)', border: '1px solid rgba(240,240,219,0.2)' }}
             >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0f0db" strokeWidth="2">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2">
                 <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
               </svg>
             </div>
@@ -146,25 +146,25 @@ export default function Photography() {
 
       {/* Gear section */}
       <section className="fade-up fade-up-6 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">behind the lens</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">behind the lens</h2>
         <div className="grid grid-cols-2 gap-2">
           {gear.map(({ name, role, icon }) => (
             <div
               key={name}
-              className="flex items-center gap-3 rounded-xl border border-[#3a4060] p-3 transition-colors duration-150 hover:border-[#4a5278]"
-              style={{ background: 'rgba(48,54,79,0.4)' }}
+              className="flex items-center gap-3 rounded-xl border border-[var(--border)] p-3 transition-colors duration-150 hover:border-[var(--border-hover)]"
+              style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
             >
               <span className="text-lg shrink-0">{icon}</span>
               <div>
-                <p className="text-xs font-medium text-[#e1d9bc]">{name}</p>
-                <p className="text-[10px] text-[#606880]">{role}</p>
+                <p className="text-xs font-medium text-[var(--text-pri)]">{name}</p>
+                <p className="text-[10px] text-[var(--muted)]">{role}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <p className="fade-up fade-up-7 text-[10px] text-[#3a4060]">
+      <p className="fade-up fade-up-7 text-[10px] text-[var(--border)]">
         real portfolio photos coming soon · follow @kimiflickr for the full work
       </p>
 
@@ -183,23 +183,23 @@ export default function Photography() {
               style={{ maxHeight: '75vh' }}
             />
             <div className="absolute bottom-0 left-0 right-0 rounded-b-2xl p-4"
-              style={{ background: 'linear-gradient(to top, rgba(48,54,79,0.9), transparent)' }}
+              style={{ background: 'linear-gradient(to top, rgba(var(--bg-rgb),0.9), transparent)' }}
             >
-              <p className="text-sm font-medium text-[#f0f0db]">{lightbox.alt}</p>
+              <p className="text-sm font-medium text-[var(--accent)]">{lightbox.alt}</p>
               <div className="flex items-center gap-3 mt-1">
-                <span className="text-[10px] text-[#acbac4] capitalize">{lightbox.category}</span>
-                {lightbox.location && <span className="text-[10px] text-[#606880]">📍 {lightbox.location}</span>}
+                <span className="text-[10px] text-[var(--text-sec)] capitalize">{lightbox.category}</span>
+                {lightbox.location && <span className="text-[10px] text-[var(--muted)]">📍 {lightbox.location}</span>}
               </div>
             </div>
             <button
               onClick={() => setLightbox(null)}
-              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-[#acbac4] hover:text-[#f0f0db] transition-colors duration-150"
-              style={{ background: 'rgba(48,54,79,0.8)', border: '1px solid rgba(172,186,196,0.2)' }}
+              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-[var(--text-sec)] hover:text-[var(--accent)] transition-colors duration-150"
+              style={{ background: 'rgba(var(--bg-rgb),0.8)', border: '1px solid rgba(172,186,196,0.2)' }}
             >
               ✕
             </button>
           </div>
-          <p className="absolute bottom-6 text-[10px] text-[#4a5278]">click outside to close</p>
+          <p className="absolute bottom-6 text-[10px] text-[var(--border-hover)]">click outside to close</p>
         </div>
       )}
     </div>

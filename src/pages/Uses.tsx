@@ -92,7 +92,7 @@ export default function Uses() {
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Uses</h1>
-        <p className="text-[#acbac4] text-sm">the full stack — hardware, software, design tools, and creative workflow</p>
+        <p className="text-[var(--text-sec)] text-sm">the full stack — hardware, software, design tools, and creative workflow</p>
       </header>
 
       {/* Filter tabs */}
@@ -104,12 +104,12 @@ export default function Uses() {
             className="text-xs px-3 py-1.5 rounded-full border transition-all duration-150 capitalize"
             style={active === f ? {
               background: 'rgba(240,240,219,0.12)',
-              borderColor: '#f0f0db',
-              color: '#f0f0db',
+              borderColor: 'var(--accent)',
+              color: 'var(--accent)',
             } : {
-              background: 'rgba(48,54,79,0.4)',
-              borderColor: '#3a4060',
-              color: '#acbac4',
+              background: 'rgba(var(--bg-rgb),0.4)',
+              borderColor: 'var(--border)',
+              color: 'var(--text-sec)',
             }}
           >
             {f}
@@ -121,7 +121,7 @@ export default function Uses() {
       <div className="space-y-8 fade-up fade-up-3">
         {visible.map((cat) => (
           <section key={cat.label} className="space-y-3">
-            <h2 className="text-xs uppercase tracking-widest text-[#acbac4] flex items-center gap-2">
+            <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
               <span>{cat.emoji}</span>
               {cat.label}
             </h2>
@@ -129,34 +129,34 @@ export default function Uses() {
               {cat.items.map((item) => (
                 <div
                   key={item.name}
-                  className="group relative rounded-xl border border-[#3a4060] hover:border-[#4a5278] p-4 space-y-1.5 transition-all duration-150 hover:-translate-y-0.5"
-                  style={{ background: 'rgba(48,54,79,0.45)' }}
+                  className="group relative rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 space-y-1.5 transition-all duration-150 hover:-translate-y-0.5"
+                  style={{ background: 'rgba(var(--bg-rgb),0.45)' }}
                 >
                   {/* Love badge */}
                   {item.love && (
-                    <span className="absolute top-3 right-3 text-[10px] text-[#e1d9bc]/50">★</span>
+                    <span className="absolute top-3 right-3 text-[10px] text-[var(--text-pri)]/50">★</span>
                   )}
 
                   <div className="flex items-center gap-2 pr-4">
-                    <p className="text-sm font-medium text-[#e1d9bc]">{item.name}</p>
+                    <p className="text-sm font-medium text-[var(--text-pri)]">{item.name}</p>
                     {item.tag && (
                       <span
                         className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded border"
-                        style={{ color: '#acbac4', borderColor: '#3a4060', background: 'rgba(58,64,96,0.6)' }}
+                        style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.6)' }}
                       >
                         {item.tag}
                       </span>
                     )}
                   </div>
 
-                  <p className="text-xs text-[#acbac4] leading-relaxed">{item.description}</p>
+                  <p className="text-xs text-[var(--text-sec)] leading-relaxed">{item.description}</p>
 
                   {item.url && (
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[10px] text-[#606880] hover:text-[#acbac4] transition-colors duration-150"
+                      className="inline-flex items-center gap-1 text-[10px] text-[var(--muted)] hover:text-[var(--text-sec)] transition-colors duration-150"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.url.replace('https://', '').replace('www.', '')} ↗
@@ -170,8 +170,8 @@ export default function Uses() {
       </div>
 
       {/* Legend */}
-      <p className="fade-up fade-up-4 text-[10px] text-[#3a4060] flex items-center gap-2">
-        <span className="text-[#e1d9bc]/40">★</span>
+      <p className="fade-up fade-up-4 text-[10px] text-[var(--border)] flex items-center gap-2">
+        <span className="text-[var(--text-pri)]/40">★</span>
         <span>= daily favourite</span>
       </p>
     </div>

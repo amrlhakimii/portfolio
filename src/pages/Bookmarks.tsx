@@ -199,15 +199,15 @@ export default function Bookmarks() {
     <div className="space-y-10">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Bookmarks</h1>
-        <p className="text-[#acbac4] text-sm">links i keep returning to — tools, fonts, palettes, and rabbit holes</p>
+        <p className="text-[var(--text-sec)] text-sm">links i keep returning to — tools, fonts, palettes, and rabbit holes</p>
       </header>
 
       <div className="space-y-8 fade-up fade-up-2">
         {CATEGORY_ORDER.filter(c => grouped[c]).map((category) => (
           <section key={category} className="space-y-3">
-            <h2 className="text-xs uppercase tracking-widest text-[#acbac4] flex items-center gap-2">
+            <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
               {category}
-              <span className="text-[#3a4060]">({grouped[category].length})</span>
+              <span className="text-[var(--border)]">({grouped[category].length})</span>
             </h2>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {grouped[category].map((bookmark) => (
@@ -216,16 +216,16 @@ export default function Bookmarks() {
                   href={bookmark.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-3 rounded-xl p-4 border border-[#3a4060] hover:border-[#4a5278] transition-all duration-150 hover:-translate-y-0.5"
-                  style={{ background: 'rgba(48,54,79,0.5)' }}
+                  className="group flex items-start gap-3 rounded-xl p-4 border border-[var(--border)] hover:border-[var(--border-hover)] transition-all duration-150 hover:-translate-y-0.5"
+                  style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
                 >
                   <span className="text-lg shrink-0 mt-0.5">{bookmark.icon}</span>
                   <div className="min-w-0 space-y-1">
-                    <p className="text-sm font-medium text-[#e1d9bc] group-hover:text-[#f0f0db] transition-colors duration-150 flex items-center gap-1">
+                    <p className="text-sm font-medium text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150 flex items-center gap-1">
                       {bookmark.title}
-                      <span className="text-[#4a5278] group-hover:text-[#acbac4] text-xs transition-colors duration-150">↗</span>
+                      <span className="text-[var(--border-hover)] group-hover:text-[var(--text-sec)] text-xs transition-colors duration-150">↗</span>
                     </p>
-                    <p className="text-xs text-[#acbac4] leading-relaxed">{bookmark.description}</p>
+                    <p className="text-xs text-[var(--text-sec)] leading-relaxed">{bookmark.description}</p>
                   </div>
                 </a>
               ))}

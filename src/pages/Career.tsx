@@ -138,12 +138,12 @@ export default function Career() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Career</h1>
-            <p className="text-[#acbac4] text-sm">education, work, and milestones — newest first</p>
+            <p className="text-[var(--text-sec)] text-sm">education, work, and milestones — newest first</p>
           </div>
           <a
             href="/AmirulHakimiCV.pdf"
             download="AmirulHakimiCV.pdf"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#4a5278] text-xs text-[#acbac4] hover:text-[#f0f0db] hover:border-[#f0f0db] transition-all duration-150 shrink-0 mt-1"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--border-hover)] text-xs text-[var(--text-sec)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all duration-150 shrink-0 mt-1"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
@@ -158,9 +158,9 @@ export default function Career() {
       {/* Stats */}
       <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
         {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
-            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
+            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
           </div>
         ))}
       </section>
@@ -178,11 +178,11 @@ export default function Career() {
               style={filter === f ? {
                 background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
                 borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : '#f0f0db',
+                color: cfg ? cfg.color : 'var(--accent)',
               } : {
-                background: 'rgba(48,54,79,0.3)',
-                borderColor: '#3a4060',
-                color: '#606880',
+                background: 'rgba(var(--bg-rgb),0.3)',
+                borderColor: 'var(--border)',
+                color: 'var(--muted)',
               }}
             >
               {cfg && <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: cfg.dot }} />}
@@ -197,7 +197,7 @@ export default function Career() {
         {/* Vertical line */}
         <div
           className="absolute left-[18px] top-0 bottom-0 w-px hidden sm:block"
-          style={{ background: 'linear-gradient(to bottom, transparent, #3a4060 10%, #3a4060 90%, transparent)' }}
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent)' }}
         />
 
         <div className="space-y-3">
@@ -211,7 +211,7 @@ export default function Career() {
                 <div
                   className="absolute left-[13px] top-5 w-2.5 h-2.5 rounded-full border-2 hidden sm:block"
                   style={{
-                    background: item.current ? cfg.dot : '#30364f',
+                    background: item.current ? cfg.dot : 'var(--bg)',
                     borderColor: cfg.dot,
                     boxShadow: item.current ? `0 0 8px ${cfg.dot}` : 'none',
                   }}
@@ -220,8 +220,8 @@ export default function Career() {
                 <div
                   className="border rounded-xl transition-all duration-200 overflow-hidden cursor-pointer"
                   style={{
-                    borderColor: isOpen ? cfg.border : '#3a4060',
-                    background: isOpen ? cfg.bg : 'rgba(48,54,79,0.45)',
+                    borderColor: isOpen ? cfg.border : 'var(--border)',
+                    background: isOpen ? cfg.bg : 'rgba(var(--bg-rgb),0.45)',
                   }}
                   onClick={() => setExpanded(isOpen ? null : i)}
                 >
@@ -238,7 +238,7 @@ export default function Career() {
                     <div className="flex-1 min-w-0 space-y-1">
                       <div className="flex items-start justify-between gap-3 flex-wrap">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h2 className="text-sm font-medium text-[#e1d9bc] leading-snug">{item.title}</h2>
+                          <h2 className="text-sm font-medium text-[var(--text-pri)] leading-snug">{item.title}</h2>
                           {item.current && (
                             <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full"
                               style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80', border: '1px solid rgba(74,222,128,0.2)' }}>
@@ -255,7 +255,7 @@ export default function Career() {
                             {item.type}
                           </span>
                           <span
-                            className="text-[#4a5278] transition-transform duration-200 text-xs"
+                            className="text-[var(--border-hover)] transition-transform duration-200 text-xs"
                             style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                           >
                             ▾
@@ -272,14 +272,14 @@ export default function Career() {
                     style={{ maxHeight: isOpen ? '400px' : '0px' }}
                   >
                     <div className="px-4 pb-4 space-y-3 border-t" style={{ borderColor: cfg.border }}>
-                      <p className="text-sm text-[#acbac4] leading-relaxed pt-3">{item.description}</p>
+                      <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{item.description}</p>
                       {item.tags && item.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1.5">
                           {item.tags.map(tag => (
                             <span
                               key={tag}
                               className="text-[10px] px-2 py-0.5 rounded border"
-                              style={{ color: '#acbac4', borderColor: '#3a4060', background: 'rgba(58,64,96,0.5)' }}
+                              style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.5)' }}
                             >
                               {tag}
                             </span>
@@ -300,16 +300,16 @@ export default function Career() {
         {Object.entries(TYPE_CONFIG).map(([type, cfg]) => (
           <div key={type} className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full" style={{ background: cfg.dot }} />
-            <span className="text-[10px] text-[#606880] capitalize">{type}</span>
+            <span className="text-[10px] text-[var(--muted)] capitalize">{type}</span>
           </div>
         ))}
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-[10px] text-[#606880]">active / ongoing</span>
+          <span className="text-[10px] text-[var(--muted)]">active / ongoing</span>
         </div>
       </div>
 
-      <p className="fade-up fade-up-6 text-[10px] text-[#3a4060]">click any card to expand · {timeline.length} entries total</p>
+      <p className="fade-up fade-up-6 text-[10px] text-[var(--border)]">click any card to expand · {timeline.length} entries total</p>
     </div>
   )
 }

@@ -90,7 +90,7 @@ function VinylRecord({ album, isPlaying, isSelected, onClick }: {
         className="relative w-28 h-28 rounded-full overflow-hidden shrink-0 transition-all duration-300"
         style={{
           boxShadow: isSelected
-            ? '0 0 0 3px #f0f0db, 0 8px 32px rgba(0,0,0,0.6)'
+            ? '0 0 0 3px var(--accent), 0 8px 32px rgba(0,0,0,0.6)'
             : '0 4px 20px rgba(0,0,0,0.5)',
           animation: isPlaying ? 'vinylSpin 4s linear infinite' : 'none',
         }}
@@ -110,10 +110,10 @@ function VinylRecord({ album, isPlaying, isSelected, onClick }: {
 
       {/* Label under vinyl */}
       <div className="text-center space-y-0.5 max-w-[112px]">
-        <p className="text-[11px] font-medium text-[#e1d9bc] leading-tight line-clamp-1 group-hover:text-[#f0f0db] transition-colors duration-150">
+        <p className="text-[11px] font-medium text-[var(--text-pri)] leading-tight line-clamp-1 group-hover:text-[var(--accent)] transition-colors duration-150">
           {album.artist}
         </p>
-        <p className="text-[9px] text-[#acbac4] line-clamp-1">{album.title}</p>
+        <p className="text-[9px] text-[var(--text-sec)] line-clamp-1">{album.title}</p>
       </div>
     </button>
   )
@@ -130,7 +130,7 @@ function SoundWave({ playing }: { playing: boolean }) {
           className="w-1 rounded-full"
           style={{
             height: playing ? `${h * 2.5}px` : '3px',
-            background: playing ? '#e1d9bc' : '#3a4060',
+            background: playing ? 'var(--text-pri)' : 'var(--border)',
             animation: playing ? `soundBar ${0.4 + (i % 4) * 0.15}s ease-in-out infinite alternate` : 'none',
             animationDelay: `${i * 0.05}s`,
             transition: 'height 0.3s ease, background 0.3s ease',
@@ -178,13 +178,13 @@ export default function Music() {
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Music</h1>
-        <p className="text-[#acbac4] text-sm">what i keep on repeat — click a record to play</p>
+        <p className="text-[var(--text-sec)] text-sm">what i keep on repeat — click a record to play</p>
       </header>
 
       {/* Cassette + player */}
       <section className="fade-up fade-up-2">
         <div
-          className="relative rounded-2xl overflow-hidden border border-[#3a4060]"
+          className="relative rounded-2xl overflow-hidden border border-[var(--border)]"
           style={{ background: 'rgba(28,24,18,0.95)' }}
         >
           {/* Cassette background */}
@@ -215,7 +215,7 @@ export default function Music() {
                 className="relative w-36 h-36 rounded-full shrink-0 overflow-hidden"
                 style={{
                   boxShadow: playing
-                    ? '0 0 0 3px #f0f0db, 0 0 40px rgba(240,240,219,0.15), 0 8px 32px rgba(0,0,0,0.8)'
+                    ? '0 0 0 3px var(--accent), 0 0 40px rgba(240,240,219,0.15), 0 8px 32px rgba(0,0,0,0.8)'
                     : '0 8px 32px rgba(0,0,0,0.8)',
                   animation: playing ? 'vinylSpin 4s linear infinite' : 'none',
                   transition: 'box-shadow 0.4s ease',
@@ -238,8 +238,8 @@ export default function Music() {
                   <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: '#a09070', fontFamily: 'monospace' }}>
                     now {playing ? 'playing' : 'cued'}
                   </p>
-                  <p className="text-lg font-semibold leading-tight text-[#f0f0db] truncate">{current.artist}</p>
-                  <p className="text-sm text-[#acbac4] truncate">{current.title} · {current.year}</p>
+                  <p className="text-lg font-semibold leading-tight text-[var(--accent)] truncate">{current.artist}</p>
+                  <p className="text-sm text-[var(--text-sec)] truncate">{current.title} · {current.year}</p>
                 </div>
                 <p className="text-xs text-[#7a8070] leading-relaxed italic">"{current.note}"</p>
                 <div className="flex items-center gap-2">
@@ -263,7 +263,7 @@ export default function Music() {
                 <button
                   onClick={() => { setSelected(i => (i - 1 + albums.length) % albums.length); setPlaying(true) }}
                   className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 hover:scale-110"
-                  style={{ background: 'rgba(225,217,188,0.08)', border: '1px solid rgba(225,217,188,0.1)', color: '#acbac4' }}
+                  style={{ background: 'rgba(225,217,188,0.08)', border: '1px solid rgba(225,217,188,0.1)', color: 'var(--text-sec)' }}
                 >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/>
@@ -275,9 +275,9 @@ export default function Music() {
                   onClick={() => setPlaying(p => !p)}
                   className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-150 hover:scale-110"
                   style={{
-                    background: playing ? '#e1d9bc' : 'rgba(225,217,188,0.12)',
+                    background: playing ? 'var(--text-pri)' : 'rgba(225,217,188,0.12)',
                     border: '1px solid rgba(225,217,188,0.2)',
-                    color: playing ? '#30364f' : '#e1d9bc',
+                    color: playing ? 'var(--bg)' : 'var(--text-pri)',
                     boxShadow: playing ? '0 0 20px rgba(240,240,219,0.2)' : 'none',
                   }}
                 >
@@ -296,7 +296,7 @@ export default function Music() {
                 <button
                   onClick={() => { setSelected(i => (i + 1) % albums.length); setPlaying(true) }}
                   className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 hover:scale-110"
-                  style={{ background: 'rgba(225,217,188,0.08)', border: '1px solid rgba(225,217,188,0.1)', color: '#acbac4' }}
+                  style={{ background: 'rgba(225,217,188,0.08)', border: '1px solid rgba(225,217,188,0.1)', color: 'var(--text-sec)' }}
                 >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6 18l8.5-6L6 6v12zm2.5-6 5.5 3.9V8.1L8.5 12zM16 6h2v12h-2z"/>
@@ -322,19 +322,19 @@ export default function Music() {
                 >
                   <span
                     className="text-[10px] w-5 shrink-0"
-                    style={{ color: selected === i && playing ? '#f0f0db' : '#4a5278', fontFamily: 'monospace' }}
+                    style={{ color: selected === i && playing ? 'var(--accent)' : 'var(--border-hover)', fontFamily: 'monospace' }}
                   >
                     {selected === i && playing ? '▶' : String(i + 1).padStart(2, '0')}
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="text-xs block truncate" style={{ color: selected === i ? '#e1d9bc' : '#7a8070' }}>
+                    <span className="text-xs block truncate" style={{ color: selected === i ? 'var(--text-pri)' : '#7a8070' }}>
                       {album.artist}
                     </span>
-                    <span className="text-[10px] block truncate" style={{ color: selected === i ? '#acbac4' : '#4a5278' }}>
+                    <span className="text-[10px] block truncate" style={{ color: selected === i ? 'var(--text-sec)' : 'var(--border-hover)' }}>
                       {album.title}
                     </span>
                   </span>
-                  <span className="text-[9px] shrink-0" style={{ color: '#4a5278', fontFamily: 'monospace' }}>
+                  <span className="text-[9px] shrink-0" style={{ color: 'var(--border-hover)', fontFamily: 'monospace' }}>
                     {album.genre}
                   </span>
                 </button>
@@ -346,7 +346,7 @@ export default function Music() {
 
       {/* Vinyl shelf — all records */}
       <section className="fade-up fade-up-3 space-y-4">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">record shelf</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">record shelf</h2>
         <div className="flex flex-wrap gap-6 justify-start">
           {albums.map((album, i) => (
             <VinylRecord
@@ -358,7 +358,7 @@ export default function Music() {
             />
           ))}
         </div>
-        <p className="text-[10px] text-[#3a4060]">click a record to cue · click again to play / pause</p>
+        <p className="text-[10px] text-[var(--border)]">click a record to cue · click again to play / pause</p>
       </section>
     </div>
   )

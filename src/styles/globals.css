@@ -9,16 +9,42 @@
   --font-serif: "Literata", Georgia, serif;
 }
 
+/* ── Color tokens ────────────────────────────────────────────────────────────── */
+:root {
+  --bg: #30364f;
+  --bg-rgb: 48, 54, 79;
+  --border: #3a4060;
+  --border-rgb: 58, 64, 96;
+  --border-hover: #4a5278;
+  --muted: #606880;
+  --text-sec: #acbac4;
+  --text-pri: #e1d9bc;
+  --accent: #f0f0db;
+}
+
+[data-theme="light"] {
+  --bg: #f0ebe0;
+  --bg-rgb: 240, 235, 224;
+  --border: #ccc6bc;
+  --border-rgb: 204, 198, 188;
+  --border-hover: #aaa498;
+  --muted: #8a8278;
+  --text-sec: #504840;
+  --text-pri: #201810;
+  --accent: #100e08;
+}
+
 @layer base {
   html {
-    background-color: #30364f;
-    color: #e1d9bc;
+    background-color: var(--bg);
+    color: var(--text-pri);
     font-family: "Glacial Indifference", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
-    background-color: #30364f;
+    background-color: var(--bg);
     min-height: 100vh;
   }
 
@@ -34,7 +60,7 @@
 
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, #acbac4 0%, #f0f0db 100%);
+    background: linear-gradient(135deg, var(--text-sec) 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import About from './pages/About'
 import Thoughts from './pages/Thoughts'
@@ -14,6 +15,7 @@ import Career from './pages/Career'
 
 export default function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/about" replace />} />
@@ -39,5 +41,6 @@ export default function App() {
         />
       </Routes>
     </BrowserRouter>
+  </ThemeProvider>
   )
 }

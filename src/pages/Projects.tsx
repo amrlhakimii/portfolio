@@ -102,15 +102,15 @@ export default function Projects() {
       {/* Header */}
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Projects</h1>
-        <p className="text-[#acbac4] text-sm">things i've built, shipped, or abandoned at 90%</p>
+        <p className="text-[var(--text-sec)] text-sm">things i've built, shipped, or abandoned at 90%</p>
       </header>
 
       {/* Stats */}
       <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
         {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
-            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
+            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
           </div>
         ))}
       </section>
@@ -128,11 +128,11 @@ export default function Projects() {
               style={filter === f ? {
                 background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
                 borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : '#f0f0db',
+                color: cfg ? cfg.color : 'var(--accent)',
               } : {
-                background: 'rgba(48,54,79,0.3)',
-                borderColor: '#3a4060',
-                color: '#606880',
+                background: 'rgba(var(--bg-rgb),0.3)',
+                borderColor: 'var(--border)',
+                color: 'var(--muted)',
               }}
             >
               {cfg && <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: cfg.color }} />}
@@ -154,8 +154,8 @@ export default function Projects() {
               key={project.title}
               className="border rounded-xl overflow-hidden transition-all duration-200 cursor-pointer"
               style={{
-                borderColor: isOpen ? cat.border : '#3a4060',
-                background: isOpen ? cat.bg : 'rgba(48,54,79,0.45)',
+                borderColor: isOpen ? cat.border : 'var(--border)',
+                background: isOpen ? cat.bg : 'rgba(var(--bg-rgb),0.45)',
               }}
               onClick={() => setExpanded(isOpen ? null : project.title)}
             >
@@ -172,11 +172,11 @@ export default function Projects() {
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="flex items-start justify-between gap-3 flex-wrap">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h2 className="text-sm font-medium text-[#e1d9bc] leading-snug">{project.title}</h2>
+                      <h2 className="text-sm font-medium text-[var(--text-pri)] leading-snug">{project.title}</h2>
                       {project.featured && (
                         <span
                           className="text-[9px] px-1.5 py-0.5 rounded-full border"
-                          style={{ background: 'rgba(240,240,219,0.08)', color: '#f0f0db', borderColor: 'rgba(240,240,219,0.15)' }}
+                          style={{ background: 'rgba(240,240,219,0.08)', color: 'var(--accent)', borderColor: 'rgba(240,240,219,0.15)' }}
                         >
                           ★ featured
                         </span>
@@ -206,7 +206,7 @@ export default function Projects() {
                       </span>
                       {/* Chevron */}
                       <span
-                        className="text-[#4a5278] transition-transform duration-200 text-xs"
+                        className="text-[var(--border-hover)] transition-transform duration-200 text-xs"
                         style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                       >
                         ▾
@@ -226,7 +226,7 @@ export default function Projects() {
                 style={{ maxHeight: isOpen ? '500px' : '0px' }}
               >
                 <div className="px-4 pb-4 space-y-4 border-t" style={{ borderColor: cat.border }}>
-                  <p className="text-sm text-[#acbac4] leading-relaxed pt-3">{project.description}</p>
+                  <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{project.description}</p>
 
                   {/* Stack */}
                   <div className="flex flex-wrap gap-1.5">
@@ -234,7 +234,7 @@ export default function Projects() {
                       <span
                         key={tech}
                         className="text-[10px] px-2 py-0.5 rounded border"
-                        style={{ color: '#acbac4', borderColor: '#3a4060', background: 'rgba(58,64,96,0.5)' }}
+                        style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.5)' }}
                       >
                         {tech}
                       </span>
@@ -290,18 +290,18 @@ export default function Projects() {
         {Object.entries(CATEGORY_CONFIG).map(([cat, cfg]) => (
           <div key={cat} className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full" style={{ background: cfg.color }} />
-            <span className="text-[10px] text-[#606880] capitalize">{cat}</span>
+            <span className="text-[10px] text-[var(--muted)] capitalize">{cat}</span>
           </div>
         ))}
         {Object.entries(STATUS_CONFIG).map(([status, cfg]) => (
           <div key={status} className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full" style={{ background: cfg.color }} />
-            <span className="text-[10px] text-[#606880]">{status}</span>
+            <span className="text-[10px] text-[var(--muted)]">{status}</span>
           </div>
         ))}
       </div>
 
-      <p className="fade-up fade-up-6 text-[10px] text-[#3a4060]">click any card to expand · {projects.length} projects total</p>
+      <p className="fade-up fade-up-6 text-[10px] text-[var(--border)]">click any card to expand · {projects.length} projects total</p>
     </div>
   )
 }

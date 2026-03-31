@@ -78,15 +78,15 @@ function SkillBar({ name, level }: { name: string; level: number }) {
     return () => obs.disconnect()
   }, [level])
 
-  const color = level >= 85 ? '#f0f0db' : level >= 70 ? '#e1d9bc' : '#acbac4'
+  const color = level >= 85 ? 'var(--accent)' : level >= 70 ? 'var(--text-pri)' : 'var(--text-sec)'
 
   return (
     <div ref={ref} className="space-y-1">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-[#e1d9bc]">{name}</span>
+        <span className="text-xs text-[var(--text-pri)]">{name}</span>
         <span className="text-[10px] tabular-nums" style={{ color }}>{level}%</span>
       </div>
-      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(58,64,96,0.6)' }}>
+      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(var(--border-rgb),0.6)' }}>
         <div
           className="h-full rounded-full transition-all duration-700 ease-out"
           style={{
@@ -120,23 +120,23 @@ function FunFactCarousel() {
 
   return (
     <div
-      className="rounded-xl border border-[#3a4060] p-5 flex items-center gap-4"
-      style={{ background: 'rgba(48,54,79,0.5)' }}
+      className="rounded-xl border border-[var(--border)] p-5 flex items-center gap-4"
+      style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
     >
-      <button onClick={prev} className="text-[#4a5278] hover:text-[#acbac4] transition-colors duration-150 shrink-0 text-lg">‹</button>
+      <button onClick={prev} className="text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 shrink-0 text-lg">‹</button>
       <div className="flex-1 text-center min-h-[2rem] flex items-center justify-center">
         <p
-          className="text-sm text-[#e1d9bc] transition-opacity duration-200"
+          className="text-sm text-[var(--text-pri)] transition-opacity duration-200"
           style={{ opacity: fading ? 0 : 1 }}
         >
           {funFacts[idx]}
         </p>
       </div>
-      <button onClick={next} className="text-[#4a5278] hover:text-[#acbac4] transition-colors duration-150 shrink-0 text-lg">›</button>
+      <button onClick={next} className="text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 shrink-0 text-lg">›</button>
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
         {funFacts.map((_, i) => (
           <div key={i} className="w-1 h-1 rounded-full transition-colors duration-200"
-            style={{ background: i === idx ? '#f0f0db' : '#3a4060' }} />
+            style={{ background: i === idx ? 'var(--accent)' : 'var(--border)' }} />
         ))}
       </div>
     </div>
@@ -161,13 +161,13 @@ function LangBar({ lang, level, pct, flag }: { lang: string; level: string; pct:
   return (
     <div ref={ref} className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-[#e1d9bc] flex items-center gap-2">{flag} {lang}</span>
-        <span className="text-xs text-[#acbac4] border border-[#3a4060] px-2 py-0.5 rounded-full">{level}</span>
+        <span className="text-sm text-[var(--text-pri)] flex items-center gap-2">{flag} {lang}</span>
+        <span className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-0.5 rounded-full">{level}</span>
       </div>
-      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(58,64,96,0.5)' }}>
+      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
         <div
           className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{ width: `${width}%`, background: 'linear-gradient(90deg, #606880, #e1d9bc)' }}
+          style={{ width: `${width}%`, background: 'linear-gradient(90deg, var(--muted), var(--text-pri))' }}
         />
       </div>
     </div>
@@ -201,35 +201,35 @@ export default function Profile() {
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
         <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Profile</h1>
-        <p className="text-[#acbac4] text-sm">the full picture — who, what, where, and why</p>
+        <p className="text-[var(--text-sec)] text-sm">the full picture — who, what, where, and why</p>
       </header>
 
       {/* Identity card */}
       <section className="fade-up fade-up-2">
         <div
-          className="rounded-2xl border border-[#3a4060] overflow-hidden"
-          style={{ background: 'rgba(48,54,79,0.5)' }}
+          className="rounded-2xl border border-[var(--border)] overflow-hidden"
+          style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
         >
           {/* Card header stripe */}
           <div
-            className="px-5 py-3 flex items-center justify-between border-b border-[#3a4060]"
+            className="px-5 py-3 flex items-center justify-between border-b border-[var(--border)]"
             style={{ background: 'rgba(0,0,0,0.2)' }}
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] uppercase tracking-widest text-[#606880]">identity card</span>
+              <span className="text-[10px] uppercase tracking-widest text-[var(--muted)]">identity card</span>
             </div>
-            <span className="text-[10px] text-[#606880]">🪪 kimi.dev</span>
+            <span className="text-[10px] text-[var(--muted)]">🪪 kimi.dev</span>
           </div>
 
           <div className="p-5 space-y-3">
             {identity.map(({ label, value, href }) => (
               <div key={label} className="flex items-start gap-4">
-                <span className="text-[10px] uppercase tracking-widest text-[#606880] w-20 shrink-0 pt-0.5">{label}</span>
+                <span className="text-[10px] uppercase tracking-widest text-[var(--muted)] w-20 shrink-0 pt-0.5">{label}</span>
                 {href ? (
-                  <a href={href} className="text-sm text-[#f0f0db] hover:underline">{value}</a>
+                  <a href={href} className="text-sm text-[var(--accent)] hover:underline">{value}</a>
                 ) : (
-                  <span className="text-sm text-[#e1d9bc]">{value}</span>
+                  <span className="text-sm text-[var(--text-pri)]">{value}</span>
                 )}
               </div>
             ))}
@@ -240,32 +240,32 @@ export default function Profile() {
       {/* Local time + status */}
       <section className="fade-up fade-up-3">
         <div
-          className="rounded-xl border border-[#3a4060] px-5 py-4 flex items-center justify-between"
-          style={{ background: 'rgba(48,54,79,0.4)' }}
+          className="rounded-xl border border-[var(--border)] px-5 py-4 flex items-center justify-between"
+          style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
         >
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-[#606880] mb-1">local time — Jitra, Kedah (MYT)</p>
-            <p className="text-2xl font-semibold text-[#f0f0db] tabular-nums" style={{ fontFamily: 'monospace' }}>{myTimeStr}</p>
+            <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-1">local time — Jitra, Kedah (MYT)</p>
+            <p className="text-2xl font-semibold text-[var(--accent)] tabular-nums" style={{ fontFamily: 'monospace' }}>{myTimeStr}</p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-[#acbac4]">{timeStatus}</p>
-            <p className="text-[10px] text-[#4a5278] mt-1">UTC +8:00</p>
+            <p className="text-xs text-[var(--text-sec)]">{timeStatus}</p>
+            <p className="text-[10px] text-[var(--border-hover)] mt-1">UTC +8:00</p>
           </div>
         </div>
       </section>
 
       {/* Fun facts carousel */}
       <section className="fade-up fade-up-4 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">fun facts</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">fun facts</h2>
         <div className="relative">
           <FunFactCarousel />
         </div>
-        <p className="text-[10px] text-[#4a5278]">auto-cycles every 3.5s · or click arrows</p>
+        <p className="text-[10px] text-[var(--border-hover)]">auto-cycles every 3.5s · or click arrows</p>
       </section>
 
       {/* Languages */}
       <section className="fade-up fade-up-5 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">languages</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">languages</h2>
         <div className="space-y-3">
           {languages.map(({ lang, level, pct, flag }) => (
             <LangBar key={lang} lang={lang} level={level} pct={pct} flag={flag} />
@@ -276,17 +276,17 @@ export default function Profile() {
       {/* Skills with tab toggle */}
       <section className="fade-up fade-up-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">skills</h2>
-          <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'rgba(58,64,96,0.5)' }}>
+          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">skills</h2>
+          <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
             {(['tech', 'design'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setSkillTab(tab)}
                 className="text-[10px] px-3 py-1 rounded-md capitalize transition-all duration-150"
                 style={skillTab === tab ? {
-                  background: 'rgba(240,240,219,0.12)', color: '#f0f0db',
+                  background: 'rgba(240,240,219,0.12)', color: 'var(--accent)',
                 } : {
-                  color: '#606880',
+                  color: 'var(--muted)',
                 }}
               >
                 {tab}
@@ -304,7 +304,7 @@ export default function Profile() {
 
       {/* Links */}
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">links</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">links</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {[
             { label: 'GitHub', url: 'https://github.com/amrlhakimii', icon: '🐙', sub: '@amrlhakimii' },
@@ -316,15 +316,15 @@ export default function Profile() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl border border-[#3a4060] hover:border-[#4a5278] p-4 transition-all duration-150 hover:-translate-y-0.5 group"
-              style={{ background: 'rgba(48,54,79,0.4)' }}
+              className="flex items-center gap-3 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 transition-all duration-150 hover:-translate-y-0.5 group"
+              style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
             >
               <span className="text-xl">{icon}</span>
               <div>
-                <p className="text-sm text-[#e1d9bc] group-hover:text-[#f0f0db] transition-colors duration-150">{label}</p>
-                <p className="text-[10px] text-[#606880]">{sub}</p>
+                <p className="text-sm text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">{label}</p>
+                <p className="text-[10px] text-[var(--muted)]">{sub}</p>
               </div>
-              <span className="ml-auto text-[#4a5278] group-hover:text-[#acbac4] transition-colors duration-150 text-sm">↗</span>
+              <span className="ml-auto text-[var(--border-hover)] group-hover:text-[var(--text-sec)] transition-colors duration-150 text-sm">↗</span>
             </a>
           ))}
         </div>

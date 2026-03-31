@@ -63,11 +63,11 @@ export default function Thoughts() {
       <header className="fade-up fade-up-1">
         <h1
           className="text-3xl font-semibold font-serif mb-2"
-          style={{ color: '#F0F0DB' }}
+          style={{ color: 'var(--accent)' }}
         >
           Thoughts
         </h1>
-        <p style={{ color: '#ACBAC4' }} className="text-sm">
+        <p style={{ color: 'var(--text-sec)' }} className="text-sm">
           i write the color of the chaos in my mind.
         </p>
         <a
@@ -75,7 +75,7 @@ export default function Thoughts() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 mt-3 text-xs transition-opacity duration-150 hover:opacity-80"
-          style={{ color: '#ACBAC4' }}
+          style={{ color: 'var(--text-sec)' }}
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
             <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
@@ -93,7 +93,7 @@ export default function Thoughts() {
               rel="noopener noreferrer"
               className="group block rounded-xl p-5 transition-all duration-200 hover:-translate-y-0.5"
               style={{
-                background: 'rgba(48,54,79,0.5)',
+                background: 'rgba(var(--bg-rgb),0.5)',
                 border: '1px solid rgba(172,186,196,0.1)',
               }}
               onMouseEnter={(e) => {
@@ -106,14 +106,14 @@ export default function Thoughts() {
               <div className="flex items-start justify-between gap-4 mb-2">
                 <h2
                   className="text-sm font-medium leading-snug transition-colors duration-150"
-                  style={{ color: '#E1D9BC' }}
+                  style={{ color: 'var(--text-pri)' }}
                 >
                   {post.title}
                 </h2>
                 <span
                   className="text-[10px] px-2 py-0.5 rounded-full shrink-0 capitalize"
                   style={{
-                    color: '#ACBAC4',
+                    color: 'var(--text-sec)',
                     background: tagColors[post.tag] ?? 'rgba(172,186,196,0.1)',
                     border: '1px solid rgba(172,186,196,0.15)',
                   }}
@@ -121,7 +121,7 @@ export default function Thoughts() {
                   {post.tag}
                 </span>
               </div>
-              <p className="text-xs leading-relaxed mb-3 line-clamp-2" style={{ color: '#ACBAC4' }}>
+              <p className="text-xs leading-relaxed mb-3 line-clamp-2" style={{ color: 'var(--text-sec)' }}>
                 {post.excerpt}
               </p>
               <div className="flex items-center justify-between">
@@ -134,7 +134,7 @@ export default function Thoughts() {
                 </div>
                 <span
                   className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-                  style={{ color: '#E1D9BC' }}
+                  style={{ color: 'var(--text-pri)' }}
                 >
                   read on medium →
                 </span>
