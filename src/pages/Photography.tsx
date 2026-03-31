@@ -1,0 +1,207 @@
+import { useState } from 'react'
+
+interface Photo {
+  id: number
+  src: string
+  alt: string
+  category: string
+  location?: string
+}
+
+const photos: Photo[] = [
+  { id: 1,  src: '/1.png',  alt: 'Convocation',           category: 'street',    location: 'Perak' },
+  { id: 2,  src: '/2.png',  alt: 'Football match',            category: 'events',    location: 'Kedah' },
+  { id: 3,  src: '/3.png',  alt: 'Wedding ceremony',  category: 'weddings',  location: 'Kedah'    },
+  { id: 4,  src: '/4.png',  alt: 'TapauFest2023',                 category: 'events',    location: 'Perak' },
+  { id: 5,  src: '/5.png',  alt: 'Hausboom2023',                category: 'events',  location: 'Kedah'    },
+  { id: 6,  src: '/6.png',  alt: 'Sunflower field',              category: 'street',    location: 'Perlis'       },
+]
+
+const gear = [
+  { name: 'Fujifilm XT30-ii',           role: 'primary body',      icon: '📷' },
+  { name: 'iPhone',               role: 'casual + bts',      icon: '📱' },
+  { name: 'Adobe Lightroom',      role: 'culling + editing',  icon: '🎞️' },
+  { name: 'Adobe Photoshop',      role: 'retouching',         icon: '✏️' },
+]
+
+const stats = [
+  { value: '7+', label: 'years shooting' },
+  { value: '30+', label: 'events covered' },
+  { value: '2018', label: 'first paid gig' },
+  { value: '∞',   label: 'shutter clicks' },
+]
+
+const CATEGORIES = ['all', 'weddings', 'events', 'street']
+
+export default function Photography() {
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [lightbox, setLightbox] = useState<Photo | null>(null)
+
+  const filtered = activeCategory === 'all' ? photos : photos.filter(p => p.category === activeCategory)
+
+  return (
+    <div className="space-y-8">
+      <header className="fade-up fade-up-1">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Photography</h1>
+            <p className="text-[#acbac4] text-sm">frames i've kept — weddings, events, street, everyday moments</p>
+          </div>
+          <a
+            href="https://www.instagram.com/kimiflickr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#3a4060] hover:border-[#4a5278] transition-all duration-150 hover:-translate-y-0.5 shrink-0 mt-1 group"
+            style={{ background: 'rgba(48,54,79,0.6)', backdropFilter: 'blur(8px)' }}
+          >
+            <img src="/insta.svg.png" alt="Instagram" className="w-4 h-4 object-contain" onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+            <span className="text-xs text-[#acbac4] group-hover:text-[#e1d9bc] transition-colors duration-150">@kimiflickr</span>
+            <span className="text-xs text-[#4a5278] group-hover:text-[#acbac4] transition-colors duration-150">→</span>
+          </a>
+        </div>
+      </header>
+
+      {/* Stats */}
+      <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
+        {stats.map(({ value, label }) => (
+          <div key={label} className="rounded-xl border border-[#3a4060] p-3 text-center" style={{ background: 'rgba(48,54,79,0.4)' }}>
+            <p className="text-lg font-semibold text-[#f0f0db]">{value}</p>
+            <p className="text-[9px] uppercase tracking-wider text-[#606880] mt-0.5">{label}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* Film strip header */}
+      <div className="fade-up fade-up-3 flex gap-1 overflow-hidden rounded-lg" style={{ height: '6px' }}>
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div
+            key={i}
+            className="shrink-0 rounded-sm"
+            style={{
+              width: i % 5 === 0 ? '4px' : '16px',
+              background: i % 5 === 0 ? '#30364f' : `rgba(225,217,188,${0.1 + (i % 3) * 0.05})`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Category filter */}
+      <div className="fade-up fade-up-4 flex flex-wrap gap-2">
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className="text-[10px] px-3 py-1.5 rounded-full border capitalize transition-all duration-150"
+            style={activeCategory === cat ? {
+              background: 'rgba(240,240,219,0.1)',
+              borderColor: 'rgba(240,240,219,0.25)',
+              color: '#f0f0db',
+            } : {
+              background: 'rgba(48,54,79,0.3)',
+              borderColor: '#3a4060',
+              color: '#606880',
+            }}
+          >
+            {cat} {cat !== 'all' && `(${photos.filter(p => p.category === cat).length})`}
+          </button>
+        ))}
+      </div>
+
+      {/* Photo grid */}
+      <div className="fade-up fade-up-5 grid grid-cols-2 gap-2">
+        {filtered.map((photo) => (
+          <button
+            key={photo.id}
+            onClick={() => setLightbox(photo)}
+            className="relative group overflow-hidden rounded-xl focus:outline-none"
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              className="w-full object-cover aspect-[4/3] transition-all duration-300 group-hover:scale-105"
+              style={{ opacity: 0.82 }}
+              onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3' }}
+            />
+            {/* Overlay on hover */}
+            <div className="absolute inset-0 flex flex-col justify-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              style={{ background: 'linear-gradient(to top, rgba(48,54,79,0.85) 0%, transparent 60%)' }}
+            >
+              <p className="text-[10px] text-[#f0f0db] font-medium">{photo.alt}</p>
+              <div className="flex items-center justify-between mt-0.5">
+                <span className="text-[9px] text-[#acbac4] capitalize">{photo.category}</span>
+                {photo.location && <span className="text-[9px] text-[#606880]">📍 {photo.location}</span>}
+              </div>
+            </div>
+            {/* Expand icon */}
+            <div className="absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              style={{ background: 'rgba(48,54,79,0.8)', border: '1px solid rgba(240,240,219,0.2)' }}
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0f0db" strokeWidth="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Gear section */}
+      <section className="fade-up fade-up-6 space-y-3">
+        <h2 className="text-xs uppercase tracking-widest text-[#acbac4]">behind the lens</h2>
+        <div className="grid grid-cols-2 gap-2">
+          {gear.map(({ name, role, icon }) => (
+            <div
+              key={name}
+              className="flex items-center gap-3 rounded-xl border border-[#3a4060] p-3 transition-colors duration-150 hover:border-[#4a5278]"
+              style={{ background: 'rgba(48,54,79,0.4)' }}
+            >
+              <span className="text-lg shrink-0">{icon}</span>
+              <div>
+                <p className="text-xs font-medium text-[#e1d9bc]">{name}</p>
+                <p className="text-[10px] text-[#606880]">{role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <p className="fade-up fade-up-7 text-[10px] text-[#3a4060]">
+        real portfolio photos coming soon · follow @kimiflickr for the full work
+      </p>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: 'rgba(15,15,20,0.92)', backdropFilter: 'blur(16px)' }}
+          onClick={() => setLightbox(null)}
+        >
+          <div className="relative max-w-2xl w-full" onClick={e => e.stopPropagation()}>
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full rounded-2xl object-cover"
+              style={{ maxHeight: '75vh' }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 rounded-b-2xl p-4"
+              style={{ background: 'linear-gradient(to top, rgba(48,54,79,0.9), transparent)' }}
+            >
+              <p className="text-sm font-medium text-[#f0f0db]">{lightbox.alt}</p>
+              <div className="flex items-center gap-3 mt-1">
+                <span className="text-[10px] text-[#acbac4] capitalize">{lightbox.category}</span>
+                {lightbox.location && <span className="text-[10px] text-[#606880]">📍 {lightbox.location}</span>}
+              </div>
+            </div>
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-[#acbac4] hover:text-[#f0f0db] transition-colors duration-150"
+              style={{ background: 'rgba(48,54,79,0.8)', border: '1px solid rgba(172,186,196,0.2)' }}
+            >
+              ✕
+            </button>
+          </div>
+          <p className="absolute bottom-6 text-[10px] text-[#4a5278]">click outside to close</p>
+        </div>
+      )}
+    </div>
+  )
+}

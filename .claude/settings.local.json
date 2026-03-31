@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//Users/amrlhakimii/portfolio/portfolio_kimi/**)",
+      "Bash(done)",
+      "WebFetch(domain:itsmeray.com)",
+      "Bash(yarn build:*)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(sed -i '' \"s|href: ''https://github.com''|href: ''https://github.com/amrlhakimii''|g\" /Users/amrlhakimii/portfolio/portfolio_kimi/src/pages/About.tsx)",
+      "Bash(__NEW_LINE_8ad6a2a4c5053af0__ sed:*)",
+      "Bash(sed -i '' 's|href=\"\"https://github.com\"\"|href=\"\"https://github.com/amrlhakimii\"\"|g' /Users/amrlhakimii/portfolio/portfolio_kimi/src/components/Navbar.tsx)",
+      "Bash(__NEW_LINE_6be6b91ddc36195e__ sed:*)",
+      "WebFetch(domain:tulisankimi.medium.com)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
