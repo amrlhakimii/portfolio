@@ -282,17 +282,17 @@ export default function About() {
           style={{ background: 'rgba(10,15,28,0.8)', backdropFilter: 'blur(8px)' }}
         >
           {/* Terminal title bar */}
-          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[var(--border)]">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/10">
             <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-            <span className="ml-3 text-[11px] text-[var(--muted)]" style={{ fontFamily: 'monospace' }}>zsh — amrlhakimii</span>
+            <span className="ml-3 text-[11px] text-[#606880]" style={{ fontFamily: 'monospace' }}>zsh — amrlhakimii</span>
           </div>
           <div className="px-4 py-4 space-y-3">
             {terminal.map(({ prompt, out }) => (
               <div key={prompt}>
-                <p className="text-xs text-[var(--accent)]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
-                <p className="text-xs text-[var(--text-sec)] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
+                <p className="text-xs text-[#f0f0db]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
+                <p className="text-xs text-[#acbac4] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
               </div>
             ))}
           </div>
