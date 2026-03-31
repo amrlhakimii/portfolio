@@ -134,18 +134,40 @@ export default function About() {
         </div>
 
         {/* Avatar + socials row */}
-        <div className="relative z-10 -mt-20 px-1 mb-4 flex items-end justify-between gap-3">
-          <img
-            src="/avatar.jpg"
-            alt="Amirul Hakimi"
-            className="w-34 h-34 rounded-full border-4 border-[#30364f] object-cover bg-[#3a4060] shrink-0"
-            onError={(e) => {
-              const el = e.currentTarget as HTMLImageElement
-              el.src = "https://placehold.co/96x96/3a4060/acbac4?text=AH"
-            }}
-          />
+        <div className="relative z-10 -mt-20 px-1 mb-4">
+          {/* Top row: avatar always left, fan cards on right (all screen sizes) */}
+          <div className="flex items-end justify-between gap-3">
+            <img
+              src="/avatar.jpg"
+              alt="Amirul Hakimi"
+              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-[#30364f] object-cover bg-[#3a4060] shrink-0"
+              onError={(e) => {
+                const el = e.currentTarget as HTMLImageElement
+                el.src = "https://placehold.co/96x96/3a4060/acbac4?text=AH"
+              }}
+            />
 
-          <div className="flex items-center gap-2 pb-1 flex-wrap">
+            {/* Fan cards — always top-right */}
+            <div className="flex items-center gap-1.5 pb-1">
+              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
+                <img src="/arsenal.png" alt="Arsenal" className="w-8 h-5 sm:w-12 sm:h-7 object-contain shrink-0" />
+                <div className="hidden sm:block">
+                  <p className="text-xs font-medium text-[#e1d9bc] leading-none">Arsenal FC</p>
+                  <p className="text-[10px] text-[#acbac4]">die-hard gooner</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
+                <img src="/merccedes.png" alt="Mercedes" className="w-8 h-5 sm:w-12 sm:h-7 object-contain shrink-0" />
+                <div className="hidden sm:block">
+                  <p className="text-xs font-medium text-[#e1d9bc] leading-none">Mercedes F1</p>
+                  <p className="text-[10px] text-[#acbac4]">silver arrows</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social icons — below avatar on all screen sizes */}
+          <div className="flex items-center gap-2 mt-3 flex-wrap">
             {[
               {
                 label: 'GitHub',
@@ -210,24 +232,6 @@ export default function About() {
                 {icon}
               </a>
             ))}
-          </div>
-
-          {/* Fan cards */}
-          <div className="flex items-center gap-2 pb-1">
-            <div className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
-              <img src="/arsenal.png" alt="Arsenal" className="w-12 h-7 object-contain" />
-              <div>
-                <p className="text-xs font-medium text-[#e1d9bc] leading-none">Arsenal FC</p>
-                <p className="text-[10px] text-[#acbac4]">die-hard gooner</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#3a4060] bg-[#30364f]/60">
-              <img src="/merccedes.png" alt="Mercedes" className="w-12 h-7 object-contain" />
-              <div>
-                <p className="text-xs font-medium text-[#e1d9bc] leading-none">Mercedes F1</p>
-                <p className="text-[10px] text-[#acbac4]">silver arrows</p>
-              </div>
-            </div>
           </div>
         </div>
 
