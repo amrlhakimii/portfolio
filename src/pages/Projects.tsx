@@ -15,6 +15,18 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'NakKahwin',
+    description: 'Aplikasi web perancangan perkahwinan untuk pasangan Muslim Malaysia. Idea datang dari realiti betapa rumitnya nak plan perkahwinan — borang nikah, kursus kahwin, hantaran, vendor, tetamu, bajet — semua berselerak. NakKahwin uruskan semua tu di satu tempat, dengan Pusat Maklumat tentang mas kahwin mengikut negeri, adat perkahwinan, dan prosedur Islam Malaysia.',
+    stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS', 'React Router', 'LocalStorage'],
+    link: 'https://nakkahwin.amrlhakimi.my',
+    github: 'https://github.com/amrlhakimii/nakkahwin',
+    category: 'software',
+    status: 'shipped',
+    year: '2025',
+    highlight: 'wedding planner',
+    featured: true,
+  },
+  {
     title: 'MyCampus QR Attendance System',
     description: 'iOS React Native app + web platform for UiTM students to record attendance via QR code scanning. Features secure login, attendance records, course registration, custom timetable, and a student academic dashboard. Final Year Project.',
     stack: ['React Native', 'React.js', 'MySQL', 'Expo', 'Node.js', 'TailwindCSS'],
