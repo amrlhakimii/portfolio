@@ -291,8 +291,8 @@ export default function About() {
           <div className="px-4 py-4 space-y-3">
             {terminal.map(({ prompt, out }) => (
               <div key={prompt}>
-                <p className="text-xs text-[#ff5f57]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
-                <p className="text-xs text-[#30364f] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
+                <p className="text-xs text-[#f0f0db]" style={{ fontFamily: 'monospace' }}>{prompt}</p>
+                <p className="text-xs text-[#acbac4] mt-0.5 pl-2" style={{ fontFamily: 'monospace' }}>→ {out}</p>
               </div>
             ))}
           </div>
