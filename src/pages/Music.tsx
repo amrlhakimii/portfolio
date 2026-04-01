@@ -327,10 +327,10 @@ export default function Music() {
                     {selected === i && playing ? '▶' : String(i + 1).padStart(2, '0')}
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="text-xs block truncate" style={{ color: selected === i ? 'var(--text-pri)' : '#7a8070' }}>
+                    <span className="text-xs block truncate" style={{ color: selected === i ? '#f0f0db' : '#7a8070' }}>
                       {album.artist}
                     </span>
-                    <span className="text-[10px] block truncate" style={{ color: selected === i ? 'var(--text-sec)' : 'var(--border-hover)' }}>
+                    <span className="text-[10px] block truncate" style={{ color: selected === i ? '#acbac4' : 'var(--border-hover)' }}>
                       {album.title}
                     </span>
                   </span>
