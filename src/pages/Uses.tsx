@@ -68,6 +68,14 @@ const categories: Category[] = [
     ],
   },
   {
+    label: 'tools & platforms',
+    emoji: '🛠️',
+    items: [
+      { name: 'Salesforce', description: 'CRM platform for managing customer data, pipelines, and workflows. Used for tracking interactions and automating business processes.', tag: 'crm' },
+      { name: 'Access Focalpoint', description: 'Business management software for handling operations, reporting, and workflow coordination across teams.', tag: 'operations' },
+    ],
+  },
+  {
     label: 'photography workflow',
     emoji: '📷',
     items: [
