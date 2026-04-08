@@ -16,10 +16,10 @@ const timeline: Milestone[] = [
     title: 'Associate Project Coordinator Intern',
     organization: 'The Access Group - APAC',
     period: 'Mar 2026 — present',
-    description: 'Interning as an Associate Project Coordinator at The Access Group APAC, supporting project delivery and coordination across the Asia-Pacific region.',
+    description: 'Interning as an Associate Project Coordinator at The Access Group APAC. Scheduling and managing meetings between consultants and clients, handling communications with clients from across the globe, and supporting the UK team in coordinating between clients and consultants. Using Salesforce and Access Focalpoint daily to manage workflows and track project activity.',
     type: 'internship',
     logoInitials: 'TAG',
-    tags: ['project management', 'APAC', 'coordination'],
+    tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support'],
     current: true,
   },
   {
