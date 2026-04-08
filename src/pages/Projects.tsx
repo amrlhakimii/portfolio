@@ -15,8 +15,20 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Hootang',
+    description: 'Just built something fun and practical — Hootang helps track shared expenses, subscriptions, and IOUs so you never forget who owes who. Handles real-life situations like splitting restaurant receipts with tax included, sharing Spotify or Netflix family plans, tracking borrowed money, and calculating fair payment amounts. Also added a fun dice feature to randomly decide who pays during hangouts 🎲 Designed to feel simple, useful, and realistic — similar to tools people actually use daily.',
+    stack: ['React', 'TypeScript', 'TailwindCSS', 'Vite'],
+    link: 'https://www.hootang.amrlhakimi.my',
+    github: 'https://github.com/amrlhakimii/hootang',
+    category: 'software',
+    status: 'shipped',
+    year: '2025',
+    highlight: 'expense & IOU tracker',
+    featured: true,
+  },
+  {
     title: 'NakKahwin',
-    description: 'Aplikasi web perancangan perkahwinan untuk pasangan Muslim Malaysia. Idea datang dari realiti betapa rumitnya nak plan perkahwinan — borang nikah, kursus kahwin, hantaran, vendor, tetamu, bajet — semua berselerak. NakKahwin uruskan semua tu di satu tempat, dengan Pusat Maklumat tentang mas kahwin mengikut negeri, adat perkahwinan, dan prosedur Islam Malaysia.',
+    description: 'A wedding planning web app for Muslim couples in Malaysia. Built from the reality of how complex planning a wedding can be — nikah forms, pre-marriage courses, hantaran, vendors, guests, budget — all scattered everywhere. NakKahwin brings everything into one place, with an information hub covering mas kahwin rates by state, wedding customs, and Malaysian Islamic procedures.',
     stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS', 'React Router', 'LocalStorage'],
     link: 'https://nakkahwin.amrlhakimi.my',
     github: 'https://github.com/amrlhakimii/nakkahwin',
