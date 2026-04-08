@@ -18,7 +18,7 @@ const projects: Project[] = [
     title: 'Hootang',
     description: 'Just built something fun and practical — Hootang helps track shared expenses, subscriptions, and IOUs so you never forget who owes who. Handles real-life situations like splitting restaurant receipts with tax included, sharing Spotify or Netflix family plans, tracking borrowed money, and calculating fair payment amounts. Also added a fun dice feature to randomly decide who pays during hangouts 🎲 Designed to feel simple, useful, and realistic — similar to tools people actually use daily.',
     stack: ['React', 'TypeScript', 'TailwindCSS', 'Vite'],
-    link: 'https://www.hootang.amrlhakimi.my',
+    link: 'https://hootang.amrlhakimi.my',
     github: 'https://github.com/amrlhakimii/hootang',
     category: 'software',
     status: 'shipped',
