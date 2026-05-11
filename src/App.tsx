@@ -16,11 +16,7 @@ import Profile from './pages/Profile'
 import Career from './pages/Career'
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(() => {
-    if (sessionStorage.getItem('splashShown')) return false
-    sessionStorage.setItem('splashShown', '1')
-    return true
-  })
+  const [showSplash, setShowSplash] = useState(true)
 
   return (
     <>
