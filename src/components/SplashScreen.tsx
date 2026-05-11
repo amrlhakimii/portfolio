@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface SplashScreenProps {
   onDone: () => void
@@ -63,13 +63,45 @@ function Highlighted({ text }: { text: string }) {
 
 const FADE_MS = 500
 
+function playClick(ctx: AudioContext, isErase = false) {
+  try {
+    const now = ctx.currentTime
+    const bufferSize = Math.floor(ctx.sampleRate * 0.025)
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2)
+    }
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'bandpass'
+    filter.frequency.value = isErase ? 1200 : 3500
+    filter.Q.value = 0.6
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(isErase ? 0.04 : 0.07, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(ctx.destination)
+    noise.start(now)
+  } catch {
+    // silently ignore — audio may be blocked
+  }
+}
+
 export function SplashScreen({ onDone }: SplashScreenProps) {
   const [text, setText] = useState('')
   const [fading, setFading] = useState(false)
+  const audioCtxRef = useRef<AudioContext | null>(null)
 
   useEffect(() => {
     let i = 0
     let t: ReturnType<typeof setTimeout>
+    let prevText = ''
 
     const next = () => {
       if (i >= FRAMES.length) {
@@ -78,12 +110,26 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
         return
       }
       const frame = FRAMES[i++]
+
+      // Init AudioContext on first keystroke (satisfies browser autoplay policy)
+      if (!audioCtxRef.current) {
+        try { audioCtxRef.current = new AudioContext() } catch { /* ignore */ }
+      }
+      if (audioCtxRef.current && frame.text !== prevText) {
+        const isErase = frame.text.length < prevText.length
+        playClick(audioCtxRef.current, isErase)
+      }
+
+      prevText = frame.text
       setText(frame.text)
       t = setTimeout(next, frame.hold)
     }
 
     t = setTimeout(next, 400)
-    return () => clearTimeout(t)
+    return () => {
+      clearTimeout(t)
+      audioCtxRef.current?.close()
+    }
   }, [onDone])
 
   return (
