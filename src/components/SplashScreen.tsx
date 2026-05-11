@@ -1,121 +1,94 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface SplashScreenProps {
   onDone: () => void
 }
 
-const T = {
-  welcomeDelay:   0.15,
-  toDelay:        0.72,
-  nameDelay:      1.30,
-  slideDuration:  0.68,
-  jiggleDelay:    2.30,
-  jiggleDuration: 0.65,
-  fadeDelay:      3.20,
-  fadeDuration:   0.55,
-  doneMs:         3850,
-}
+// Each frame: what's on screen, and how long to hold before advancing
+const FRAMES: { text: string; hold: number }[] = [
+  { text: 'a',           hold: 100 },
+  { text: 'am',          hold: 80  },
+  { text: 'amr',         hold: 80  },
+  { text: 'amrl',        hold: 520 }, // hesitate — looks like a typo pause
+  { text: 'amr',         hold: 80  }, // erase the l
+  { text: 'amrl',        hold: 80  },
+  { text: 'amrlh',       hold: 80  },
+  { text: 'amrlha',      hold: 80  },
+  { text: 'amrlhak',     hold: 80  },
+  { text: 'amrlhaki',    hold: 80  },
+  { text: 'amrlhakim',   hold: 80  },
+  { text: 'amrlhakimi',  hold: 80  },
+  { text: 'amrlhakimii', hold: 1000 }, // hold on the full name
+]
 
-const SPRING = 'cubic-bezier(0.22, 1, 0.36, 1)'
+const FADE_MS = 500
 
 export function SplashScreen({ onDone }: SplashScreenProps) {
+  const [text, setText] = useState('')
+  const [fading, setFading] = useState(false)
+
   useEffect(() => {
-    const timer = setTimeout(onDone, T.doneMs)
-    return () => clearTimeout(timer)
+    let i = 0
+    let t: ReturnType<typeof setTimeout>
+
+    const next = () => {
+      if (i >= FRAMES.length) {
+        setFading(true)
+        setTimeout(onDone, FADE_MS + 50)
+        return
+      }
+      const frame = FRAMES[i++]
+      setText(frame.text)
+      t = setTimeout(next, frame.hold)
+    }
+
+    t = setTimeout(next, 400) // brief pause before typing starts
+    return () => clearTimeout(t)
   }, [onDone])
-
-  const slideAnim = (dir: 'left' | 'right' | 'bottom', delay: number): React.CSSProperties => ({
-    animation: `splash-from-${dir} ${T.slideDuration}s ${SPRING} ${delay}s both`,
-  })
-
-  const jiggleAnim = (extraDelay = 0): React.CSSProperties => ({
-    display: 'block',
-    animation: `splash-jiggle ${T.jiggleDuration}s ease-in-out ${T.jiggleDelay + extraDelay}s`,
-  })
-
-  const fadeOut: React.CSSProperties = {
-    animation: `splash-out ${T.fadeDuration}s ease ${T.fadeDelay}s forwards`,
-  }
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
-      style={{ ...fadeOut, background: '#1c2035' }}
+      className="fixed inset-0 z-[200] flex items-center justify-center"
+      style={{
+        background: '#1c2035',
+        opacity: fading ? 0 : 1,
+        transition: `opacity ${FADE_MS}ms ease`,
+        pointerEvents: fading ? 'none' : 'auto',
+      }}
     >
-      {/* Dot grid — matches the site's DotGrid */}
+      {/* Dot grid — matches the site */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-20"
+        className="pointer-events-none absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(172,186,196,0.2) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
 
-      {/* Ambient glow */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[320px] rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%)',
-          animation: 'splash-glow 2.5s ease-in-out infinite',
-          filter: 'blur(80px)',
-        }}
-      />
-
-      {/* Text */}
-      <div className="relative z-10 flex flex-col items-center gap-1 select-none">
-        {/* WELCOME */}
-        <span style={jiggleAnim(0)}>
-          <span
-            className="block font-bold uppercase leading-none"
-            style={{
-              ...slideAnim('left', T.welcomeDelay),
-              fontFamily: "'Glacial Indifference', system-ui, sans-serif",
-              fontSize: 'clamp(2.2rem, 11vw, 3.8rem)',
-              letterSpacing: '0.14em',
-              color: '#e1d9bc',
-            }}
-          >
-            WELCOME
-          </span>
+      {/* Typewriter text + cursor */}
+      <div className="relative z-10 flex items-center select-none" style={{ fontFamily: 'monospace' }}>
+        <span
+          style={{
+            fontSize: 'clamp(1.6rem, 6vw, 2.6rem)',
+            fontWeight: 500,
+            color: '#e1d9bc',
+            letterSpacing: '0.04em',
+          }}
+        >
+          {text}
         </span>
-
-        {/* TO */}
-        <span style={jiggleAnim(0.04)}>
-          <span
-            className="block font-bold uppercase leading-none"
-            style={{
-              ...slideAnim('right', T.toDelay),
-              fontFamily: "'Glacial Indifference', system-ui, sans-serif",
-              fontSize: 'clamp(1.4rem, 7vw, 2.4rem)',
-              letterSpacing: '0.55em',
-              paddingLeft: '0.55em',
-              color: '#4a5278',
-            }}
-          >
-            TO
-          </span>
-        </span>
-
-        {/* AMRLHAKIMI */}
-        <span style={jiggleAnim(0.08)}>
-          <span
-            className="block font-bold uppercase leading-none mt-1"
-            style={{
-              ...slideAnim('bottom', T.nameDelay),
-              fontFamily: "'Glacial Indifference', system-ui, sans-serif",
-              fontSize: 'clamp(1.8rem, 10vw, 3.2rem)',
-              letterSpacing: '0.06em',
-            }}
-          >
-            <span style={{ color: '#e1d9bc' }}>AMRL</span>
-            <span style={{
-              background: 'linear-gradient(270deg, #f9a8d4 0%, #d8b4fe 40%, #a855f7 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>HAKIMI</span>
-          </span>
-        </span>
+        {/* Blinking cursor */}
+        <span
+          style={{
+            display: 'inline-block',
+            width: '2px',
+            height: 'clamp(1.4rem, 5vw, 2.2rem)',
+            background: '#acbac4',
+            marginLeft: '4px',
+            verticalAlign: 'middle',
+            animation: 'cursor-blink 0.75s step-end infinite',
+          }}
+        />
       </div>
     </div>
   )

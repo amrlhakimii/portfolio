@@ -179,28 +179,7 @@
   50%       { height: 14px; }
 }
 
-@keyframes splash-from-left {
-  from { opacity: 0; transform: translateX(-60px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes splash-from-right {
-  from { opacity: 0; transform: translateX(60px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes splash-from-bottom {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes splash-jiggle {
-  0%, 100% { transform: translateY(0); }
-  25%       { transform: translateY(-6px); }
-  75%       { transform: translateY(4px); }
-}
-@keyframes splash-out {
-  from { opacity: 1; }
-  to   { opacity: 0; pointer-events: none; }
-}
-@keyframes splash-glow {
-  0%, 100% { transform: scale(1);    opacity: 0.15; }
-  50%       { transform: scale(1.2); opacity: 0.25; }
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
