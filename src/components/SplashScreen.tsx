@@ -118,7 +118,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
 
       {/* Code line */}
       <div
-        className="relative z-10 select-none flex items-center gap-6"
+        className="relative z-10 select-none flex flex-col items-center gap-3"
         style={{ fontFamily: "ui-monospace, 'Cascadia Code', 'Courier New', monospace" }}
       >
         {/* Active line highlight */}
@@ -132,32 +132,59 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
           }}
         />
 
-        {/* Line number */}
-        <span
-          className="relative shrink-0 tabular-nums"
-          style={{ color: '#2a3050', fontSize: 'clamp(0.75rem, 2.5vw, 1rem)' }}
-        >
-          1
-        </span>
-
-        {/* Typed code */}
-        <span
-          className="relative"
-          style={{ fontSize: 'clamp(0.85rem, 3.5vw, 1.45rem)', letterSpacing: '0.02em' }}
-        >
-          <Highlighted text={text} />
-          {/* Blinking cursor */}
-          <span
+        {/* Code row */}
+        <div className="relative flex items-center gap-6">
+          {/* Active line highlight */}
+          <div
+            className="absolute"
             style={{
-              display: 'inline-block',
-              width: '2px',
-              height: '1.1em',
-              background: '#acbac4',
-              marginLeft: '2px',
-              verticalAlign: 'text-bottom',
-              animation: 'cursor-blink 0.75s step-end infinite',
+              inset: '-10px -20px',
+              background: 'rgba(130,170,255,0.04)',
+              borderRadius: '6px',
+              border: '1px solid rgba(130,170,255,0.06)',
             }}
           />
+
+          {/* Line number */}
+          <span
+            className="relative shrink-0 tabular-nums"
+            style={{ color: '#2a3050', fontSize: 'clamp(0.75rem, 2.5vw, 1rem)' }}
+          >
+            1
+          </span>
+
+          {/* Typed code */}
+          <span
+            className="relative"
+            style={{ fontSize: 'clamp(0.85rem, 3.5vw, 1.45rem)', letterSpacing: '0.02em' }}
+          >
+            <Highlighted text={text} />
+            {/* Blinking cursor */}
+            <span
+              style={{
+                display: 'inline-block',
+                width: '2px',
+                height: '1.1em',
+                background: '#acbac4',
+                marginLeft: '2px',
+                verticalAlign: 'text-bottom',
+                animation: 'cursor-blink 0.75s step-end infinite',
+              }}
+            />
+          </span>
+        </div>
+
+        {/* Subtitle */}
+        <span
+          style={{
+            fontSize: 'clamp(0.6rem, 2vw, 0.75rem)',
+            color: '#2a3050',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            fontFamily: "ui-monospace, 'Cascadia Code', 'Courier New', monospace",
+          }}
+        >
+          personal portfolio
         </span>
       </div>
     </div>
