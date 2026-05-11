@@ -147,16 +147,19 @@ function DotGrid() {
 
 // ── Top ticker ────────────────────────────────────────────────────────────────
 const TICKER_ITEMS = [
-  'Available for frontend roles',
+  'Available for Workforce AI roles',
+  'Freelance Full-Stack Dev · open to projects',
   'Based in Jitra, Kedah · Malaysia',
-  'Open to freelance',
-  'React · TypeScript · React Native',
+  'React · TypeScript · Node.js · Supabase · Firebase',
+  'Prompt Engineering · AI-assisted workflows',
   'Photographer since 2018',
   'Founder of Blugrafix',
   'Interning @ The Access Group APAC',
   'Arsenal FC 🔴',
   'Mercedes AMG F1 🏎️',
   'CGPA 3.76',
+  'npm run dev',
+  'git push origin main',
 ]
 
 function Ticker() {
@@ -175,7 +178,7 @@ function Ticker() {
         {items.map((item, i) => (
           <span key={i} style={{ fontFamily: 'monospace', color: 'var(--muted)' }} className="text-[10px] px-5 whitespace-nowrap">
             {item}
-            <span className="text-[#505870] mx-3">·</span>
+            <span className="text-[#505870] mx-3" style={{ fontFamily: 'monospace' }}>//</span>
           </span>
         ))}
       </div>
@@ -184,12 +187,12 @@ function Ticker() {
 }
 
 // ── Side decorations ──────────────────────────────────────────────────────────
-const leftCars = [
-  { left: '2.5%',  delay: '0s',    duration: '3.0s', size: '2.4rem', opacity: 0.9  },
-  { left: '6%',    delay: '1.3s',  duration: '4.2s', size: '1.8rem', opacity: 0.6  },
-  { left: '9.5%',  delay: '2.7s',  duration: '2.6s', size: '2.1rem', opacity: 0.7  },
-  { left: '1%',    delay: '4.1s',  duration: '3.6s', size: '1.6rem', opacity: 0.5  },
-  { left: '7%',    delay: '0.6s',  duration: '5.0s', size: '1.5rem', opacity: 0.4  },
+const leftSymbols = [
+  { left: '2.5%',  delay: '0s',    duration: '3.0s', size: '1.1rem', opacity: 0.55, symbol: '</>'  },
+  { left: '6%',    delay: '1.3s',  duration: '4.2s', size: '0.95rem', opacity: 0.4, symbol: '{ }'  },
+  { left: '9.5%',  delay: '2.7s',  duration: '2.6s', size: '1.0rem', opacity: 0.5,  symbol: '=>'   },
+  { left: '1%',    delay: '4.1s',  duration: '3.6s', size: '0.9rem', opacity: 0.35, symbol: 'fn'   },
+  { left: '7%',    delay: '0.6s',  duration: '5.0s', size: '0.95rem', opacity: 0.3, symbol: '[ ]'  },
 ]
 
 const leftCodeLines = [
@@ -202,14 +205,14 @@ const leftCodeLines = [
   { left: '16%',  delay: '17s',   duration: '19s', text: 'import React from…',    opacity: 0.14 },
 ]
 
-const rightItems = [
-  { right: '2%',   delay: '0.4s',  duration: '3.4s', emoji: '🚀',  size: '2.2rem', opacity: 0.85, anim: 'launchUp'   },
-  { right: '6%',   delay: '1.8s',  duration: '4.8s', emoji: '🚀',  size: '1.7rem', opacity: 0.6,  anim: 'launchUp'   },
-  { right: '10%',  delay: '3.2s',  duration: '2.9s', emoji: '🚀',  size: '2.0rem', opacity: 0.7,  anim: 'launchUp'   },
-  { right: '4%',   delay: '5.5s',  duration: '3.8s', emoji: '🚀',  size: '1.5rem', opacity: 0.45, anim: 'launchUp'   },
-  { right: '8%',   delay: '2.5s',  duration: '6.0s', emoji: '✦',   size: '1.6rem', opacity: 0.5,  anim: 'floatDrift' },
-  { right: '3.5%', delay: '1.0s',  duration: '5.5s', emoji: '✦',   size: '1.2rem', opacity: 0.35, anim: 'floatDrift' },
-  { right: '11%',  delay: '4.0s',  duration: '7.0s', emoji: '✦',   size: '1.3rem', opacity: 0.3,  anim: 'floatDrift' },
+const rightSymbols = [
+  { right: '2%',   delay: '0.4s',  duration: '3.4s', symbol: '>_',  size: '1.0rem', opacity: 0.55, anim: 'launchUp'   },
+  { right: '6%',   delay: '1.8s',  duration: '4.8s', symbol: '#!',  size: '0.9rem', opacity: 0.4,  anim: 'launchUp'   },
+  { right: '10%',  delay: '3.2s',  duration: '2.9s', symbol: '//',  size: '1.0rem', opacity: 0.5,  anim: 'launchUp'   },
+  { right: '4%',   delay: '5.5s',  duration: '3.8s', symbol: 'λ',   size: '1.1rem', opacity: 0.35, anim: 'launchUp'   },
+  { right: '8%',   delay: '2.5s',  duration: '6.0s', symbol: '✦',   size: '1.0rem', opacity: 0.4,  anim: 'floatDrift' },
+  { right: '3.5%', delay: '1.0s',  duration: '5.5s', symbol: '∞',   size: '1.1rem', opacity: 0.3,  anim: 'floatDrift' },
+  { right: '11%',  delay: '4.0s',  duration: '7.0s', symbol: '✦',   size: '0.9rem', opacity: 0.25, anim: 'floatDrift' },
 ]
 
 const rightDesignTokens = [
@@ -225,12 +228,13 @@ const rightDesignTokens = [
 function SideDecorations() {
   return (
     <div className="pointer-events-none select-none hidden lg:block">
-      {leftCars.map((car, i) => (
-        <span key={`car-${i}`} className="fixed top-0 z-0 leading-none" style={{
-          left: car.left, fontSize: car.size, opacity: car.opacity,
-          animation: `raceDown ${car.duration} linear infinite`,
-          animationDelay: car.delay,
-        }}>🏎️</span>
+      {leftSymbols.map((sym, i) => (
+        <span key={`sym-${i}`} className="fixed top-0 z-0" style={{
+          left: sym.left, fontSize: sym.size, opacity: sym.opacity,
+          fontFamily: 'monospace', color: 'var(--accent)', fontWeight: 600,
+          animation: `raceDown ${sym.duration} linear infinite`,
+          animationDelay: sym.delay,
+        }}>{sym.symbol}</span>
       ))}
       {leftCodeLines.map((line, i) => (
         <span key={`code-${i}`} className="fixed top-0 z-0" style={{
@@ -241,12 +245,13 @@ function SideDecorations() {
           writingMode: 'vertical-rl', textOrientation: 'mixed',
         }}>{line.text}</span>
       ))}
-      {rightItems.map((item, i) => (
-        <span key={`right-${i}`} className="fixed top-0 z-0 leading-none" style={{
-          right: item.right, fontSize: item.size, opacity: item.opacity,
-          animation: `${item.anim} ${item.duration} linear infinite`,
-          animationDelay: item.delay,
-        }}>{item.emoji}</span>
+      {rightSymbols.map((sym, i) => (
+        <span key={`rsym-${i}`} className="fixed top-0 z-0" style={{
+          right: sym.right, fontSize: sym.size, opacity: sym.opacity,
+          fontFamily: 'monospace', color: 'var(--text-sec)', fontWeight: 600,
+          animation: `${sym.anim} ${sym.duration} linear infinite`,
+          animationDelay: sym.delay,
+        }}>{sym.symbol}</span>
       ))}
       {rightDesignTokens.map((token, i) => (
         <span key={`token-${i}`} className="fixed top-0 z-0" style={{

@@ -251,7 +251,6 @@ export default function About() {
             </span>
             .
           </h1>
-          <span className="wave text-2xl mt-0.5">👋</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -336,7 +335,10 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-5 space-y-4">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">who i am</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          who i am
+        </h2>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           I'm a final-year Bachelor of Computer Science (Hons.) student at UiTM Tapah, currently
           interning as an Associate Project Coordinator at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I graduated with
@@ -370,7 +372,10 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-6 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">what i build</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          what i build
+        </h2>
         <ul className="space-y-2">
           {[
             'full-stack freelance projects — client work from PRD to deployment',
@@ -381,7 +386,7 @@ export default function About() {
             'small utilities that scratch my own itch',
           ].map((item) => (
             <li key={item} className="flex items-start gap-2 text-sm text-[var(--text-sec)]">
-              <span className="text-[var(--text-pri)] shrink-0">—</span>
+              <span className="shrink-0 mt-0.5" style={{ fontFamily: 'monospace', color: 'var(--accent)', fontSize: '11px' }}>›</span>
               <span>{item}</span>
             </li>
           ))}
@@ -396,7 +401,7 @@ export default function About() {
         >
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="text-base">🎨</span>
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ fontFamily: 'monospace', color: '#f9a8d4', background: 'rgba(249,168,212,0.1)', border: '1px solid rgba(249,168,212,0.2)' }}>BG</span>
               <p className="text-sm font-medium text-[var(--text-pri)]">Blugrafix</p>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">founder</span>
             </div>
@@ -412,7 +417,10 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">stack</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          stack
+        </h2>
         <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
           {/* Row 1 — scrolls left */}
           {(() => {
@@ -446,7 +454,10 @@ export default function About() {
       </section>
 
       <section className="fade-up fade-up-8 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">interests</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          interests
+        </h2>
         <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed">
           <p>
             On the tech side: <span className="text-[var(--text-pri)]">frontend engineering</span>, building mobile apps, and tinkering with AI/ML tools.
@@ -474,20 +485,26 @@ export default function About() {
 
       {/* Work with me */}
       <section className="fade-up fade-up-9 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">work with me</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          work with me
+        </h2>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {[
-            { icon: '🤖', title: 'AI Engineering', desc: 'Prompt engineering, LLM integration, AI-powered workflows and tooling' },
-            { icon: '💻', title: 'Full-Stack Dev', desc: 'React, TypeScript, Node.js, Supabase, Firebase — web or mobile, end to end' },
-            { icon: '🎨', title: 'Graphic Design', desc: 'Branding, social media, print, jersey artwork' },
-            { icon: '📷', title: 'Photography', desc: 'Weddings, events, products, corporate shoots' },
-          ].map(({ icon, title, desc }) => (
+            { code: 'AI', color: '#e879f9', title: 'AI Engineering', desc: 'Prompt engineering, LLM integration, AI-powered workflows and tooling' },
+            { code: 'FS', color: '#60a5fa', title: 'Full-Stack Dev', desc: 'React, TypeScript, Node.js, Supabase, Firebase — web or mobile, end to end' },
+            { code: 'GD', color: '#f9a8d4', title: 'Graphic Design', desc: 'Branding, social media, print, jersey artwork' },
+            { code: 'PH', color: '#e1d9bc', title: 'Photography', desc: 'Weddings, events, products, corporate shoots' },
+          ].map(({ code, color, title, desc }) => (
             <div
               key={title}
               className="border border-[var(--border)] hover:border-[var(--border-hover)] rounded-xl p-4 space-y-1.5 transition-colors duration-150"
               style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
             >
-              <p className="text-base">{icon}</p>
+              <p
+                className="text-[10px] font-semibold px-1.5 py-0.5 rounded w-fit"
+                style={{ fontFamily: 'monospace', color, background: `${color}18`, border: `1px solid ${color}30` }}
+              >{code}</p>
               <p className="text-sm font-medium text-[var(--text-pri)]">{title}</p>
               <p className="text-xs text-[var(--text-sec)] leading-relaxed">{desc}</p>
             </div>
