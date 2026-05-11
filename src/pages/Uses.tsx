@@ -40,6 +40,9 @@ const categories: Category[] = [
       { name: 'Git + GitHub', description: 'Version control and remote storage. Commit often, commit meaningfully.', tag: 'workflow', url: 'https://github.com' },
       { name: 'Node.js + Express', description: 'Go-to for quick APIs and backend work. Simple, fast to spin up.', tag: 'backend' },
       { name: 'Firebase', description: 'Auth, Firestore, and hosting for projects that need a backend without building one.', tag: 'backend', url: 'https://firebase.google.com' },
+      { name: 'Supabase', description: 'Postgres-backed backend with auth and Row Level Security. Reached for it when data is relational and I want SQL over a document store.', tag: 'backend', url: 'https://supabase.com' },
+      { name: 'Framer Motion', description: 'Animation library for React. Handles page transitions, exit animations, and layout shifts that CSS alone can\'t do cleanly.', tag: 'animation', url: 'https://www.framer.com/motion' },
+      { name: 'React Router v7', description: 'Routing for React apps. The v7 loader pattern replaces useEffect-on-mount fetching — data loads before the route renders.', tag: 'routing', url: 'https://reactrouter.com' },
     ],
   },
   {
@@ -65,6 +68,17 @@ const categories: Category[] = [
       { name: 'Arc Browser', description: 'Replaced Chrome entirely. Spaces keep freelance and uni work separated cleanly.', tag: 'browser', love: true, url: 'https://arc.net' },
       { name: 'Raycast', description: 'Spotlight replacement. Clipboard history, window management, and custom scripts. Worth every second of setup.', tag: 'launcher', love: true, url: 'https://raycast.com' },
       { name: 'Spotify', description: 'Background music for every mode — lo-fi for focus, hyperpop for debugging, silence for deadlines.', tag: 'focus', url: 'https://spotify.com' },
+    ],
+  },
+  {
+    label: 'ai & prompting',
+    emoji: '🤖',
+    items: [
+      { name: 'Claude', description: 'My primary AI collaborator — for code reviews, PRD drafting, architecture decisions, and deep prompt engineering. The model I reach for first when quality of output actually matters.', tag: 'llm', love: true, url: 'https://claude.ai' },
+      { name: 'ChatGPT', description: 'Second opinion and quick ideation. Good for brainstorming alternative approaches when I want a different perspective.', tag: 'llm', url: 'https://chatgpt.com' },
+      { name: 'GitHub Copilot', description: 'In-editor autocomplete for boilerplate and mid-flow suggestions. Most useful when I already know the shape of what I want.', tag: 'coding ai' },
+      { name: 'Prompt Engineering', description: 'Writing structured, precise prompts that produce consistent, useful output — system prompts, few-shot examples, chain-of-thought patterns. I treat a good prompt like a well-written spec.', tag: 'skill', love: true },
+      { name: 'AI-assisted PRDs', description: 'Using AI to draft, refine, and stress-test Product Requirement Documents before writing a line of code. Catches scope gaps and edge cases early.', tag: 'workflow' },
     ],
   },
   {

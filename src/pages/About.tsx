@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 const TYPED_PHRASES = [
   'building things for the web',
   'crafting clean interfaces',
+  'exploring workforce AI solutions',
+  'taking on full-stack freelance work',
   'coordinating projects at The Access Group',
   'shooting weddings since 2018',
   'designing jerseys for Blugrafix',
@@ -101,8 +103,8 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 const terminal = [
   { prompt: '$ whoami',      out: 'amirul hakimi — cs student · frontend dev · designer · photographer' },
   { prompt: '$ cat role.txt', out: 'intern @ The Access Group APAC · Associate Project Coordinator' },
-  { prompt: '$ cat building.txt', out: 'QR Attendance FYP (React Native + MySQL) · Blugrafix · side projects' },
-  { prompt: '$ cat open_to.txt', out: 'frontend roles · freelance design · photography gigs' },
+  { prompt: '$ cat building.txt', out: 'QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
+  { prompt: '$ cat open_to.txt', out: 'workforce AI · AI engineering · full-stack freelance · frontend roles · freelance design · photography gigs' },
 ]
 
 export default function About() {
@@ -345,7 +347,8 @@ export default function About() {
           On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, and Node.js</span> — ranging
           from mobile apps to web platforms. My final year project is a QR-based attendance system
           for UiTM students, built with React Native (iOS) and a React web dashboard backed by MySQL
-          and Firebase.
+          and Firebase. Increasingly, my focus is shifting toward <span className="text-[var(--text-pri)]">AI-powered tooling</span> — prompt engineering,
+          LLM integration, and building products where AI does meaningful work rather than just autocomplete.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           Before this, I interned at <span className="text-[var(--text-pri)]">Rev Media Group & Media Prima</span>, where I edited OBTV — a
@@ -370,9 +373,10 @@ export default function About() {
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">what i build</h2>
         <ul className="space-y-2">
           {[
+            'full-stack freelance projects — client work from PRD to deployment',
             'web and mobile apps with React, React Native, and TypeScript',
-            'backend APIs with Node.js and MySQL',
-            'ai-assisted tools and chatbot experiments',
+            'backend APIs with Node.js, MySQL, and Supabase',
+            'ai-powered workflows — prompt engineering, PRD drafting with AI, and integrating LLMs into the build process',
             'graphic designs, jerseys, and print-ready artwork via Blugrafix',
             'small utilities that scratch my own itch',
           ].map((item) => (
@@ -412,7 +416,7 @@ export default function About() {
         <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
           {/* Row 1 — scrolls left */}
           {(() => {
-            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'Firebase', 'Expo']
+            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'Firebase', 'Supabase', 'Expo']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 28s linear infinite', gap: '8px' }}>
@@ -426,7 +430,7 @@ export default function About() {
           })()}
           {/* Row 2 — scrolls right */}
           {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'REST APIs', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Lightroom', 'Canva', 'Figma']
+            const row = ['TailwindCSS', 'Vite', 'Git', 'React Router', 'Framer Motion', 'REST APIs', 'Prompt Engineering', 'Claude AI', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Lightroom', 'Canva', 'Figma']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
@@ -471,9 +475,10 @@ export default function About() {
       {/* Work with me */}
       <section className="fade-up fade-up-9 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">work with me</h2>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {[
-            { icon: '💻', title: 'Frontend Dev', desc: 'React, React Native, TypeScript — web or mobile' },
+            { icon: '🤖', title: 'AI Engineering', desc: 'Prompt engineering, LLM integration, AI-powered workflows and tooling' },
+            { icon: '💻', title: 'Full-Stack Dev', desc: 'React, TypeScript, Node.js, Supabase, Firebase — web or mobile, end to end' },
             { icon: '🎨', title: 'Graphic Design', desc: 'Branding, social media, print, jersey artwork' },
             { icon: '📷', title: 'Photography', desc: 'Weddings, events, products, corporate shoots' },
           ].map(({ icon, title, desc }) => (

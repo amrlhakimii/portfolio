@@ -10,6 +10,62 @@ interface TILEntry {
 
 const entries: TILEntry[] = [
   {
+    id: 20,
+    content: 'TIL that writing a good AI prompt is closer to writing a spec than a search query — the more context, constraints, and expected output format you give, the less hallucination and the more useful the result.',
+    date: '2026-05-10',
+    tag: 'ai',
+    source: 'daily workflow',
+  },
+  {
+    id: 19,
+    content: 'TIL that using AI to draft a PRD before writing code exposes scope gaps and ambiguous requirements you\'d normally only catch mid-build. Treating the AI as a skeptical PM catches issues before they cost hours.',
+    date: '2026-05-01',
+    tag: 'ai',
+    source: 'building PapVision & VoltaList',
+  },
+  {
+    id: 18,
+    content: 'TIL that Firebase Firestore\'s `onSnapshot` gives you real-time document updates without any polling — but you must unsubscribe (return the function from `useEffect`) or you silently accumulate listeners that never clean up.',
+    date: '2026-04-20',
+    tag: 'firebase',
+    source: 'building VoltaList',
+  },
+  {
+    id: 17,
+    content: 'TIL that TailwindCSS v4 replaces `tailwind.config.js` entirely with a CSS-first `@theme` block. No JS config, no `content` array — just a single CSS entry point. Felt wrong at first, then immediately right.',
+    date: '2026-03-10',
+    tag: 'css',
+    source: 'Tailwind v4 docs',
+  },
+  {
+    id: 16,
+    content: 'TIL that Framer Motion\'s `AnimatePresence` is the only way to animate elements on exit — without it, React unmounts the element immediately and the exit animation never runs.',
+    date: '2026-02-14',
+    tag: 'react',
+    source: 'building PapVision',
+  },
+  {
+    id: 15,
+    content: 'TIL that Firebase Auth\'s `onAuthStateChanged` is async — your UI should always start in a loading state and wait for the first callback. Skip this and you get a flash of the wrong screen on every load.',
+    date: '2026-01-08',
+    tag: 'firebase',
+    source: 'building VoltaList & PapVision',
+  },
+  {
+    id: 14,
+    content: 'TIL that React Router v7 introduces `loaders` — async functions that resolve data before a route renders. Eliminates the `useEffect`-on-mount fetch pattern and makes loading states part of the routing, not the component.',
+    date: '2025-10-22',
+    tag: 'react',
+    source: 'React Router v7 docs',
+  },
+  {
+    id: 13,
+    content: 'TIL that Supabase Row Level Security (RLS) lets you define read/write rules directly in the database — you stop reimplementing the same auth checks in every API route and just let the DB enforce it.',
+    date: '2025-07-14',
+    tag: 'databases',
+    source: 'building AutoLog MY',
+  },
+  {
     id: 1,
     content: 'TIL about React hydration — the process of attaching event listeners to server-rendered HTML so React can take over on the client.',
     date: '2025-03-18',
@@ -104,6 +160,8 @@ const TAG_COLORS: Record<string, { color: string; bg: string; border: string }> 
   git:         { color: '#f97316', bg: 'rgba(249,115,22,0.08)',   border: 'rgba(249,115,22,0.2)'  },
   design:      { color: '#f9a8d4', bg: 'rgba(249,168,212,0.08)',  border: 'rgba(249,168,212,0.2)' },
   photography: { color: '#e1d9bc', bg: 'rgba(225,217,188,0.08)',  border: 'rgba(225,217,188,0.2)' },
+  firebase:    { color: '#fbbf24', bg: 'rgba(251,191,36,0.08)',   border: 'rgba(251,191,36,0.2)'  },
+  ai:          { color: '#e879f9', bg: 'rgba(232,121,249,0.08)',  border: 'rgba(232,121,249,0.2)' },
 }
 
 const fallbackTag = { color: '#acbac4', bg: 'rgba(172,186,196,0.08)', border: 'rgba(172,186,196,0.2)' }

@@ -23,6 +23,16 @@ const timeline: Milestone[] = [
     current: true,
   },
   {
+    title: 'Freelance Full-Stack Developer',
+    organization: 'Independent',
+    period: '2025 — present',
+    description: 'Taking on paid client projects end-to-end — from requirements gathering and PRD to UI design, full-stack build, and deployment. Projects include PapVision, a cytopathology learning platform commissioned by a UiTM lecturer for medical students, and ongoing web app work for clients who need a technical partner, not just a contractor.',
+    type: 'freelance',
+    logoInitials: '⚡',
+    tags: ['React', 'TypeScript', 'Firebase', 'Supabase', 'full-stack', 'client work', 'PRD'],
+    current: true,
+  },
+  {
     title: 'Bachelor of Computer Science (Hons.) — CS230',
     organization: 'UiTM Kampus Tapah, Perak',
     period: '2024 — present',
