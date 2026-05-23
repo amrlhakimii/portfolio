@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 interface Post {
   title: string
   excerpt: string
@@ -62,8 +64,8 @@ export default function Thoughts() {
     <div className="space-y-10">
       <header className="fade-up fade-up-1">
         <h1
-          className="text-3xl font-semibold font-serif mb-2"
-          style={{ color: 'var(--accent)' }}
+          className="text-4xl sm:text-5xl font-bold mb-3"
+          style={{ color: 'var(--accent)', letterSpacing: '-0.02em', lineHeight: '1' }}
         >
           Thoughts
         </h1>
@@ -85,8 +87,14 @@ export default function Thoughts() {
       </header>
 
       <div className="space-y-3 fade-up fade-up-2">
-        {posts.map((post) => (
-          <article key={post.url}>
+        {posts.map((post, i) => (
+          <motion.article
+            key={post.url}
+            initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50, y: 20 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 }}
+          >
             <a
               href={post.url}
               target="_blank"
@@ -140,7 +148,7 @@ export default function Thoughts() {
                 </span>
               </div>
             </a>
-          </article>
+          </motion.article>
         ))}
       </div>
 

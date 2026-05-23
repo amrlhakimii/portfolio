@@ -212,7 +212,7 @@ export default function TIL() {
   return (
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
-        <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">TIL</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>TIL</h1>
         <p className="text-[var(--text-sec)] text-sm">today i learned — short notes on things that made me stop and think</p>
       </header>
 

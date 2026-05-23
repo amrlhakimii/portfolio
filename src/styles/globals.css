@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #30364f;
-  --color-text-primary: #e1d9bc;
-  --color-text-secondary: #acbac4;
-  --color-accent: #f0f0db;
+  --color-bg: #0d1117;
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #7fb8b8;
+  --color-accent: #0d9488;
   --font-sans: "Glacial Indifference", system-ui, sans-serif;
   --font-serif: "Literata", Georgia, serif;
 }
 
 /* ── Color tokens ────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #30364f;
-  --bg-rgb: 48, 54, 79;
-  --border: #3a4060;
-  --border-rgb: 58, 64, 96;
-  --border-hover: #4a5278;
-  --muted: #606880;
-  --text-sec: #acbac4;
-  --text-pri: #e1d9bc;
-  --accent: #f0f0db;
+  --bg: #0d1117;
+  --bg-rgb: 13, 17, 23;
+  --border: #1e2a2a;
+  --border-rgb: 30, 42, 42;
+  --border-hover: #2d4a4a;
+  --muted: #4a6b6b;
+  --text-sec: #7fb8b8;
+  --text-pri: #e2e8f0;
+  --accent: #0d9488;
 }
 
 [data-theme="light"] {
-  --bg: #f0ebe0;
-  --bg-rgb: 240, 235, 224;
-  --border: #ccc6bc;
-  --border-rgb: 204, 198, 188;
-  --border-hover: #aaa498;
-  --muted: #8a8278;
-  --text-sec: #504840;
-  --text-pri: #201810;
-  --accent: #100e08;
+  --bg: #f0f7f7;
+  --bg-rgb: 240, 247, 247;
+  --border: #b8d4d4;
+  --border-rgb: 184, 212, 212;
+  --border-hover: #8ab0b0;
+  --muted: #5a8080;
+  --text-sec: #335555;
+  --text-pri: #0d2020;
+  --accent: #0a7a70;
 }
 
 @layer base {
@@ -46,6 +46,7 @@
   body {
     background-color: var(--bg);
     min-height: 100vh;
+    overflow-x: clip;
   }
 
   a {
@@ -60,7 +61,7 @@
 
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, var(--text-sec) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--text-pri) 0%, var(--text-sec) 60%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

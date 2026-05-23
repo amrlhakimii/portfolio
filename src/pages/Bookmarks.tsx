@@ -198,7 +198,7 @@ export default function Bookmarks() {
   return (
     <div className="space-y-10">
       <header className="fade-up fade-up-1">
-        <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Bookmarks</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Bookmarks</h1>
         <p className="text-[var(--text-sec)] text-sm">links i keep returning to — tools, fonts, palettes, and rabbit holes</p>
       </header>
 

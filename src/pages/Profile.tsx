@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -144,7 +145,7 @@ export default function Profile() {
   return (
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
-        <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Profile</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Profile</h1>
         <p className="text-[var(--text-sec)] text-sm">the full picture — who, what, where, and why</p>
       </header>
 
@@ -240,20 +241,39 @@ export default function Profile() {
         </div>
 
         <div className="space-y-4">
-          {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills]) => (
+          {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills], tierIdx) => (
             <div key={tier} className="space-y-2">
-              <p className="text-[10px] uppercase tracking-widest text-[var(--muted)]">{tier}</p>
-              <div className="flex flex-wrap gap-1.5">
+              <motion.p
+                className="text-[10px] uppercase tracking-widest text-[var(--muted)]"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: tierIdx * 0.1 }}
+              >
+                {tier}
+              </motion.p>
+              <motion.div
+                className="flex flex-wrap gap-1.5"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-30px' }}
+                variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: tierIdx * 0.08 } }, hidden: {} }}
+              >
                 {skills.map((skill) => (
-                  <span
+                  <motion.span
                     key={skill}
+                    variants={{
+                      hidden:  { opacity: 0, scale: 0.75, y: 14 },
+                      visible: { opacity: 1, scale: 1,    y: 0  },
+                    }}
+                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                     className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)]"
                     style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

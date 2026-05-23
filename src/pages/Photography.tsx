@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 interface Photo {
   id: number
@@ -39,12 +40,62 @@ export default function Photography() {
 
   const filtered = activeCategory === 'all' ? photos : photos.filter(p => p.category === activeCategory)
 
+  // Lens rings parallax
+  const pageRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress: pageScroll } = useScroll({ target: pageRef, offset: ['start start', 'end start'] })
+  const lensScale1 = useTransform(pageScroll, [0, 0.5], [1, 2.2])
+  const lensScale2 = useTransform(pageScroll, [0, 0.5], [1, 1.7])
+  const lensOpacity = useTransform(pageScroll, [0, 0.35], [1, 0])
+
   return (
-    <div className="space-y-8">
-      <header className="fade-up fade-up-1">
+    <div ref={pageRef} className="space-y-8 relative">
+
+      {/* Lens rings — concentric circles that expand as you scroll */}
+      <div className="pointer-events-none absolute inset-0 flex items-start justify-center" style={{ height: '400px', overflow: 'visible', zIndex: 0 }}>
+        <div style={{ position: 'relative', width: 0, height: 0, top: '100px' }}>
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              width: '80vw', height: '80vw',
+              maxWidth: 640, maxHeight: 640,
+              left: '50%', top: '50%',
+              x: '-50%', y: '-50%',
+              border: '1px solid rgba(13,148,136,0.14)',
+              scale: lensScale1,
+              opacity: lensOpacity,
+            }}
+          />
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              width: '55vw', height: '55vw',
+              maxWidth: 440, maxHeight: 440,
+              left: '50%', top: '50%',
+              x: '-50%', y: '-50%',
+              border: '1px solid rgba(13,148,136,0.09)',
+              scale: lensScale2,
+              opacity: lensOpacity,
+            }}
+          />
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              width: '30vw', height: '30vw',
+              maxWidth: 240, maxHeight: 240,
+              left: '50%', top: '50%',
+              x: '-50%', y: '-50%',
+              border: '1px solid rgba(13,148,136,0.06)',
+              scale: useTransform(pageScroll, [0, 0.5], [1, 1.3]),
+              opacity: lensOpacity,
+            }}
+          />
+        </div>
+      </div>
+
+      <header className="fade-up fade-up-1" style={{ position: 'relative', zIndex: 1 }}>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Photography</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Photography</h1>
             <p className="text-[var(--text-sec)] text-sm">frames i've kept — weddings, events, street, everyday moments</p>
           </div>
           <a
@@ -109,11 +160,15 @@ export default function Photography() {
 
       {/* Photo grid */}
       <div className="fade-up fade-up-5 grid grid-cols-2 gap-2">
-        {filtered.map((photo) => (
-          <button
+        {filtered.map((photo, i) => (
+          <motion.button
             key={photo.id}
             onClick={() => setLightbox(photo)}
             className="relative group overflow-hidden rounded-xl focus:outline-none"
+            initial={{ opacity: 0, scale: 0.82, y: i % 2 === 0 ? 40 : 60 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: (i % 2) * 0.12 }}
           >
             <img
               src={photo.src}
@@ -140,7 +195,7 @@ export default function Photography() {
                 <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
               </svg>
             </div>
-          </button>
+          </motion.button>
         ))}
       </div>
 

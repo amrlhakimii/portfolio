@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface Project {
   title: string
@@ -149,7 +150,7 @@ export default function Projects() {
 
       {/* Header */}
       <header className="fade-up fade-up-1">
-        <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Projects</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Projects</h1>
         <p className="text-[var(--text-sec)] text-sm">things i've built, shipped, or abandoned at 90%</p>
       </header>
 
@@ -192,14 +193,18 @@ export default function Projects() {
 
       {/* Project list */}
       <div className="fade-up fade-up-4 space-y-3">
-        {visible.map((project) => {
+        {visible.map((project, index) => {
           const cat = CATEGORY_CONFIG[project.category]
           const sta = STATUS_CONFIG[project.status]
           const isOpen = expanded === project.title
 
           return (
-            <article
+            <motion.article
               key={project.title}
+              initial={{ opacity: 0, y: 56, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
               className="border rounded-xl overflow-hidden transition-all duration-200 cursor-pointer"
               style={{
                 borderColor: isOpen ? cat.border : 'var(--border)',
@@ -328,7 +333,7 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-            </article>
+            </motion.article>
           )
         })}
       </div>

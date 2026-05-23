@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Container from './Container'
@@ -15,28 +15,28 @@ function GradientMesh() {
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <div style={{
         position: 'absolute', width: '700px', height: '700px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(240,240,219,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(13,148,136,0.09) 0%, transparent 70%)',
         top: '5%', left: '15%',
         animation: 'blobMove1 14s ease-in-out infinite',
         filter: 'blur(50px)',
       }} />
       <div style={{
         position: 'absolute', width: '550px', height: '550px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(172,186,196,0.05) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(127,184,184,0.05) 0%, transparent 70%)',
         top: '40%', right: '10%',
         animation: 'blobMove2 18s ease-in-out infinite',
         filter: 'blur(60px)',
       }} />
       <div style={{
         position: 'absolute', width: '450px', height: '450px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(225,217,188,0.04) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(13,148,136,0.05) 0%, transparent 70%)',
         bottom: '10%', left: '25%',
         animation: 'blobMove3 22s ease-in-out infinite',
         filter: 'blur(70px)',
       }} />
       <div style={{
         position: 'absolute', width: '350px', height: '350px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(240,240,219,0.04) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(13,148,136,0.04) 0%, transparent 70%)',
         top: '60%', left: '5%',
         animation: 'blobMove2 26s ease-in-out infinite reverse',
         filter: 'blur(55px)',
@@ -78,7 +78,7 @@ function CursorGlow() {
       ref={glowRef}
       className="pointer-events-none fixed inset-0 z-0"
       style={{
-        background: 'radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(240,240,219,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(13,148,136,0.08) 0%, transparent 70%)',
       }}
     />
   )
@@ -115,7 +115,7 @@ function CursorTrail() {
         const size = (1 - trail[i].age) * 3.5
         ctx.beginPath()
         ctx.arc(trail[i].x, trail[i].y, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(240,240,219,${alpha})`
+        ctx.fillStyle = `rgba(13,148,136,${alpha})`
         ctx.fill()
       }
       raf = requestAnimationFrame(draw)
@@ -132,13 +132,64 @@ function CursorTrail() {
   return <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 z-[60]" />
 }
 
+// ── Scroll-driven background rings ───────────────────────────────────────────
+function ScrollRings() {
+  const { scrollY } = useScroll()
+
+  const r1y      = useTransform(scrollY, [0, 3000], [0,  -500])
+  const r1rotate = useTransform(scrollY, [0, 3000], [0,   40])
+  const r2y      = useTransform(scrollY, [0, 3000], [0,   260])
+  const r2rotate = useTransform(scrollY, [0, 3000], [0,  -25])
+  const r3y      = useTransform(scrollY, [0, 3000], [0,  -180])
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {/* Large ring — top-left, drifts up + rotates */}
+      <motion.div
+        className="absolute rounded-full"
+        style={{
+          width: '90vw', height: '90vw',
+          maxWidth: 920, maxHeight: 920,
+          left: '-28%', top: '-8%',
+          border: '1px solid rgba(13,148,136,0.08)',
+          y: r1y,
+          rotate: r1rotate,
+        }}
+      />
+      {/* Medium ring — right side, drifts down */}
+      <motion.div
+        className="absolute rounded-full"
+        style={{
+          width: '60vw', height: '60vw',
+          maxWidth: 650, maxHeight: 650,
+          right: '-18%', top: '28%',
+          border: '1px solid rgba(13,148,136,0.06)',
+          y: r2y,
+          rotate: r2rotate,
+        }}
+      />
+      {/* Small ring — bottom center, slow drift */}
+      <motion.div
+        className="absolute rounded-full"
+        style={{
+          width: '38vw', height: '38vw',
+          maxWidth: 440, maxHeight: 440,
+          left: '15%', bottom: '-6%',
+          border: '1px solid rgba(13,148,136,0.05)',
+          y: r3y,
+        }}
+      />
+    </div>
+  )
+}
+
 // ── Dot grid ──────────────────────────────────────────────────────────────────
 function DotGrid() {
   return (
     <div
       className="pointer-events-none fixed inset-0 z-0 opacity-20"
       style={{
-        backgroundImage: 'radial-gradient(circle, rgba(172,186,196,0.2) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(circle, rgba(45,74,74,0.6) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}
     />
@@ -178,7 +229,7 @@ function Ticker() {
         {items.map((item, i) => (
           <span key={i} style={{ fontFamily: 'monospace', color: 'var(--muted)' }} className="text-[10px] px-5 whitespace-nowrap">
             {item}
-            <span className="text-[#505870] mx-3" style={{ fontFamily: 'monospace' }}>//</span>
+            <span className="mx-3" style={{ fontFamily: 'monospace', color: 'var(--border-hover)' }}>//</span>
           </span>
         ))}
       </div>
@@ -366,8 +417,8 @@ function EasterEgg() {
             borderRadius: '16px',
             animation: 'fadeUp 0.3s ease forwards',
           }}>
-            <p className="text-xl font-semibold text-[#e1d9bc] text-center">{message}</p>
-            <p className="text-xs text-[#606880] text-center mt-1">you found an easter egg 🥚</p>
+            <p className="text-xl font-semibold text-[var(--text-pri)] text-center">{message}</p>
+            <p className="text-xs text-[var(--muted)] text-center mt-1">you found an easter egg 🥚</p>
           </div>
         </div>
       )}
@@ -382,6 +433,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="relative min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text-pri)' }}>
       <DotGrid />
+      <ScrollRings />
       <GradientMesh />
       <NoiseOverlay />
       <CursorGlow />

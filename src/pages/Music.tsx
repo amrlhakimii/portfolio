@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 interface Album {
   title: string
@@ -177,7 +178,7 @@ export default function Music() {
   return (
     <div className="space-y-8">
       <header className="fade-up fade-up-1">
-        <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Music</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Music</h1>
         <p className="text-[var(--text-sec)] text-sm">what i keep on repeat — click a record to play</p>
       </header>
 
@@ -349,13 +350,20 @@ export default function Music() {
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>record shelf</h2>
         <div className="flex flex-wrap gap-6 justify-start">
           {albums.map((album, i) => (
-            <VinylRecord
+            <motion.div
               key={album.title}
-              album={album}
-              isPlaying={selected === i && playing}
-              isSelected={selected === i}
-              onClick={() => handleSelect(i)}
-            />
+              initial={{ opacity: 0, rotate: -18, scale: 0.72, y: 30 }}
+              whileInView={{ opacity: 1, rotate: 0, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 }}
+            >
+              <VinylRecord
+                album={album}
+                isPlaying={selected === i && playing}
+                isSelected={selected === i}
+                onClick={() => handleSelect(i)}
+              />
+            </motion.div>
           ))}
         </div>
         <p className="text-[10px] text-[var(--border)]">click a record to cue · click again to play / pause</p>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface Milestone {
   title: string
@@ -147,7 +148,7 @@ export default function Career() {
       <header className="fade-up fade-up-1">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-semibold font-serif gradient-text mb-2">Career</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Career</h1>
             <p className="text-[var(--text-sec)] text-sm">education, work, and milestones — newest first</p>
           </div>
           <a
@@ -216,7 +217,14 @@ export default function Career() {
             const isOpen = expanded === i
 
             return (
-              <div key={i} className="sm:pl-10 relative">
+              <motion.div
+                key={i}
+                className="sm:pl-10 relative"
+                initial={{ opacity: 0, y: 48, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+              >
                 {/* Timeline dot */}
                 <div
                   className="absolute left-[13px] top-5 w-2.5 h-2.5 rounded-full border-2 hidden sm:block"
@@ -299,7 +307,7 @@ export default function Career() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
         </div>
