@@ -146,7 +146,7 @@ export default function Photography() {
 
       {/* Gear section */}
       <section className="fade-up fade-up-6 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">behind the lens</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>behind the lens</h2>
         <div className="grid grid-cols-2 gap-2">
           {gear.map(({ name, role, icon }) => (
             <div

@@ -206,6 +206,7 @@ export default function Bookmarks() {
         {CATEGORY_ORDER.filter(c => grouped[c]).map((category) => (
           <section key={category} className="space-y-3">
             <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+              <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
               {category}
               <span className="text-[var(--border)]">({grouped[category].length})</span>
             </h2>

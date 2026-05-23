@@ -120,7 +120,7 @@ const timeline: Milestone[] = [
 
 const TYPE_CONFIG = {
   education:  { color: '#60a5fa', bg: 'rgba(96,165,250,0.1)',  border: 'rgba(96,165,250,0.2)',  label: 'education',  dot: '#60a5fa' },
-  internship: { color: '#c084fc', bg: 'rgba(192,132,252,0.1)', border: 'rgba(117, 88, 80, 0.2)', label: 'internship', dot: '#c084fc' },
+  internship: { color: '#c084fc', bg: 'rgba(192,132,252,0.1)', border: 'rgba(192,132,252,0.2)', label: 'internship', dot: '#c084fc' },
   freelance:  { color: '#4ade80', bg: 'rgba(74,222,128,0.1)',  border: 'rgba(74,222,128,0.2)',  label: 'freelance',  dot: '#4ade80' },
   work: { color: '#bb5428ff', bg: 'rgba(145, 77, 32, 0.1)', border: 'rgba(162, 109, 61, 0.2)', label: 'work', dot: '#c44c4cff' },
   milestone:  { color: '#fbbf24', bg: 'rgba(251,191,36,0.1)',  border: 'rgba(251,191,36,0.2)',  label: 'milestone',  dot: '#fbbf24' },

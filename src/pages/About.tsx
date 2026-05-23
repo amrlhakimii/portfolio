@@ -91,10 +91,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
       className="border border-[var(--border)] rounded-xl p-4 text-center hover:border-[var(--border-hover)] transition-colors duration-150"
       style={{ background: 'rgba(var(--bg-rgb),0.6)' }}
     >
-      <p className="text-xl font-semibold" style={{
-        background: 'linear-gradient(135deg, #f0f0db, #818cf8)',
-        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-      }}>{display}</p>
+      <p className="text-xl font-semibold" style={{ color: 'var(--accent)' }}>{display}</p>
       <p className="text-[10px] uppercase tracking-widest text-[var(--text-sec)] mt-1">{label}</p>
     </div>
   )
@@ -339,6 +336,7 @@ export default function About() {
           <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
           who i am
         </h2>
+        <div className="space-y-4 max-w-prose">
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           I'm a final-year Bachelor of Computer Science (Hons.) student at UiTM Tapah, currently
           interning as an Associate Project Coordinator at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I graduated with
@@ -369,6 +367,7 @@ export default function About() {
           me watching <span className="text-[var(--text-pri)]">Arsenal</span> grind out a last-minute winner or obsessing over <span className="text-[var(--text-pri)]">Mercedes'</span> latest
           race strategy.
         </p>
+        </div>
       </section>
 
       <section className="fade-up fade-up-6 space-y-3">
@@ -458,7 +457,7 @@ export default function About() {
           <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
           interests
         </h2>
-        <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed">
+        <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">
           <p>
             On the tech side: <span className="text-[var(--text-pri)]">frontend engineering</span>, building mobile apps, and tinkering with AI/ML tools.
             I enjoy the craft of making interfaces feel fast, clean, and intentional.
@@ -544,7 +543,6 @@ function RandomQuote() {
             <p className="text-xs text-[var(--muted)] mt-2">— {quote.author}</p>
           )}
         </blockquote>
-        <p className="text-[10px] uppercase tracking-widest text-[#505870] mt-3 text-right">refreshes each visit</p>
       </div>
     </section>
   )

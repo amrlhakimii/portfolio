@@ -144,7 +144,7 @@ export default function Uses() {
         {visible.map((cat) => (
           <section key={cat.label} className="space-y-3">
             <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-              <span>{cat.emoji}</span>
+              <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
               {cat.label}
             </h2>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

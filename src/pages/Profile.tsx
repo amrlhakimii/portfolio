@@ -2,34 +2,17 @@ import { useState, useEffect, useRef } from 'react'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const techSkills = [
-  { name: 'React.js',            level: 90 },
-  { name: 'React Native',        level: 82 },
-  { name: 'TypeScript',          level: 90 },
-  { name: 'JavaScript',          level: 88 },
-  { name: 'TailwindCSS',         level: 72 },
-  { name: 'Node.js',             level: 82 },
-  { name: 'Python',              level: 65 },
-  { name: 'MySQL',               level: 70 },
-  { name: 'Firebase',            level: 68 },
-  { name: 'Git',                 level: 85 },
-  { name: 'REST APIs',           level: 88 },
-  { name: 'PHP',                 level: 60 },
-  { name: 'Java',                level: 88 },
-  { name: 'C++',                 level: 75 },
-  { name: 'Expo',                level: 95 },
-  { name: 'Artificial Intelligence', level: 72 },
-]
+const techTiers: Record<string, string[]> = {
+  expert:     ['React.js', 'TypeScript', 'Expo', 'React Native', 'JavaScript', 'Java', 'REST APIs'],
+  proficient: ['Node.js', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase'],
+  familiar:   ['Python', 'PHP', 'AI / ML'],
+}
 
-const designSkills = [
-  { name: 'Adobe Photoshop',    level: 88 },
-  { name: 'Adobe Lightroom',    level: 92 },
-  { name: 'Adobe Illustrator',  level: 85 },
-  { name: 'Adobe Premiere Pro', level: 80 },
-  { name: 'Adobe After Effects',level: 70 },
-  { name: 'Figma',              level: 82 },
-  { name: 'Canva',              level: 90 },
-]
+const designTiers: Record<string, string[]> = {
+  expert:     ['Adobe Lightroom', 'Adobe Photoshop', 'Canva'],
+  proficient: ['Adobe Illustrator', 'Figma', 'Adobe Premiere Pro'],
+  familiar:   ['Adobe After Effects'],
+}
 
 const languages = [
   { lang: 'Malay',            level: 'Native',       pct: 100, flag: '🇲🇾' },
@@ -60,45 +43,6 @@ const identity = [
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 
-// ── Animated skill bar ────────────────────────────────────────────────────────
-function SkillBar({ name, level }: { name: string; level: number }) {
-  const [width, setWidth] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => setWidth(level), 100)
-        obs.disconnect()
-      }
-    }, { threshold: 0.3 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [level])
-
-  const color = level >= 85 ? 'var(--accent)' : level >= 70 ? 'var(--text-pri)' : 'var(--text-sec)'
-
-  return (
-    <div ref={ref} className="space-y-1">
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-[var(--text-pri)]">{name}</span>
-        <span className="text-[10px] tabular-nums" style={{ color }}>{level}%</span>
-      </div>
-      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(var(--border-rgb),0.6)' }}>
-        <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{
-            width: `${width}%`,
-            background: `linear-gradient(90deg, #acbac4, ${color})`,
-          }}
-        />
-      </div>
-    </div>
-  )
-}
-
 // ── Fun fact carousel ─────────────────────────────────────────────────────────
 function FunFactCarousel() {
   const [idx, setIdx] = useState(0)
@@ -120,7 +64,7 @@ function FunFactCarousel() {
 
   return (
     <div
-      className="rounded-xl border border-[var(--border)] p-5 flex items-center gap-4"
+      className="relative rounded-xl border border-[var(--border)] p-5 flex items-center gap-4"
       style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
     >
       <button onClick={prev} className="text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 shrink-0 text-lg">‹</button>
@@ -256,7 +200,7 @@ export default function Profile() {
 
       {/* Fun facts carousel */}
       <section className="fade-up fade-up-4 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">fun facts</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>fun facts</h2>
         <div className="relative">
           <FunFactCarousel />
         </div>
@@ -265,7 +209,7 @@ export default function Profile() {
 
       {/* Languages */}
       <section className="fade-up fade-up-5 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">languages</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>languages</h2>
         <div className="space-y-3">
           {languages.map(({ lang, level, pct, flag }) => (
             <LangBar key={lang} lang={lang} level={level} pct={pct} flag={flag} />
@@ -276,7 +220,7 @@ export default function Profile() {
       {/* Skills with tab toggle */}
       <section className="fade-up fade-up-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">skills</h2>
+          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>skills</h2>
           <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
             {(['tech', 'design'] as const).map((tab) => (
               <button
@@ -295,16 +239,29 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="space-y-3">
-          {(skillTab === 'tech' ? techSkills : designSkills).map(({ name, level }) => (
-            <SkillBar key={name} name={name} level={level} />
+        <div className="space-y-4">
+          {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills]) => (
+            <div key={tier} className="space-y-2">
+              <p className="text-[10px] uppercase tracking-widest text-[var(--muted)]">{tier}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)]"
+                    style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Links */}
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)]">links</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>links</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {[
             { label: 'GitHub', url: 'https://github.com/amrlhakimii', icon: '🐙', sub: '@amrlhakimii' },
