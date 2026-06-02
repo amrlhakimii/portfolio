@@ -12,13 +12,24 @@ interface Project {
   year: string
   highlight?: string
   featured?: boolean
+  updates?: string[]
 }
 
 const projects: Project[] = [
   {
+    title: 'Flightpath Welcome Email Tool',
+    description: 'Internal automation tool built at The Access Group to eliminate the manual copy-paste process for client welcome emails. The tool joins two FocalPoint data sources — Sales Handover and SOW Booking Enquiry — by Project Code, groups booking records under each project, and auto-generates a structured welcome email draft per client. Built using EVO Builder in collaboration with the Workforce AI Team from Product Engineering. Phase 1 uses FocalPoint Excel exports as the data source; Phase 2 will replace this with a live FocalPoint API and auto-send via Outlook.',
+    stack: ['EVO Builder', 'EVO Workflow', 'Access FocalPoint', 'Excel Integration', 'Process Automation'],
+    category: 'software',
+    status: 'in progress',
+    year: '2026',
+    highlight: 'internal automation · Access Group',
+    featured: true,
+  },
+  {
     title: 'Hootang',
-    description: 'Just built something fun and practical — Hootang helps track shared expenses, subscriptions, and IOUs so you never forget who owes who. Handles real-life situations like splitting restaurant receipts with tax included, sharing Spotify or Netflix family plans, tracking borrowed money, and calculating fair payment amounts. Also added a fun dice feature to randomly decide who pays during hangouts 🎲 Designed to feel simple, useful, and realistic — similar to tools people actually use daily.',
-    stack: ['React', 'TypeScript', 'TailwindCSS', 'Vite'],
+    description: 'Tracks shared expenses, subscriptions, and IOUs — so you never forget who owes who. Splits restaurant receipts with tax, handles shared plans like Spotify or Netflix, tracks borrowed money, and calculates fair amounts. A dice feature decides who pays during hangouts. One month in, it got a proper upgrade: installable as a PWA, Google Sign-In with Firestore cross-device sync, Cloudflare Worker push notifications before due dates, WhatsApp share, and GSAP cinematic animations throughout.',
+    stack: ['React', 'TypeScript', 'TailwindCSS', 'Vite', 'Firebase', 'GSAP', 'PWA', 'Cloudflare Workers'],
     link: 'https://hootang.amrlhakimi.my',
     github: 'https://github.com/amrlhakimii/hootang',
     category: 'software',
@@ -26,6 +37,14 @@ const projects: Project[] = [
     year: '2026',
     highlight: 'expense & IOU tracker',
     featured: true,
+    updates: [
+      'PWA — installable, runs fullscreen, no browser bar',
+      'Google Sign-In + Firestore sync across devices',
+      'Push notifications via Cloudflare Worker on schedule',
+      'WhatsApp share — one tap after splitting a receipt',
+      'GSAP animations: dashboard entrance, balance countup, dice shake',
+      'iPhone UX: Dynamic Island support, safe area insets, input zoom disabled',
+    ],
   },
   {
     title: 'NakKahwin',
@@ -276,10 +295,25 @@ export default function Projects() {
               {/* Expandable body */}
               <div
                 className="overflow-hidden transition-all duration-300"
-                style={{ maxHeight: isOpen ? '500px' : '0px' }}
+                style={{ maxHeight: isOpen ? '700px' : '0px' }}
               >
                 <div className="px-4 pb-4 space-y-4 border-t" style={{ borderColor: cat.border }}>
                   <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{project.description}</p>
+
+                  {/* Changelog */}
+                  {project.updates && (
+                    <div className="space-y-1.5">
+                      <p className="text-[9px] uppercase tracking-widest" style={{ color: cat.color }}>what's new</p>
+                      <ul className="space-y-1">
+                        {project.updates.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-[11px] text-[var(--text-sec)]">
+                            <span className="mt-[3px] w-1 h-1 rounded-full shrink-0" style={{ background: cat.color }} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {/* Stack */}
                   <div className="flex flex-wrap gap-1.5">

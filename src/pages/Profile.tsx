@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 
 const techTiers: Record<string, string[]> = {
   expert:     ['React.js', 'TypeScript', 'Expo', 'React Native', 'JavaScript', 'Java', 'REST APIs'],
-  proficient: ['Node.js', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase'],
-  familiar:   ['Python', 'PHP', 'AI / ML'],
+  proficient: ['Node.js', '.NET', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase', 'GSAP', 'Framer Motion', 'Microsoft Azure', 'Azure DevOps'],
+  familiar:   ['Python', 'PHP', 'AI / ML', 'Anime.js', 'Databricks', 'Supabase'],
 }
 
 const designTiers: Record<string, string[]> = {
@@ -28,18 +28,21 @@ const funFacts = [
   '⚽ Checks Arsenal lineup 30 min before every match',
   '🏎️ Could explain DRS rules at 3am',
   '🎬 Directed a 5-min TV show on TV9',
-  '💻 Built this portfolio in React + TypeScript',
+  '💻 Full-stack: React front, .NET back, Azure in between',
   '📺 Was the gaffer & video editor for OhBulan! YouTube',
   '🇲🇾 Speaks 4 languages',
   '🎓 First Class Honours in Diploma CS (CGPA 3.54)',
   '🌙 Does best work after midnight',
+  '🤝 Handed a cross-team AI project as an intern at Access Group',
+  '🚀 Shipped PWA + Google Auth + push notifications in one Hootang update',
+  '⚡ Uses Claude Code daily to ship faster',
 ]
 
 const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
-  { label: 'role',      value: 'CS Student · Frontend Dev · Designer · Photographer' },
+  { label: 'role',      value: 'CS Student · Full-Stack Dev · Designer · Photographer' },
   { label: 'currently', value: 'Semester 7 · CGPA 3.76 · Intern @ The Access Group APAC' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]

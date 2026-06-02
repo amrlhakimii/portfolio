@@ -99,10 +99,10 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 }
 
 const terminal = [
-  { prompt: '$ whoami',      out: 'amirul hakimi — cs student · frontend dev · designer · photographer' },
+  { prompt: '$ whoami',      out: 'amirul hakimi — cs student · full-stack dev · designer · photographer' },
   { prompt: '$ cat role.txt', out: 'intern @ The Access Group APAC · Associate Project Coordinator' },
   { prompt: '$ cat building.txt', out: 'QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
-  { prompt: '$ cat open_to.txt', out: 'workforce AI · AI engineering · full-stack freelance · frontend roles · freelance design · photography gigs' },
+  { prompt: '$ cat open_to.txt', out: 'workforce AI · AI engineering · full-stack freelance · full-stack roles · freelance design · photography gigs' },
 ]
 
 function HeroSection({ typed }: { typed: string }) {
@@ -295,7 +295,7 @@ export default function About() {
 
             {/* Role badges */}
             <div className="flex flex-wrap gap-2">
-              {['Frontend Dev', 'Photographer', 'Graphic Designer', 'AI Engineering'].map((role) => (
+              {['Full-Stack Dev', 'Photographer', 'Graphic Designer', 'AI Engineering'].map((role) => (
                 <span
                   key={role}
                   className="px-3 py-1.5 rounded-full text-[11px] border"
@@ -513,7 +513,7 @@ export default function About() {
           finish my degree with a <span className="text-[var(--text-pri)]">CGPA of 3.76</span>.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, and Node.js</span> — ranging
+          On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, Node.js, and .NET</span> — ranging
           from mobile apps to web platforms. My final year project is a QR-based attendance system
           for UiTM students, built with React Native (iOS) and a React web dashboard backed by MySQL
           and Firebase. Increasingly, my focus is shifting toward <span className="text-[var(--text-pri)]">AI-powered tooling</span> — prompt engineering,
@@ -548,7 +548,7 @@ export default function About() {
           {[
             'full-stack freelance projects — client work from PRD to deployment',
             'web and mobile apps with React, React Native, and TypeScript',
-            'backend APIs with Node.js, MySQL, and Supabase',
+            'backend APIs and services with Node.js, .NET, MySQL, Firebase, and Supabase — deployed on Azure with CI/CD pipelines',
             'ai-powered workflows — prompt engineering, PRD drafting with AI, and integrating LLMs into the build process',
             'graphic designs, jerseys, and print-ready artwork via Blugrafix',
             'small utilities that scratch my own itch',
@@ -599,7 +599,7 @@ export default function About() {
         <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
           {/* Row 1 — scrolls left */}
           {(() => {
-            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'Firebase', 'Supabase', 'Expo']
+            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', '.NET', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'Firebase', 'Supabase', 'Expo', 'Databricks']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 28s linear infinite', gap: '8px' }}>
@@ -613,7 +613,7 @@ export default function About() {
           })()}
           {/* Row 2 — scrolls right */}
           {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'React Router', 'Framer Motion', 'REST APIs', 'Prompt Engineering', 'Claude AI', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe After Effects', 'Adobe Lightroom', 'Canva', 'Figma']
+            const row = ['TailwindCSS', 'Vite', 'Git', 'Azure DevOps', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe Lightroom', 'Figma']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
@@ -635,8 +635,7 @@ export default function About() {
         </h2>
         <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">
           <p>
-            On the tech side: <span className="text-[var(--text-pri)]">frontend engineering</span>, building mobile apps, and tinkering with AI/ML tools.
-            I enjoy the craft of making interfaces feel fast, clean, and intentional.
+            On the tech side: <span className="text-[var(--text-pri)]">full-stack engineering</span> — not just the interface but everything behind it. React and TypeScript on the frontend, .NET and Node.js on the backend, Azure and DevOps for deployment, Databricks for data pipelines. I care about the whole stack: how the UI feels, how the API is structured, how the build gets to production. I also build mobile apps and increasingly work with AI tooling — integrating LLMs into real workflows, not just prototypes.
           </p>
           <p>
             Creatively: <span className="text-[var(--text-pri)]">photography</span> has been a big part of my life since school — I shoot weddings,

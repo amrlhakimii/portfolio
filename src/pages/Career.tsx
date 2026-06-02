@@ -17,10 +17,10 @@ const timeline: Milestone[] = [
     title: 'Associate Project Coordinator Intern',
     organization: 'The Access Group - APAC',
     period: 'Mar 2026 — present',
-    description: 'Interning as an Associate Project Coordinator at The Access Group APAC. Scheduling and managing meetings between consultants and clients, handling communications with clients from across the globe, and supporting the UK team in coordinating between clients and consultants. Using Salesforce and Access Focalpoint daily to manage workflows and track project activity.',
+    description: 'Interning as an Associate Project Coordinator at The Access Group APAC. Scheduling and managing meetings between consultants and clients, handling communications with clients from across the globe, and supporting the UK team in coordinating between clients and consultants. Using Salesforce and Access Focalpoint daily to manage workflows and track project activity. After being assessed, was handed a cross-team project to support Professional Services — collaborating with the Workforce AI Team from Product Engineering to build the Flightpath Welcome Email Tool: an internal automation app that joins Sales Handover and SOW Booking data from FocalPoint, groups bookings by Project Code, and auto-generates structured welcome email drafts. Built in EVO Builder; Phase 2 replaces Excel exports with a live FocalPoint API and Outlook auto-send.',
     type: 'internship',
     logoInitials: 'TAG',
-    tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support'],
+    tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support', 'AI automation', 'Flightpath', 'Professional Services', 'Workforce AI Team'],
     current: true,
   },
   {
@@ -287,7 +287,7 @@ export default function Career() {
                   {/* Expandable body */}
                   <div
                     className="overflow-hidden transition-all duration-300"
-                    style={{ maxHeight: isOpen ? '400px' : '0px' }}
+                    style={{ maxHeight: isOpen ? '500px' : '0px' }}
                   >
                     <div className="px-4 pb-4 space-y-3 border-t" style={{ borderColor: cfg.border }}>
                       <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{item.description}</p>

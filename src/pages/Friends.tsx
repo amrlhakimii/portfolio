@@ -7,6 +7,7 @@ interface Friend {
   emoji: string
   since?: string
   highlight?: string
+  link?: string
 }
 
 const friends: Friend[] = [
@@ -17,6 +18,7 @@ const friends: Friend[] = [
     emoji: '🫂',
     since: 'since forever',
     highlight: 'family',
+    link: 'https://aidilsfwn.dev',
   },
   {
     name: 'Awish',
@@ -33,6 +35,16 @@ const friends: Friend[] = [
     emoji: '🔥',
     since: 'long time',
     highlight: 'motivator',
+    link: 'https://waizhzq.my',
+  },
+  {
+    name: 'Zharif',
+    description: 'Diploma friend who stayed around after the chapter ended. Good energy, easy to vibe with.',
+    relation: 'groupmate',
+    emoji: '🤝',
+    since: 'diploma',
+    highlight: 'diploma homie',
+    link: 'https://zharifzhafran.xyz',
   },
   {
     name: 'Jai',
@@ -149,7 +161,19 @@ function FriendCard({ person }: { person: Friend }) {
           <span className="text-4xl">{person.emoji}</span>
           <p className="text-sm font-medium" style={{ color: cfg.color }}>{person.name}</p>
           <p className="text-[10px] text-[var(--text-sec)]">{person.relation} · {person.since}</p>
-          <p className="text-[9px] text-[var(--muted)] mt-1">tap to flip back</p>
+          {person.link && (
+            <a
+              href={person.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              className="text-[10px] px-3 py-1 rounded-lg border transition-all duration-150 hover:-translate-y-0.5"
+              style={{ color: cfg.color, borderColor: cfg.border, background: 'rgba(var(--bg-rgb),0.5)' }}
+            >
+              {person.link.replace(/^https?:\/\//, '')}
+            </a>
+          )}
+          <p className="text-[9px] text-[var(--muted)]">tap to flip back</p>
         </div>
       </div>
     </div>
