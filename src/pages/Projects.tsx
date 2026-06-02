@@ -71,6 +71,18 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'Timetable4me',
+    description: 'Mobile-first academic schedule tracker and study productivity app built with Waiz. Users sign in with Google, manage their weekly timetable, track tasks with priority scoring, and use a focus timer in Pomodoro or Free mode — all synced to Firebase. Dashboard surfaces today\'s schedule as a visual timeline, upcoming deadlines, weekly stats, and a daily to-do checklist. An auto-scheduler generates study sessions from task deadlines and user preferences. Full week PDF export via jsPDF. ~2,700 lines of TypeScript across 10 source files.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Firebase', 'Anime.js', 'jsPDF', 'Netlify'],
+    link: 'https://tt4me.waizhzq.my',
+    github: 'https://github.com/waizhzq/timetable4me',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'schedule & study tracker',
+    featured: true,
+  },
+  {
     title: 'PapVision',
     description: 'A freelance project — built in collaboration with a UiTM lecturer to help medical students study cytopathology beyond lecture slides. The lecturer provided the clinical expertise and slide content; I handled the entire technical build. Features 18 annotated Pap smear slides across 5 diagnostic categories, interactive morphology cue markers, a zoomable image viewer, a diagnostic quiz system with hints, and a challenge mode with timed quiz, rapid screening, and randomized cases. Progress tracked with XP, achievements, and category unlocking.',
     stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS v3', 'Firebase', 'Framer Motion'],
