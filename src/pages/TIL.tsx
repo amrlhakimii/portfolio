@@ -10,6 +10,27 @@ interface TILEntry {
 
 const entries: TILEntry[] = [
   {
+    id: 23,
+    content: 'TIL that Azure DevOps pipelines can have environment gates — a deployment to preprod can be blocked until a manual approval is given, so nothing reaches production without a deliberate human sign-off.',
+    date: '2026-06-02',
+    tag: 'devops',
+    source: 'Access Group internship',
+  },
+  {
+    id: 22,
+    content: 'TIL that the Web Push API requires a service worker to receive push events — the browser needs a background process to wake up and show the notification even when the app tab is closed. Without registering a service worker first, `pushManager.subscribe()` will always fail.',
+    date: '2026-05-25',
+    tag: 'javascript',
+    source: 'building Hootang push notifications',
+  },
+  {
+    id: 21,
+    content: 'TIL that GSAP\'s `timeline()` lets you sequence animations with precise overlap control using the position parameter — `tl.to(el, {}, "<0.2")` starts the next tween 0.2s after the previous one begins, not after it ends. This is what makes cinematic entrance sequences feel choreographed instead of just staggered.',
+    date: '2026-05-18',
+    tag: 'animation',
+    source: 'building Hootang dashboard',
+  },
+  {
     id: 20,
     content: 'TIL that writing a good AI prompt is closer to writing a spec than a search query — the more context, constraints, and expected output format you give, the less hallucination and the more useful the result.',
     date: '2026-05-10',
@@ -162,6 +183,8 @@ const TAG_COLORS: Record<string, { color: string; bg: string; border: string }> 
   photography: { color: '#e1d9bc', bg: 'rgba(225,217,188,0.08)',  border: 'rgba(225,217,188,0.2)' },
   firebase:    { color: '#fbbf24', bg: 'rgba(251,191,36,0.08)',   border: 'rgba(251,191,36,0.2)'  },
   ai:          { color: '#e879f9', bg: 'rgba(232,121,249,0.08)',  border: 'rgba(232,121,249,0.2)' },
+  animation:   { color: '#4ade80', bg: 'rgba(74,222,128,0.08)',   border: 'rgba(74,222,128,0.2)'  },
+  devops:      { color: '#60a5fa', bg: 'rgba(96,165,250,0.08)',   border: 'rgba(96,165,250,0.2)'  },
 }
 
 const fallbackTag = { color: '#acbac4', bg: 'rgba(172,186,196,0.08)', border: 'rgba(172,186,196,0.2)' }

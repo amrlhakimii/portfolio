@@ -19,9 +19,11 @@ const categories: Category[] = [
     label: 'hardware',
     emoji: '🖥️',
     items: [
-      { name: 'MacBook Pro M1', description: 'Main machine. Handles dev, video editing, Lightroom, and running Figma + VS Code side by side without a fan spin.', tag: 'daily driver', love: true },
+      { name: 'MacBook Air M5', description: 'New main machine. Handles everything — dev, Lightroom, Figma, VS Code — completely silent even under load. The M5 chip is absurd for the size.', tag: 'daily driver', love: true },
+      { name: 'MacBook Pro M1', description: 'Previous main machine. Still used as a secondary for heavier video editing and when I need two setups running.', tag: 'backup' },
       { name: 'iPhone', description: 'Primary phone. Also my main camera for casual shots when the DSLR is overkill.', tag: 'always on me' },
-      { name: 'Fujifilm XT30-ii', description: 'My photography workhorse — weddings, events, products. Every shoot starts here.', tag: 'photography', love: true },
+      { name: 'Sony A6400', description: 'Mirrorless camera with fast AF and excellent video specs. Compact enough to bring everywhere, capable enough for serious shoots.', tag: 'photography', love: true },
+      { name: 'Fujifilm XT30-ii', description: 'Film simulation and that Fuji colour science. Still reach for it when I want a specific look or the vibe calls for it.', tag: 'photography', love: true },
       { name: 'External Monitor', description: '24" 1080p IPS. Colour accuracy matters when editing photos and designing — this delivers.', tag: 'workspace' },
       { name: 'Mechanical Keyboard', description: 'Tactile switches. Long sessions are way easier. Clickiest thing in my setup.', tag: 'workspace' },
       { name: 'DJI Action 5 Pro', description: 'My videography firearm — compact, stable, and packed with features for action shots.', tag: 'videography' },
@@ -104,6 +106,7 @@ const categories: Category[] = [
     label: 'photography workflow',
     emoji: '📷',
     items: [
+      { name: 'Sony A6400', description: 'Primary shooter. Fast AF, clean 4K video, and small enough to travel light. Goes to every shoot.', tag: 'camera', love: true },
       { name: 'Adobe Lightroom', description: 'Primary editing and culling. Import → cull → edit → export. Every single shoot.', tag: 'core', love: true },
       { name: 'Adobe Photoshop', description: 'For composites, background removal, and retouching that Lightroom can\'t handle.', tag: 'retouch' },
       { name: 'Google Drive', description: 'Client delivery and backup. Every gallery gets its own shared folder.', tag: 'delivery' },

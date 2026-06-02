@@ -133,15 +133,28 @@ function FriendCard({ person }: { person: Friend }) {
             <span className="text-[9px] text-[var(--border-hover)] mt-1">tap to flip</span>
           </div>
           <p className="text-xs text-[var(--text-sec)] leading-relaxed flex-1">{person.description}</p>
-          <div className="flex items-center justify-between">
-            {person.highlight && (
-              <span
-                className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border"
-                style={{ color: cfg.color, borderColor: cfg.border, background: cfg.bg }}
-              >
-                {person.highlight}
-              </span>
-            )}
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <div className="flex items-center gap-2">
+              {person.highlight && (
+                <span
+                  className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border"
+                  style={{ color: cfg.color, borderColor: cfg.border, background: cfg.bg }}
+                >
+                  {person.highlight}
+                </span>
+              )}
+              {person.link && (
+                <a
+                  href={person.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="text-[10px] text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150"
+                >
+                  {person.link.replace(/^https?:\/\//, '')} ↗
+                </a>
+              )}
+            </div>
             {person.since && (
               <span className="text-[10px] text-[var(--border-hover)] ml-auto">{person.since}</span>
             )}
