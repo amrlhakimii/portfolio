@@ -19,7 +19,7 @@ const projects: Project[] = [
   {
     title: 'Flightpath Welcome Email Tool',
     description: 'Internal automation tool built at The Access Group to eliminate the manual copy-paste process for client welcome emails. The tool joins two FocalPoint data sources — Sales Handover and SOW Booking Enquiry — by Project Code, groups booking records under each project, and auto-generates a structured welcome email draft per client. Built using EVO Builder in collaboration with the Workforce AI Team from Product Engineering. Phase 1 uses FocalPoint Excel exports as the data source; Phase 2 will replace this with a live FocalPoint API and auto-send via Outlook.',
-    stack: ['EVO Builder', 'EVO Workflow', 'Access FocalPoint', 'Excel Integration', 'Process Automation'],
+    stack: ['React', '.NET', 'Microsoft Azure', 'EVO Builder', 'EVO Workflow', 'Access FocalPoint', 'Excel Integration', 'Devin CLI', 'Process Automation'],
     category: 'software',
     status: 'in progress',
     year: '2026',
