@@ -72,14 +72,14 @@ const projects: Project[] = [
   },
   {
     title: 'Timetable4me',
-    description: 'Mobile-first academic schedule tracker and study productivity app built with Waiz. Users sign in with Google, manage their weekly timetable, track tasks with priority scoring, and use a focus timer in Pomodoro or Free mode — all synced to Firebase. Dashboard surfaces today\'s schedule as a visual timeline, upcoming deadlines, weekly stats, and a daily to-do checklist. An auto-scheduler generates study sessions from task deadlines and user preferences. Full week PDF export via jsPDF. ~2,700 lines of TypeScript across 10 source files.',
+    description: 'A collab with Waiz (waizhzq) — we built this together. Mobile-first academic schedule tracker and study productivity app. Users sign in with Google, manage their weekly timetable, track tasks with priority scoring, and use a focus timer in Pomodoro or Free mode — all synced to Firebase. Dashboard surfaces today\'s schedule as a visual timeline, upcoming deadlines, weekly stats, and a daily to-do checklist. An auto-scheduler generates study sessions from task deadlines and user preferences. Full week PDF export via jsPDF. ~2,700 lines of TypeScript across 10 source files.',
     stack: ['React 19', 'TypeScript', 'Vite', 'Firebase', 'Anime.js', 'jsPDF', 'Netlify'],
     link: 'https://tt4me.waizhzq.my',
     github: 'https://github.com/waizhzq/timetable4me',
     category: 'software',
     status: 'shipped',
     year: '2026',
-    highlight: 'schedule & study tracker',
+    highlight: 'collab w/ Waiz · schedule & study tracker',
     featured: true,
   },
   {
