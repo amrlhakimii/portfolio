@@ -134,7 +134,7 @@ export default function Profile() {
   }, [])
   const myTimeStr = myTime.toLocaleTimeString('en-MY', {
     timeZone: 'Asia/Kuala_Lumpur',
-    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
   })
   const myHour = parseInt(myTime.toLocaleTimeString('en-MY', { timeZone: 'Asia/Kuala_Lumpur', hour: '2-digit', hour12: false }))
   const timeStatus = myHour >= 22 || myHour < 6

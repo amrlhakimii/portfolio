@@ -78,12 +78,17 @@ export default function Navbar() {
           className="flex items-center justify-between px-4 py-2.5"
           style={{ borderBottom: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}` }}
         >
-          <NavLink
-            to="/about"
-            className="text-sm font-medium transition-colors duration-150"
-            style={{ color: 'var(--text-pri)' }}
-          >
-            amrlhakimii
+          <NavLink to="/about" style={{ perspective: '600px', display: 'inline-block', filter: 'var(--logo-filter)' }}>
+            <img
+              src="/logo.png"
+              alt="amrlhakimii"
+              style={{
+                width: '28px',
+                height: '28px',
+                objectFit: 'contain',
+                animation: 'coin-spin 3s linear infinite',
+              }}
+            />
           </NavLink>
 
           <div className="flex items-center gap-3">

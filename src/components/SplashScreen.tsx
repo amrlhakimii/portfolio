@@ -180,9 +180,24 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
       />
 
       <div
-        className="relative z-10 select-none flex flex-col items-center gap-3"
+        className="relative z-10 select-none flex flex-col items-center gap-6"
         style={{ fontFamily: "ui-monospace, 'Cascadia Code', 'Courier New', monospace" }}
       >
+        {/* Logo — always spinning */}
+        <div style={{ perspective: '600px' }}>
+          <img
+            src="/logo.png"
+            alt="logo"
+            style={{
+              width: '120px',
+              height: '120px',
+              objectFit: 'contain',
+              animation: 'coin-spin 3s linear infinite',
+              filter: 'invert(1)',
+            }}
+          />
+        </div>
+
         {!started ? (
           /* Idle — waiting for interaction */
           <div className="flex flex-col items-center gap-4">

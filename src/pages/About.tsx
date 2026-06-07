@@ -194,7 +194,7 @@ function HeroSection({ typed }: { typed: string }) {
           style={{ scale: nameScale, y: nameY, opacity: nameOpacity }}
         >
           <p
-            className="mb-6"
+            className="mb-8"
             style={{
               fontFamily: 'monospace',
               color: 'var(--muted)',
@@ -205,18 +205,33 @@ function HeroSection({ typed }: { typed: string }) {
           >
             portfolio · 2026
           </p>
-          <h1
-            className="font-bold"
+          <div style={{
+            perspective: '800px',
+            display: 'flex',
+            justifyContent: 'center',
+            filter: 'brightness(0) invert(1) sepia(1) hue-rotate(140deg) saturate(6) brightness(0.55)',
+          }}>
+            <img
+              src="/logo.png"
+              alt="amrlhakimii"
+              style={{
+                width: 'clamp(120px, 22vw, 220px)',
+                height: 'clamp(120px, 22vw, 220px)',
+                objectFit: 'contain',
+                animation: 'coin-spin 3s linear infinite',
+              }}
+            />
+          </div>
+          <img
+            src="/amrlhakimi-02.png"
+            alt="amrlhakimi"
             style={{
-              fontSize: 'clamp(3.6rem, 19vw, 10rem)',
-              lineHeight: 0.88,
-              letterSpacing: '-0.04em',
-              color: 'var(--text-pri)',
+              marginTop: '1.5rem',
+              width: 'clamp(160px, 28vw, 320px)',
+              objectFit: 'contain',
+              filter: 'var(--logo-filter)',
             }}
-          >
-            Amirul<br />
-            <span style={{ color: 'var(--accent)' }}>Hakimi</span>
-          </h1>
+          />
         </motion.div>
 
         {/* Subtitle — fades before name does */}
