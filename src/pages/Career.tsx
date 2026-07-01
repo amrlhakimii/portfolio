@@ -14,13 +14,22 @@ interface Milestone {
 
 const timeline: Milestone[] = [
   {
-    title: 'Associate Project Coordinator Intern',
+    title: 'Software Engineer',
+    organization: 'Workforce AI, The Access Group',
+    period: '26 Jul 2026 — present',
+    description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on Workforce AI product engineering.',
+    type: 'work',
+    logoInitials: 'TAG',
+    tags: ['Workforce AI', 'Software Engineer', 'Romania team', 'Product Engineering'],
+  },
+  {
+    title: 'Associate Project Coordinator / Associate Software Engineer Intern',
     organization: 'The Access Group - APAC',
-    period: 'Mar 2026 — present',
-    description: 'Interning as an Associate Project Coordinator at The Access Group APAC. Scheduling and managing meetings between consultants and clients, handling communications with clients from across the globe, and supporting the UK team in coordinating between clients and consultants. Using Salesforce and Access Focalpoint daily to manage workflows and track project activity. After being assessed, was handed a cross-team project to support Professional Services — collaborating with the Workforce AI Team from Product Engineering to build the Flightpath Welcome Email Tool: an internal automation app that joins Sales Handover and SOW Booking data from FocalPoint, groups bookings by Project Code, and auto-generates structured welcome email drafts. Built in EVO Builder; Phase 2 replaces Excel exports with a live FocalPoint API and Outlook auto-send.',
+    period: 'Mar 2026 — 26 Jul 2026',
+    description: 'Interning as an Associate Project Coordinator at The Access Group APAC. Scheduling and managing meetings between consultants and clients, handling communications with clients from across the globe, and supporting the UK team in coordinating between clients and consultants. Using Salesforce and Access Focalpoint daily to manage workflows and track project activity. After being assessed, was handed a cross-team project to support Professional Services — collaborating with the Workforce AI Team from Product Engineering to build the Flightpath Welcome Email Tool: an internal automation app that joins Sales Handover and SOW Booking data from FocalPoint, groups bookings by Project Code, and auto-generates structured welcome email drafts. Built in EVO Builder; Phase 2 replaces Excel exports with a live FocalPoint API and Outlook auto-send. At an internal Connector-thon hackathon, built a Flightpath API webhook connector using n8n and EVO workflow automation. Also built the PO Ticketing System, letting anyone in the office raise requests for the PO Team to track and action, and the SHR Timesheet Log, rolled out globally for the SHR team across APAC, EMEA, and the Americas — delivered end-to-end in 3 weeks. Throughout, coordinated with stakeholders across regions and joined meetings with Access APAC\'s top leadership. Also picked up Azure CI/CD end-to-end — setting up pipelines, resource groups, container apps, Rancher, Docker, and blob storage. Internship extended to 26 Jul 2026, after which absorbed into a permanent Software Engineer role with Workforce AI.',
     type: 'internship',
     logoInitials: 'TAG',
-    tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support', 'AI automation', 'Flightpath', 'Professional Services', 'Workforce AI Team'],
+    tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support', 'AI automation', 'Flightpath', 'n8n', 'Connector-thon', 'PO Ticketing System', 'SHR Timesheet Log', 'stakeholder management', 'Azure CI/CD', 'Docker', 'Rancher', 'Professional Services', 'Workforce AI Team'],
     current: true,
   },
   {
