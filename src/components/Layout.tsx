@@ -198,14 +198,13 @@ function DotGrid() {
 
 // ── Top ticker ────────────────────────────────────────────────────────────────
 const TICKER_ITEMS = [
-  'Available for Workforce AI roles',
+  'Software Engineer @ Workforce AI, The Access Group',
   'Freelance Full-Stack Dev · open to projects',
   'Based in Jitra, Kedah · Malaysia',
   'React · TypeScript · Node.js · Supabase · Firebase',
   'Prompt Engineering · AI-assisted workflows',
   'Photographer since 2018',
   'Founder of Blugrafix',
-  'Interning @ The Access Group APAC',
   'Arsenal FC 🔴',
   'Mercedes AMG F1 🏎️',
   'CGPA 3.76',

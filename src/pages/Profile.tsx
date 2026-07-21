@@ -43,7 +43,7 @@ const identity = [
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
   { label: 'role',      value: 'CS Student · Full-Stack Dev · Designer · Photographer' },
-  { label: 'currently', value: 'Semester 7 · CGPA 3.76 · Intern @ The Access Group APAC' },
+  { label: 'currently', value: 'Semester 7 · CGPA 3.76 · Software Engineer @ The Access Group APAC' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 
