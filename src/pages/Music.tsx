@@ -1,65 +1,42 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { NowPlaying } from '../components/NowPlaying'
 
 interface Album {
-  title: string
   artist: string
+  album: string
   year: string
   genre: string
-  note: string
   cover: string
 }
 
-const albums: Album[] = [
-  {
-    artist: 'Menari dengan Bayangan',
-    title: 'Hindia',
-    year: '2022',
-    genre: 'indie pop',
-    note: 'When everything feels heavy but you still want to move forward.',
-    cover: '/hindia.jpg',
-  },
-  {
-    artist: 'The Black Parade',
-    title: 'My Chemical Romance',
-    year: '2006',
-    genre: 'emo / rock',
-    note: 'Dramatic, loud, cathartic. Teenage energy that never expired.',
-    cover: '/mcr.jpg',
-  },
-  {
-    artist: 'Views',
-    title: 'Drake',
-    year: '2021',
-    genre: 'hip-hop / r&b',
-    note: 'Late nights, driving alone, thinking too much.',
-    cover: '/drake.jpg',
-  },
-  {
-    artist: 'Superpowers',
-    title: 'Daniel Caesar',
-    year: '2020',
-    genre: 'indie / folk',
-    note: 'Quiet and introspective. Good for writing and long sessions.',
-    cover: '/daniel.jpeg',
-  },
-  {
-    artist: 'AM',
-    title: 'Arctic Monkeys',
-    year: '2006',
-    genre: 'indie rock',
-    note: 'Every track hits. Never skipping this one.',
-    cover: '/arctic.png',
-  },
-  {
-    artist: 'Memorandum',
-    title: 'Perunggu',
-    year: '2019',
-    genre: 'indie / lofi',
-    note: 'Local favourite. Mellow, warm, and uniquely Malaysian.',
-    cover: '/perunggu.jpg',
-  },
+const FALLBACK_ALBUMS: Album[] = [
+  { artist: 'Hindia', album: 'Menari dengan Bayangan', year: '2022', genre: 'indie pop', cover: '/hindia.jpg' },
+  { artist: 'My Chemical Romance', album: 'The Black Parade', year: '2006', genre: 'emo / rock', cover: '/mcr.jpg' },
+  { artist: 'Drake', album: 'Views', year: '2021', genre: 'hip-hop / r&b', cover: '/drake.jpg' },
+  { artist: 'Daniel Caesar', album: 'Superpowers', year: '2020', genre: 'indie / folk', cover: '/daniel.jpeg' },
+  { artist: 'Arctic Monkeys', album: 'AM', year: '2006', genre: 'indie rock', cover: '/arctic.png' },
+  { artist: 'Perunggu', album: 'Memorandum', year: '2019', genre: 'indie / lofi', cover: '/perunggu.jpg' },
 ]
+
+function useTopAlbums() {
+  const [albums, setAlbums] = useState<Album[]>(FALLBACK_ALBUMS)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/top-albums')
+      .then(res => res.ok ? res.json() : null)
+      .then(json => {
+        if (!cancelled && json?.albums?.length) setAlbums(json.albums)
+      })
+      .catch(() => {
+        // keep fallback list — Spotify hiccups shouldn't break the page
+      })
+    return () => { cancelled = true }
+  }, [])
+
+  return albums
+}
 
 // Animated vinyl grooves (SVG rings)
 function VinylGrooves() {
@@ -101,7 +78,7 @@ function VinylRecord({ album, isPlaying, isSelected, onClick }: {
         {/* Album cover clipped to circle */}
         <img
           src={album.cover}
-          alt={album.title}
+          alt={album.album}
           className="absolute inset-0 w-full h-full object-cover rounded-full"
           style={{ opacity: 0.85 }}
           onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0' }}
@@ -114,7 +91,7 @@ function VinylRecord({ album, isPlaying, isSelected, onClick }: {
         <p className="text-[11px] font-medium text-[var(--text-pri)] leading-tight line-clamp-1 group-hover:text-[var(--accent)] transition-colors duration-150">
           {album.artist}
         </p>
-        <p className="text-[9px] text-[var(--text-sec)] line-clamp-1">{album.title}</p>
+        <p className="text-[9px] text-[var(--text-sec)] line-clamp-1">{album.album}</p>
       </div>
     </button>
   )
@@ -161,6 +138,7 @@ function useElapsed(running: boolean) {
 }
 
 export default function Music() {
+  const albums = useTopAlbums()
   const [selected, setSelected] = useState<number>(0)
   const [playing, setPlaying] = useState(false)
   const elapsed = useElapsed(playing)
@@ -182,8 +160,12 @@ export default function Music() {
         <p className="text-[var(--text-sec)] text-sm">what i keep on repeat — click a record to play</p>
       </header>
 
-      {/* Cassette + player */}
       <section className="fade-up fade-up-2">
+        <NowPlaying />
+      </section>
+
+      {/* Cassette + player */}
+      <section className="fade-up fade-up-3">
         <div
           className="relative rounded-2xl overflow-hidden border border-[var(--border)]"
           style={{ background: 'rgba(28,24,18,0.95)' }}
@@ -225,7 +207,7 @@ export default function Music() {
                 <div className="absolute inset-0 bg-[#111] rounded-full" />
                 <img
                   src={current.cover}
-                  alt={current.title}
+                  alt={current.album}
                   className="absolute inset-0 w-full h-full object-cover rounded-full"
                   style={{ opacity: 0.9 }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0' }}
@@ -240,9 +222,8 @@ export default function Music() {
                     now {playing ? 'playing' : 'cued'}
                   </p>
                   <p className="text-lg font-semibold leading-tight text-[var(--accent)] truncate">{current.artist}</p>
-                  <p className="text-sm text-[var(--text-sec)] truncate">{current.title} · {current.year}</p>
+                  <p className="text-sm text-[var(--text-sec)] truncate">{current.album} · {current.year}</p>
                 </div>
-                <p className="text-xs text-[#7a8070] leading-relaxed italic">"{current.note}"</p>
                 <div className="flex items-center gap-2">
                   <span
                     className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border"
@@ -316,7 +297,7 @@ export default function Music() {
               </p>
               {albums.map((album, i) => (
                 <button
-                  key={album.title}
+                  key={album.album}
                   onClick={() => handleSelect(i)}
                   className="w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors duration-150 hover:bg-white/[0.03]"
                   style={{ borderBottom: i < albums.length - 1 ? '1px solid rgba(225,217,188,0.04)' : 'none' }}
@@ -332,7 +313,7 @@ export default function Music() {
                       {album.artist}
                     </span>
                     <span className="text-[10px] block truncate" style={{ color: selected === i ? '#acbac4' : 'var(--border-hover)' }}>
-                      {album.title}
+                      {album.album}
                     </span>
                   </span>
                   <span className="text-[9px] shrink-0" style={{ color: 'var(--border-hover)', fontFamily: 'monospace' }}>
@@ -346,12 +327,12 @@ export default function Music() {
       </section>
 
       {/* Vinyl shelf — all records */}
-      <section className="fade-up fade-up-3 space-y-4">
+      <section className="fade-up fade-up-4 space-y-4">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>record shelf</h2>
         <div className="flex flex-wrap gap-6 justify-start">
           {albums.map((album, i) => (
             <motion.div
-              key={album.title}
+              key={album.album}
               initial={{ opacity: 0, rotate: -18, scale: 0.72, y: 30 }}
               whileInView={{ opacity: 1, rotate: 0, scale: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}

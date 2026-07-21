@@ -1,38 +1,8 @@
 import type { Config } from '@netlify/functions'
+import { getAccessToken, authHeader } from './lib/spotify.ts'
 
-const TOKEN_URL = 'https://accounts.spotify.com/api/token'
 const NOW_PLAYING_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
 const RECENTLY_PLAYED_URL = 'https://api.spotify.com/v1/me/player/recently-played?limit=1'
-
-async function getAccessToken() {
-  const clientId = process.env.SPOTIFY_CLIENT_ID
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN
-
-  if (!clientId || !clientSecret || !refreshToken) {
-    throw new Error('Missing Spotify credentials in environment')
-  }
-
-  const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
-  const res = await fetch(TOKEN_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Basic ${basic}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      grant_type: 'refresh_token',
-      refresh_token: refreshToken,
-    }),
-  })
-
-  if (!res.ok) {
-    throw new Error(`Failed to refresh Spotify token: ${res.status}`)
-  }
-
-  const data = await res.json()
-  return data.access_token as string
-}
 
 function trackPayload(track: any, isPlaying: boolean) {
   return {
@@ -48,9 +18,9 @@ function trackPayload(track: any, isPlaying: boolean) {
 export default async () => {
   try {
     const accessToken = await getAccessToken()
-    const authHeader = { Authorization: `Bearer ${accessToken}` }
+    const headers = authHeader(accessToken)
 
-    const nowRes = await fetch(NOW_PLAYING_URL, { headers: authHeader })
+    const nowRes = await fetch(NOW_PLAYING_URL, { headers })
 
     if (nowRes.status === 200) {
       const nowData = await nowRes.json()
@@ -62,7 +32,7 @@ export default async () => {
     }
 
     // Nothing currently playing — fall back to most recently played track
-    const recentRes = await fetch(RECENTLY_PLAYED_URL, { headers: authHeader })
+    const recentRes = await fetch(RECENTLY_PLAYED_URL, { headers })
     if (recentRes.ok) {
       const recentData = await recentRes.json()
       const track = recentData?.items?.[0]?.track
