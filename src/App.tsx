@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import { SplashScreen } from './components/SplashScreen'
 import Layout from './components/Layout'
@@ -15,6 +15,11 @@ import Friends from './pages/Friends'
 import Profile from './pages/Profile'
 import Career from './pages/Career'
 
+function RootRedirect() {
+  const location = useLocation()
+  return <Navigate to={{ pathname: '/about', search: location.search, hash: location.hash }} replace />
+}
+
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
 
@@ -24,7 +29,7 @@ export default function App() {
       <ThemeProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/about" replace />} />
+            <Route path="/" element={<RootRedirect />} />
             <Route
               path="/*"
               element={
