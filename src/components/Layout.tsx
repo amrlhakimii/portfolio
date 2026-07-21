@@ -251,7 +251,7 @@ const leftCodeLines = [
   { left: '17%',  delay: '10s',   duration: '14s', text: '✓ built in 603ms',      opacity: 0.20 },
   { left: '12%',  delay: '3s',    duration: '22s', text: 'const ui = new Kimi()', opacity: 0.15 },
   { left: '15%',  delay: '8s',    duration: '18s', text: 'yarn dev --host',       opacity: 0.17 },
-  { left: '13%',  delay: '14s',   duration: '13s', text: '{ role: "intern" }',    opacity: 0.20 },
+  { left: '13%',  delay: '14s',   duration: '13s', text: '{ role: "swe" }',       opacity: 0.20 },
   { left: '16%',  delay: '17s',   duration: '19s', text: 'import React from…',    opacity: 0.14 },
 ]
 

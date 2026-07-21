@@ -21,6 +21,7 @@ const timeline: Milestone[] = [
     type: 'work',
     logoInitials: 'TAG',
     tags: ['Workforce AI', 'Software Engineer', 'Romania team', 'Product Engineering'],
+    current: true,
   },
   {
     title: 'Associate Project Coordinator / Associate Software Engineer Intern',
@@ -44,12 +45,11 @@ const timeline: Milestone[] = [
   {
     title: 'Bachelor of Computer Science (Hons.) — CS230',
     organization: 'UiTM Kampus Tapah, Perak',
-    period: '2024 — present',
-    description: 'Currently in Semester 7 with a CGPA of 3.76. Final-year project: a React Native iOS app + web platform for UiTM students to record attendance via QR code scanning, integrated with MySQL for secure login, attendance records, timetable, and student dashboard.',
+    period: '2024 — 2026',
+    description: 'Graduated with a CGPA of 3.76. Final-year project: a React Native iOS app + web platform for UiTM students to record attendance via QR code scanning, integrated with MySQL for secure login, attendance records, timetable, and student dashboard.',
     type: 'education',
     logoInitials: 'UiTM',
     tags: ['React Native', 'MySQL', 'CGPA 3.76'],
-    current: true,
   },
   {
     title: 'Video Editor Intern',

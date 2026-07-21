@@ -42,8 +42,8 @@ const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
-  { label: 'role',      value: 'CS Student · Full-Stack Dev · Designer · Photographer' },
-  { label: 'currently', value: 'Semester 7 · CGPA 3.76 · Software Engineer @ The Access Group APAC' },
+  { label: 'role',      value: 'CS Graduate · Full-Stack Dev · Designer · Photographer' },
+  { label: 'currently', value: 'CGPA 3.76 · Software Engineer @ The Access Group APAC' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 

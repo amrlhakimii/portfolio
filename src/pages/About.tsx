@@ -6,7 +6,7 @@ const TYPED_PHRASES = [
   'crafting clean interfaces',
   'exploring workforce AI solutions',
   'taking on full-stack freelance work',
-  'coordinating projects at The Access Group',
+  'engineering workforce AI at The Access Group',
   'shooting weddings since 2018',
   'designing jerseys for Blugrafix',
   'shipping side projects',
@@ -99,10 +99,10 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 }
 
 const terminal = [
-  { prompt: '$ whoami',      out: 'amirul hakimi — cs student · full-stack dev · designer · photographer' },
-  { prompt: '$ cat role.txt', out: 'intern @ The Access Group APAC · Associate Project Coordinator' },
+  { prompt: '$ whoami',      out: 'amirul hakimi — cs graduate · full-stack dev · designer · photographer' },
+  { prompt: '$ cat role.txt', out: 'Software Engineer @ Workforce AI, The Access Group' },
   { prompt: '$ cat building.txt', out: 'QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
-  { prompt: '$ cat open_to.txt', out: 'workforce AI · AI engineering · full-stack freelance · full-stack roles · freelance design · photography gigs' },
+  { prompt: '$ cat open_to.txt', out: 'AI engineering · full-stack freelance · freelance design · photography gigs' },
 ]
 
 function HeroSection({ typed }: { typed: string }) {
@@ -324,7 +324,7 @@ export default function About() {
             {/* Status */}
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-emerald-300 border border-emerald-500/20 bg-emerald-500/10">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              interning @ The Access Group · Mar–Jul 2026
+              Software Engineer @ The Access Group · since Jul 2026
             </span>
 
             {/* Socials */}
@@ -522,10 +522,11 @@ export default function About() {
         </h2>
         <div className="space-y-4 max-w-prose">
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          I'm a final-year Bachelor of Computer Science (Hons.) student at UiTM Tapah, currently
-          interning as an Associate Project Coordinator at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I graduated with
-          First Class Honours in my Diploma of Computer Science (CGPA 3.54) and am on track to
-          finish my degree with a <span className="text-[var(--text-pri)]">CGPA of 3.76</span>.
+          I'm a Bachelor of Computer Science (Hons.) graduate from UiTM Tapah, and a
+          Software Engineer on the Workforce AI team at <span className="text-[var(--text-pri)]">The Access Group APAC</span> — absorbed
+          into the role after interning as an Associate Project Coordinator. I graduated with
+          First Class Honours in my Diploma of Computer Science (CGPA 3.54), and finished my
+          degree with a <span className="text-[var(--text-pri)]">CGPA of 3.76</span>.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, Node.js, and .NET</span> — ranging
