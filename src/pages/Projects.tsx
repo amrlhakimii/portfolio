@@ -130,6 +130,18 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'UbatLog',
+    description: "A small clinic tracked every medication purchase by hand in a physical notebook — no search, no filtering, and pricing math (medications bought in one pack size but sold in different unit quantities, e.g. a 28-tablet pack sold in strips of 10) done mentally every time. UbatLog replaces the notebook with a web app built to feel like a smarter version of it, not a database tool: fast to log a new purchase, fast to find an old one, and correct pricing math without anyone doing it by hand. Google Sign-In with an email whitelist enforced by Firestore security rules keeps access closed to a small team. A pricing engine computes cost-per-unit and a 30%-margin recommended price, rounded to the nearest RM0.05, live as you type. Purchase history is grouped by generic medication name rather than brand, mirroring how the physical logbook was organised, with real-time multi-user sync so the admin and family members can use it concurrently. Records are filterable client-side by date range, manufacturer, pharmacy, and type; a standalone calculator checks a recommended price without creating a record; and deletes go through a 5-second undo window before anything is actually removed.",
+    stack: ['React', 'TypeScript', 'Vite', 'TailwindCSS v4', 'Firebase', 'Netlify'],
+    link: 'https://ubatlog.amrlhakimi.my',
+    github: 'https://github.com/amrlhakimii/UbatLog',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'clinic medication purchase log',
+    featured: true,
+  },
+  {
     title: 'MyCampus QR Attendance System',
     description: 'iOS React Native app + web platform for UiTM students to record attendance via QR code scanning. Features secure login, attendance records, course registration, custom timetable, and a student academic dashboard. Final Year Project.',
     stack: ['React Native', 'React.js', 'MySQL', 'Expo', 'Node.js', 'TailwindCSS'],
