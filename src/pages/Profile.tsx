@@ -11,7 +11,7 @@ const techTiers: Record<string, string[]> = {
 
 const designTiers: Record<string, string[]> = {
   expert:     ['Adobe Lightroom', 'Adobe Photoshop', 'Canva'],
-  proficient: ['Adobe Illustrator', 'Figma', 'Adobe Premiere Pro'],
+  proficient: ['Adobe Illustrator', 'Affinity Designer', 'Figma', 'Adobe Premiere Pro', 'DaVinci Resolve'],
   familiar:   ['Adobe After Effects'],
 }
 
@@ -42,8 +42,8 @@ const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
-  { label: 'role',      value: 'CS Graduate · Full-Stack Dev · Designer · Photographer' },
-  { label: 'currently', value: 'CGPA 3.76 · Software Engineer @ The Access Group APAC' },
+  { label: 'role',      value: 'CS Graduate · Full-Stack Software Engineer (AI tooling) · Designer · Photographer · Videographer & Editor' },
+  { label: 'currently', value: 'Software Engineer @ The Access Group APAC' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 

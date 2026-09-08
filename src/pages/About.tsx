@@ -311,7 +311,7 @@ export default function About() {
 
             {/* Role badges */}
             <div className="flex flex-wrap gap-2">
-              {['Full-Stack Dev', 'Photographer', 'Graphic Designer', 'AI Engineering'].map((role) => (
+              {['Full-Stack Dev', 'Photographer', 'Videographer', 'Editor', 'Graphic Designer', 'AI Engineering'].map((role) => (
                 <span
                   key={role}
                   className="px-3 py-1.5 rounded-full text-[11px] border"
@@ -601,7 +601,7 @@ export default function About() {
           })()}
           {/* Row 2 — scrolls right */}
           {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe Lightroom', 'Figma']
+            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Affinity Designer', 'Adobe Premiere Pro', 'DaVinci Resolve', 'Adobe Lightroom', 'Figma']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
