@@ -587,7 +587,7 @@ export default function About() {
         <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
           {/* Row 1 — scrolls left */}
           {(() => {
-            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', '.NET', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'Firebase', 'Supabase', 'Expo', 'Databricks']
+            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', 'C#', '.NET', 'ASP.NET Core', 'EF Core', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'SQL Server', 'Firebase', 'Supabase', 'Expo', 'Databricks']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 28s linear infinite', gap: '8px' }}>
@@ -601,7 +601,7 @@ export default function About() {
           })()}
           {/* Row 2 — scrolls right */}
           {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'Azure DevOps', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe Lightroom', 'Figma']
+            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Adobe Lightroom', 'Figma']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
@@ -623,7 +623,7 @@ export default function About() {
         </h2>
         <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">
           <p>
-            On the tech side: <span className="text-[var(--text-pri)]">full-stack engineering</span> — not just the interface but everything behind it. React and TypeScript on the frontend, .NET and Node.js on the backend, Azure and DevOps for deployment, Databricks for data pipelines. I care about the whole stack: how the UI feels, how the API is structured, how the build gets to production. I also build mobile apps and increasingly work with AI tooling — integrating LLMs into real workflows, not just prototypes.
+            On the tech side: <span className="text-[var(--text-pri)]">full-stack engineering</span> — not just the interface but everything behind it. React and TypeScript on the frontend, C#/.NET (ASP.NET Core, EF Core), SQL Server, and Node.js on the backend, Docker/Azure/AWS for deployment, Databricks for data pipelines. I care about the whole stack: how the UI feels, how the API and auth model are structured, how the build gets to production. I also build mobile apps and increasingly work with AI tooling — integrating LLMs into real workflows, not just prototypes.
           </p>
           <p>
             Creatively: <span className="text-[var(--text-pri)]">photography</span> has been a big part of my life since school — I shoot weddings,

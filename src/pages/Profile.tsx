@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const techTiers: Record<string, string[]> = {
-  expert:     ['React.js', 'TypeScript', 'Expo', 'React Native', 'JavaScript', 'Java', 'REST APIs'],
-  proficient: ['Node.js', '.NET', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase', 'GSAP', 'Framer Motion', 'Microsoft Azure', 'Azure DevOps'],
-  familiar:   ['Python', 'PHP', 'AI / ML', 'Anime.js', 'Databricks', 'Supabase'],
+  expert:     ['React.js', 'TypeScript', 'C#', 'ASP.NET Core', 'Expo', 'React Native', 'JavaScript', 'Java', 'REST APIs'],
+  proficient: ['.NET', 'EF Core', 'SQL Server', 'Node.js', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase', 'Docker', 'OIDC / JWT Auth', 'GSAP', 'Framer Motion', 'Microsoft Azure', 'Azure DevOps'],
+  familiar:   ['Python', 'PHP', 'AI / ML', 'AWS', 'Anime.js', 'Databricks', 'Supabase'],
 }
 
 const designTiers: Record<string, string[]> = {

@@ -17,10 +17,10 @@ const timeline: Milestone[] = [
     title: 'Software Engineer',
     organization: 'Workforce AI, The Access Group',
     period: '26 Jul 2026 — present',
-    description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on Workforce AI product engineering.',
+    description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on PolicyIQ, a multi-tenant cyber governance, risk & compliance platform — full-stack across React interfaces, ASP.NET Core APIs, EF Core/SQL Server data modelling, authentication and authorization, Azure infrastructure, automated testing, and CI/CD.',
     type: 'work',
     logoInitials: 'TAG',
-    tags: ['Workforce AI', 'Software Engineer', 'Romania team', 'Product Engineering'],
+    tags: ['Workforce AI', 'PolicyIQ', 'React 19', 'TypeScript', 'C#', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Azure', 'Docker', 'multi-tenant authorization', 'Romania team', 'Product Engineering'],
     current: true,
   },
   {

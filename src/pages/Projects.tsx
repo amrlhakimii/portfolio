@@ -17,6 +17,18 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'myRoda',
+    description: 'A vehicle maintenance, fuel, and expense tracker built for Malaysian car and motorcycle owners. Register vehicles, log every workshop visit and refuel, set maintenance/road tax/insurance reminders, and see spending on a live dashboard — all synced in real time via Firestore. Consumption analysis on the fuel tracker, expense charts, and multi-vehicle support.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'TailwindCSS v4', 'React Router', 'React Hook Form', 'Zod', 'TanStack Query', 'Zustand', 'Recharts', 'Firebase', 'Netlify'],
+    link: 'https://myroda.amrlhakimi.my',
+    github: 'https://github.com/amrlhakimii/myRoda',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'vehicle maintenance & fuel tracker',
+    featured: true,
+  },
+  {
     title: 'Flightpath Welcome Email Tool',
     description: 'Internal automation tool built at The Access Group to eliminate the manual copy-paste process for client welcome emails. The tool joins two FocalPoint data sources — Sales Handover and SOW Booking Enquiry — by Project Code, groups booking records under each project, and auto-generates a structured welcome email draft per client. Built using EVO Builder in collaboration with the Workforce AI Team from Product Engineering. Phase 1 uses FocalPoint Excel exports as the data source; Phase 2 will replace this with a live FocalPoint API and auto-send via Outlook.',
     stack: ['React', '.NET', 'Microsoft Azure', 'Azure DevOps', 'Azure Container Apps', 'Docker', 'Rancher', 'Azure Blob Storage', 'CI/CD Pipelines', 'EVO Builder', 'EVO Workflow Automation', 'n8n', 'Access FocalPoint', 'Excel Integration', 'Devin CLI', 'Process Automation'],
@@ -33,13 +45,19 @@ const projects: Project[] = [
   },
   {
     title: 'PolicyIQ',
-    description: 'First project as a Software Engineer at The Access Group, working with the Romanian functional engineer team on Workforce AI. PolicyIQ compiles all of Access\'s internal policies into a single source of truth — letting the team generate, update, and act on policy content from one place instead of scattered documents. Built with React on the frontend and .NET on the backend, running on an Azure-hosted architecture with CI/CD pipelines set up in Azure DevOps.',
-    stack: ['React', '.NET', 'Microsoft Azure', 'Azure DevOps', 'CI/CD Pipelines'],
+    description: 'A multi-tenant cyber governance, risk & compliance platform used to author, assess, review, approve, publish, and export enterprise governance documents, mapped to frameworks like ISO 27001, NIST CSF, SOC 2, UK GDPR, and DORA. Contributed full-stack across the platform: tenant isolation hardening, a centralized role/scope/capability/tenant/record-level authorization model, secure database-backed download workflows with cryptographically secure tokens, document review & approval workflows, and identity-lifecycle handling for externally provisioned users. Deployed via a multi-stage Docker build to Azure Container Apps through Azure DevOps pipelines running backend/frontend tests, linting, and type checks.',
+    stack: ['React 19', 'TypeScript', 'C#', '.NET 10', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Microsoft Azure', 'Azure Container Apps', 'Azure Blob Storage', 'Docker', 'Azure DevOps', 'CI/CD Pipelines', 'OIDC/JWT', 'xUnit', 'Vitest'],
     category: 'software',
     status: 'in progress',
     year: '2026',
-    highlight: 'policy source of truth · Access Group · Romania team',
+    highlight: 'multi-tenant GRC platform · Access Group',
     featured: true,
+    updates: [
+      'Hardened tenant isolation: subscription ownership, scoped queries, foreign-key constraints, cross-tenant denial tests',
+      'Built centralized resource authorization combining role/scope/capability/tenant/record-level access controls',
+      'Shipped secure document download workflows with opaque tokens, hashed storage, atomic redemption',
+      'Fixed embedded-app auth loops across OIDC, cookie sessions, JWT bearer, and iframe redirect flows',
+    ],
   },
   {
     title: 'PO Ticketing System',

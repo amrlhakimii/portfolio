@@ -41,6 +41,8 @@ const categories: Category[] = [
       { name: 'TailwindCSS', description: 'Utility-first CSS. Once it clicks, writing plain CSS feels backwards.', tag: 'styling', love: true, url: 'https://tailwindcss.com' },
       { name: 'Git + GitHub', description: 'Version control and remote storage. Commit often, commit meaningfully.', tag: 'workflow', url: 'https://github.com' },
       { name: 'Node.js + Express', description: 'Go-to for quick APIs and backend work. Simple, fast to spin up.', tag: 'backend' },
+      { name: 'C# + ASP.NET Core', description: 'Backend language and web API framework used at The Access Group on PolicyIQ — REST APIs, authorization, and service-layer architecture.', tag: 'backend', love: true },
+      { name: 'EF Core + SQL Server', description: 'ORM and relational database for PolicyIQ — migrations, tenant-aware schemas, optimistic concurrency, and relational data modelling.', tag: 'backend', love: true },
       { name: '.NET', description: 'Backend framework used at The Access Group. Building APIs and integrations that connect enterprise systems end-to-end.', tag: 'backend', love: true },
       { name: 'Firebase', description: 'Auth, Firestore, and hosting for projects that need a backend without building one.', tag: 'backend', url: 'https://firebase.google.com' },
       { name: 'Supabase', description: 'Postgres-backed backend with auth and Row Level Security. Reached for it when data is relational and I want SQL over a document store.', tag: 'backend', url: 'https://supabase.com' },
@@ -93,7 +95,9 @@ const categories: Category[] = [
     emoji: '🛠️',
     items: [
       { name: 'Microsoft Azure', description: 'Cloud platform for hosting, identity, and infrastructure. Working with Azure services across the full deployment lifecycle — from dev to preprod to production.', tag: 'cloud', love: true },
+      { name: 'AWS', description: 'Cloud platform used for hosting and infrastructure on side projects — S3, EC2, and IAM basics.', tag: 'cloud' },
       { name: 'Azure DevOps', description: 'CI/CD pipelines, repo management, and release tracking. Handles the entire build-to-deploy chain — including preprod validation before anything hits production.', tag: 'devops', love: true },
+      { name: 'Docker', description: 'Containerizing apps for consistent builds and deployment — multi-stage builds that compile frontend and backend into a single deployable image, shipped to Azure Container Apps.', tag: 'devops', love: true },
       { name: 'Databricks', description: 'Data engineering and ML platform. Used for data pipeline work and analytics — part of the broader architecture at Access Group.', tag: 'data' },
       { name: 'EVO Builder', description: 'Low-code configuration tool within the Access Evolution ecosystem. Used to build and configure workflows, forms, and business logic without writing raw code every time.', tag: 'internal' },
       { name: 'Automated EVO Workflow', description: 'Workflow automation within the EVO platform — designing trigger-based flows to reduce manual steps and connect systems end-to-end. Handled full ownership from spec to deployment.', tag: 'automation', love: true },
