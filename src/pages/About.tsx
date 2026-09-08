@@ -494,35 +494,35 @@ export default function About() {
         </h2>
         <div className="space-y-4 max-w-prose">
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          I'm a Bachelor of Computer Science (Hons.) graduate from UiTM Tapah, and a
-          Software Engineer on the Workforce AI team at <span className="text-[var(--text-pri)]">The Access Group APAC</span> — absorbed
-          into the role after interning as an Associate Project Coordinator. I graduated with
-          First Class Honours in my Diploma of Computer Science (CGPA 3.54), and finished my
-          degree with a <span className="text-[var(--text-pri)]">CGPA of 3.76</span>.
+          I'm a CS graduate from UiTM Tapah — First Class Honours in my diploma, <span className="text-[var(--text-pri)]">3.76 CGPA</span> on
+          the degree — now writing code for a living as a Software Engineer on the Workforce
+          AI team at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I didn't start there as an engineer, though:
+          I came in as an Associate Project Coordinator, and got handed real engineering work
+          once it was clear I could do it.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          On the tech side, I build with <span className="text-[var(--text-pri)]">React, TypeScript, React Native, Node.js, and .NET</span> — ranging
-          from mobile apps to web platforms. My final year project is a QR-based attendance system
-          for UiTM students, built with React Native (iOS) and a React web dashboard backed by MySQL
-          and Firebase. Increasingly, my focus is shifting toward <span className="text-[var(--text-pri)]">AI-powered tooling</span> — prompt engineering,
-          LLM integration, and building products where AI does meaningful work rather than just autocomplete.
+          Day to day that means <span className="text-[var(--text-pri)]">React and TypeScript</span> on the frontend, <span className="text-[var(--text-pri)]">C#/.NET and Node.js</span> on
+          the backend, deployed through Docker and Azure. My final-year project paired a React
+          Native iOS app with a MySQL-backed web dashboard for QR attendance tracking — mobile
+          and web, same as most of what I still build. Lately I'm pulling AI further into the
+          actual workflow, not just the autocomplete — prompt engineering and LLM integration
+          as part of how things actually ship.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          Before this, I interned at <span className="text-[var(--text-pri)]">Rev Media Group & Media Prima</span>, where I edited OBTV — a
-          5-minute TV show on TV9 — and worked as videographer and gaffer for OhBulan!'s YouTube
-          podcast. I was also the official photographer for VOCKET at events like Hausboom Music
-          2023 and Aina Abdul's solo concert press conference.
+          Before any of this was a job title, I was cutting video. I interned at <span className="text-[var(--text-pri)]">Rev Media
+          Group & Media Prima</span>, directing and editing OBTV — a nightly TV9 show — and working
+          videographer and gaffer for OhBulan!'s YouTube podcast. I also shot events for VOCKET,
+          including Hausboom Music 2023 and Aina Abdul's concert press conference.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          Creatively, I've been freelancing since before uni. I run <span className="text-[var(--text-pri)]">Blugrafix</span>, my own graphic
-          design and jersey sublimation printing business, and I've been shooting weddings,
-          corporate events, and product launches as a freelance photographer since 2018. I also
-          volunteered as a designer for Youths.My for over four years.
+          On the side, I run <span className="text-[var(--text-pri)]">Blugrafix</span> — my own graphic design and jersey sublimation
+          business — and I've shot weddings, corporate events, and product launches as a
+          freelance photographer since 2018. I also spent four years volunteering as a designer
+          for Youths.My.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
-          I speak Malay, English, Bahasa Indonesia, and some Mandarin. Off the screen, you'll find
-          me watching <span className="text-[var(--text-pri)]">Arsenal</span> grind out a last-minute winner or obsessing over <span className="text-[var(--text-pri)]">Mercedes'</span> latest
-          race strategy.
+          I speak Malay, English, Bahasa Indonesia, and enough Mandarin to get by. Everything
+          else I care about — <span className="text-[var(--text-pri)]">Arsenal</span>, <span className="text-[var(--text-pri)]">Formula 1</span>, why I still reach for a camera — is below.
         </p>
         </div>
       </section>
@@ -623,13 +623,17 @@ export default function About() {
         </h2>
         <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">
           <p>
-            On the tech side: <span className="text-[var(--text-pri)]">full-stack engineering</span> — not just the interface but everything behind it. React and TypeScript on the frontend, C#/.NET (ASP.NET Core, EF Core), SQL Server, and Node.js on the backend, Docker/Azure/AWS for deployment, Databricks for data pipelines. I care about the whole stack: how the UI feels, how the API and auth model are structured, how the build gets to production. I also build mobile apps and increasingly work with AI tooling — integrating LLMs into real workflows, not just prototypes.
+            What keeps me interested in engineering is the layer underneath the interface —
+            how an API is actually structured, how an auth model holds up under real load, how
+            a build gets from a laptop to production without anyone babysitting it. Stack
+            details are below; AI tooling is folding into that same layer now, not sitting
+            beside it as a novelty.
           </p>
           <p>
-            Creatively: <span className="text-[var(--text-pri)]">photography</span> has been a big part of my life since school — I shoot weddings,
-            events, and products, and I genuinely love the process of finding the right frame. <span className="text-[var(--text-pri)]">Graphic
-            design</span> runs alongside that, from brand identities to jersey sublimation artwork via Blugrafix.
-            I also mess around in After Effects more than I probably should.
+            <span className="text-[var(--text-pri)]">Photography</span> is the constant — finding the right frame still feels the same as it
+            did before any of it paid. <span className="text-[var(--text-pri)]">Design</span> lives right next to it, from brand identities to
+            print-ready jersey art. Truth is I mess around in VS Code more than After Effects —
+            side projects are as much a hobby as anything creative on this page.
           </p>
           <p>
             Culturally: I follow <span className="text-[var(--text-pri)]">Arsenal</span> religiously — the kind of fan that watches every match,

@@ -10,6 +10,48 @@ interface TILEntry {
 
 const entries: TILEntry[] = [
   {
+    id: 29,
+    content: 'TIL that EF Core optimistic concurrency needs a `[Timestamp]` (or a `RowVersion` byte array) column, not just a manual `UpdatedAt` check — without the DB-enforced token, two concurrent saves can both "succeed" and silently overwrite each other.',
+    date: '2026-08-28',
+    tag: 'backend',
+    source: 'building PolicyIQ paragraph change workflow',
+  },
+  {
+    id: 28,
+    content: 'TIL that a three-stage Docker build (deps → build → runtime) keeps the final image small AND lets you use BuildKit secrets to pull from a private package feed without the credential ever landing in a layer — `--mount=type=secret` is scoped to that one RUN instruction.',
+    date: '2026-08-14',
+    tag: 'docker',
+    source: 'containerizing PolicyIQ',
+  },
+  {
+    id: 27,
+    content: 'TIL that OIDC login loops in an iframe are almost always a third-party cookie problem — the identity provider sets its session cookie in a cross-site context, the browser blocks it, and the app just keeps redirecting back to login forever. Fixing it meant moving the auth handshake out of the iframe entirely.',
+    date: '2026-07-30',
+    tag: 'security',
+    source: 'fixing PolicyIQ embedded-app auth',
+  },
+  {
+    id: 26,
+    content: 'TIL that "tenant isolation" is not one check — it is every query, every foreign key, and every DTO. A single controller that forgets to scope a query by tenant ID is enough to leak another company\'s data, so the safest pattern is baking the tenant filter into the repository layer, not the caller.',
+    date: '2026-07-18',
+    tag: 'security',
+    source: 'hardening PolicyIQ multi-tenancy',
+  },
+  {
+    id: 25,
+    content: 'TIL that Firestore security rules run per-document and can\'t easily do cross-collection joins — so an email whitelist check needs the whitelist duplicated into a rules-readable path (like a `/whitelist/{email}` doc) rather than queried from a separate collection at request time.',
+    date: '2026-06-25',
+    tag: 'firebase',
+    source: 'building myRoda auth',
+  },
+  {
+    id: 24,
+    content: 'TIL that TanStack Query can bridge a live Firestore `onSnapshot` subscription by calling `queryClient.setQueryData` inside the snapshot callback instead of `refetch` — you get real-time updates while keeping every component on the same cache-driven `useQuery` API.',
+    date: '2026-06-10',
+    tag: 'firebase',
+    source: 'building myRoda dashboard',
+  },
+  {
     id: 23,
     content: 'TIL that Azure DevOps pipelines can have environment gates — a deployment to preprod can be blocked until a manual approval is given, so nothing reaches production without a deliberate human sign-off.',
     date: '2026-06-02',
@@ -185,6 +227,9 @@ const TAG_COLORS: Record<string, { color: string; bg: string; border: string }> 
   ai:          { color: '#e879f9', bg: 'rgba(232,121,249,0.08)',  border: 'rgba(232,121,249,0.2)' },
   animation:   { color: '#4ade80', bg: 'rgba(74,222,128,0.08)',   border: 'rgba(74,222,128,0.2)'  },
   devops:      { color: '#60a5fa', bg: 'rgba(96,165,250,0.08)',   border: 'rgba(96,165,250,0.2)'  },
+  backend:     { color: '#c084fc', bg: 'rgba(192,132,252,0.08)',  border: 'rgba(192,132,252,0.2)' },
+  docker:      { color: '#38bdf8', bg: 'rgba(56,189,248,0.08)',   border: 'rgba(56,189,248,0.2)'  },
+  security:    { color: '#fb7185', bg: 'rgba(251,113,133,0.08)',  border: 'rgba(251,113,133,0.2)' },
 }
 
 const fallbackTag = { color: '#acbac4', bg: 'rgba(172,186,196,0.08)', border: 'rgba(172,186,196,0.2)' }
