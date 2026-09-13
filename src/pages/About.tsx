@@ -102,7 +102,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 const terminal = [
   { prompt: '$ whoami',      out: 'amirul hakimi — cs graduate · full-stack dev · designer · photographer' },
   { prompt: '$ cat role.txt', out: 'Software Engineer @ Workforce AI, The Access Group' },
-  { prompt: '$ cat building.txt', out: 'QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
+  { prompt: '$ cat building.txt', out: 'Dewasa 101 (AWS infra) · QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
   { prompt: '$ cat open_to.txt', out: 'AI engineering · full-stack freelance · freelance design · photography gigs' },
 ]
 
@@ -601,7 +601,7 @@ export default function About() {
           })()}
           {/* Row 2 — scrolls right */}
           {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Affinity Designer', 'Adobe Premiere Pro', 'DaVinci Resolve', 'Adobe Lightroom', 'Figma']
+            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS S3', 'AWS CloudFront', 'AWS IAM', 'AWS ACM', 'Terraform', 'GitHub Actions', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Affinity Designer', 'Adobe Premiere Pro', 'DaVinci Resolve', 'Adobe Lightroom', 'Figma']
             const items = [...row, ...row]
             return (
               <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>

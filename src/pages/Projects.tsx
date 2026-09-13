@@ -17,6 +17,24 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Dewasa 101',
+    description: 'A personal finance tracking web app, hosted on AWS end-to-end to learn AWS infra hands-on. React app served from a fully private S3 bucket behind CloudFront (Origin Access Control only — no public bucket access), with an ACM certificate in us-east-1 for HTTPS on a custom domain. Every resource — S3, CloudFront, ACM, IAM — is defined in Terraform (plan/apply, no console clicking). GitHub Actions deploys on every push, authenticating via IAM OIDC federation so no AWS access key is ever stored as a secret. Diagnosed and fixed a real production auth failure caused by a GitHub OIDC `sub` claim format change breaking the IAM trust policy. Auth and financial data storage run on Firebase (Auth + Firestore).',
+    stack: ['React', 'TypeScript', 'Firebase', 'Firestore', 'AWS S3', 'AWS CloudFront', 'AWS ACM', 'AWS IAM', 'AWS OIDC Federation', 'Terraform', 'GitHub Actions'],
+    link: 'https://dewasa.amrlhakimi.my',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'personal finance tracker · AWS infra from scratch',
+    featured: true,
+    updates: [
+      'Hosted on a private S3 bucket + CloudFront CDN, locked down via Origin Access Control',
+      'ACM certificate in us-east-1 for custom-domain HTTPS (CloudFront-specific region requirement)',
+      'All infra as Terraform (.tf) — reviewed via terraform plan before every apply',
+      'GitHub Actions CI/CD authenticates via IAM OIDC federation — zero stored AWS credentials',
+      'Debugged a production IAM trust failure caused by a GitHub OIDC sub claim format change',
+    ],
+  },
+  {
     title: 'myRoda',
     description: 'A vehicle maintenance, fuel, and expense tracker built for Malaysian car and motorcycle owners. Register vehicles, log every workshop visit and refuel, set maintenance/road tax/insurance reminders, and see spending on a live dashboard — all synced in real time via Firestore. Consumption analysis on the fuel tracker, expense charts, and multi-vehicle support.',
     stack: ['React 19', 'TypeScript', 'Vite', 'TailwindCSS v4', 'React Router', 'React Hook Form', 'Zod', 'TanStack Query', 'Zustand', 'Recharts', 'Firebase', 'Netlify'],
