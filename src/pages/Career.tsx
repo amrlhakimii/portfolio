@@ -71,7 +71,7 @@ const timeline: Milestone[] = [
     description: 'Worked with OhBulan! as video editor, videographer, and photographer. Directed and edited OBTV — a 5-minute TV show on TV9 aired Thursday–Saturday. Produced Lit Tak?, a show featuring influencers, artists, and KOLs. Worked as videographer, editor and gaffer for Show Dalam Bilik podcast on OhBulan! YouTube. Assisted on a TV3 Raya Game Show. Official photographer for VOCKET at Hausboom Music 2023, TapauFest 2023, and Aina Abdul\'s solo concert press conference at Starhill.',
     type: 'internship',
     logoInitials: 'Rev',
-    logo: '/logos/mediaprima.png',
+    logo: '/logos/mediaprima.svg',
     tags: ['video editing', 'TV9', 'OhBulan!', 'photography'],
   },
   {
