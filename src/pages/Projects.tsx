@@ -71,6 +71,21 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'PhishCheck',
+    description: 'A phishing email checker that runs entirely in the browser. Paste an email\'s raw source and it explains each red flag in plain language: failed SPF/DKIM/DMARC, sender and reply-to mismatches, lookalike and punycode domains, link text that lies about its destination, risky attachments and pressure wording (English and Bahasa Malaysia). It scores the email, decodes obfuscated IP links, and shows the Received chain with per-hop delay. It never renders the email\'s HTML, never opens or fetches a link, and shows every link defanged, so it is safe to use on real phishing.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest', 'DNS-over-HTTPS', 'MIME parsing'],
+    github: 'https://github.com/amrlhakimii/phishcheck',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'security awareness · private by design',
+    updates: [
+      '12 checks with weighted scoring shown in the app; samples score 100 (phish), 72 (lookalike), and 0 (newsletter)',
+      '187 tests, including hostile-HTML and zero-network-call tests, and a strict CSP',
+      'Heuristic indicators, not a guarantee; all sample emails use invented domains',
+    ],
+  },
+  {
     title: 'LogLens',
     description: 'A browser-based log analyzer. Drop in a Sysmon or Linux auth log and it runs explainable detection rules (encoded PowerShell, LSASS access, comsvcs MiniDump, scheduled-task and Run-key persistence, SSH brute force), each mapped to MITRE ATT&CK, then shows a timeline and raw event search. Every alert explains why it matters and what to check next, and the triage flow makes you close, investigate or escalate with a note, like a real SOC. Parsing and detection run in a Web Worker, and files never leave the browser. Rules are heuristics validated on invented sample data only.',
     stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Web Workers', 'Vitest', 'MITRE ATT&CK', 'Sigma'],
