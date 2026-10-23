@@ -80,7 +80,7 @@ const projects: Project[] = [
   {
     title: 'OneTrust Connector & MCP Server',
     description: 'A OneTrust connector for Access EVO, plus an MCP (Model Context Protocol) server, that gives users access to everything the OneTrust API offers — so OneTrust can be queried and driven from EVO workflows and AI assistants instead of calling endpoints by hand.',
-    stack: ['Access EVO', 'OneTrust API', 'MCP', 'REST APIs'],
+    stack: ['Access EVO', 'EVO Builder', 'EVO Workflow Automation', 'OneTrust API', 'MCP', 'MCP SDK', 'REST APIs', 'OpenAPI', 'OAuth', 'TypeScript', 'Node.js', 'C#', '.NET', 'Python', 'Docker', 'Microsoft Azure', 'Azure DevOps', 'CI/CD Pipelines', 'xUnit', 'Vitest', 'pytest'],
     category: 'ai',
     status: 'shipped',
     year: '2026',
