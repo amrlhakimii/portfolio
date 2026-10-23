@@ -277,6 +277,14 @@ function HeroSection({ typed }: { typed: string }) {
   )
 }
 
+const DETECTIONS = [
+  { id: 'T1059.001', tactic: 'Execution', name: 'Encoded PowerShell command' },
+  { id: 'T1003.001', tactic: 'Credential Access', name: 'LSASS memory access' },
+  { id: 'T1003.001', tactic: 'Credential Access', name: 'comsvcs.dll MiniDump' },
+  { id: 'T1053.005', tactic: 'Persistence', name: 'Scheduled task creation' },
+  { id: 'T1547.001', tactic: 'Persistence', name: 'Registry Run key' },
+]
+
 // Logo-only stack slider — [file in /public/skills, label for alt/title]
 const STACK_ROW_1: [string, string][] = [
   ['react', 'React / React Native'], ['typescript', 'TypeScript'], ['javascript', 'JavaScript'], ['nodejs', 'Node.js'],
@@ -470,6 +478,39 @@ export default function About() {
             <AnimatedStat key={label} value={value} label={label} />
           ))}
         </div>
+      </section>
+
+      {/* Detection coverage — SOC lab */}
+      <section className="fade-up fade-up-3 space-y-3">
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
+          detection coverage
+          <span className="ml-auto inline-flex items-center gap-1.5 normal-case tracking-normal text-[10px]" style={{ fontFamily: 'monospace', color: 'var(--sec)' }}>
+            <span className="sec-dot" /> lab · sample data
+          </span>
+        </h2>
+        <div className="hud rounded-xl border border-[var(--border)] overflow-hidden" style={{ background: 'rgba(var(--bg-rgb),0.6)', backdropFilter: 'blur(8px)' }}>
+          {DETECTIONS.map(({ id, tactic, name }, i) => (
+            <div
+              key={name}
+              className="flex items-center gap-3 px-4 py-2.5 text-xs"
+              style={{ fontFamily: 'monospace', borderTop: i ? '1px solid var(--border)' : 'none' }}
+            >
+              <span style={{ color: 'var(--sec)' }} className="w-20 shrink-0">{id}</span>
+              <span className="flex-1 min-w-0 truncate text-[var(--text-pri)]">{name}</span>
+              <span className="hidden sm:inline text-[var(--muted)] w-36 shrink-0">{tactic}</span>
+              <span
+                className="px-2 py-0.5 rounded text-[10px] tracking-widest shrink-0"
+                style={{ color: 'var(--sec)', background: 'rgba(var(--sec-rgb),0.1)', border: '1px solid rgba(var(--sec-rgb),0.35)' }}
+              >
+                SIGMA + SPL
+              </span>
+            </div>
+          ))}
+        </div>
+        <p className="text-[10px] text-[var(--muted)]" style={{ fontFamily: 'monospace' }}>
+          5 rules · MITRE ATT&amp;CK mapped · Python tests · validated on sample logs only
+        </p>
       </section>
 
       {/* Terminal block */}
