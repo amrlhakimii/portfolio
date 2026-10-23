@@ -328,7 +328,7 @@ export default function Music() {
 
       {/* Vinyl shelf — all records */}
       <section className="fade-up fade-up-4 space-y-4">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>record shelf</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>record shelf</h2>
         <div className="flex flex-wrap gap-6 justify-start">
           {albums.map((album, i) => (
             <motion.div

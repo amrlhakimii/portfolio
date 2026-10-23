@@ -221,7 +221,7 @@ export default function Profile() {
 
       {/* Fun facts carousel */}
       <section className="fade-up fade-up-4 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>fun facts</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>fun facts</h2>
         <div className="relative">
           <FunFactCarousel />
         </div>
@@ -230,7 +230,7 @@ export default function Profile() {
 
       {/* Languages */}
       <section className="fade-up fade-up-5 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>languages</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>languages</h2>
         <div className="space-y-3">
           {languages.map(({ lang, level, pct, flag }) => (
             <LangBar key={lang} lang={lang} level={level} pct={pct} flag={flag} />
@@ -241,7 +241,7 @@ export default function Profile() {
       {/* Skills with tab toggle */}
       <section className="fade-up fade-up-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>skills</h2>
+          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>skills</h2>
           <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
             {(['tech', 'design'] as const).map((tab) => (
               <button
@@ -310,7 +310,7 @@ export default function Profile() {
 
       {/* Links */}
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>links</h2>
+        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>links</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {[
             { label: 'GitHub', url: 'https://github.com/amrlhakimii', icon: '🐙', sub: '@amrlhakimii' },

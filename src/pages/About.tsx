@@ -319,7 +319,10 @@ export default function About() {
               <h1 style={{ fontSize: 'clamp(2.8rem, 9vw, 4rem)', fontWeight: 700, lineHeight: 0.92, letterSpacing: '-0.03em', color: 'var(--text-pri)' }}>
                 Amirul<br />Hakimi<span style={{ color: 'var(--accent)', marginLeft: '0.1em' }}>→</span>
               </h1>
-              <p className="text-[var(--text-sec)] text-sm mt-3">
+              <p className="mt-3 text-[11px]" style={{ fontFamily: 'monospace', color: 'var(--sec)' }}>
+                $ whoami <span style={{ color: 'var(--muted)' }}>→ cybersecurity-technologist --start 2026-12-14</span>
+              </p>
+              <p className="text-[var(--text-sec)] text-sm mt-1">
                 software engineer · malaysia ·{' '}
                 <span className="text-[var(--text-pri)]">{typed}</span>
                 <span className="inline-block w-0.5 h-3.5 bg-[var(--accent)] ml-0.5 align-middle animate-pulse" />
@@ -332,7 +335,11 @@ export default function About() {
                 <span
                   key={role}
                   className="px-3 py-1.5 rounded-full text-[11px] border"
-                  style={{ background: 'rgba(var(--bg-rgb),0.5)', borderColor: 'var(--border)', color: 'var(--text-sec)' }}
+                  style={
+                    role === 'Cybersecurity'
+                      ? { background: 'rgba(var(--sec-rgb),0.1)', borderColor: 'rgba(var(--sec-rgb),0.4)', color: 'var(--sec)' }
+                      : { background: 'rgba(var(--bg-rgb),0.5)', borderColor: 'var(--border)', color: 'var(--text-sec)' }
+                  }
                 >
                   {role}
                 </span>
@@ -341,7 +348,7 @@ export default function About() {
 
             {/* Status */}
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-emerald-300 border border-emerald-500/20 bg-emerald-500/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="sec-dot" />
               Joining ExxonMobil · Cybersecurity Technologist - Advanced · Dec 2026
             </span>
 
@@ -473,7 +480,7 @@ export default function About() {
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
-          className="rounded-xl overflow-hidden border border-[var(--border)]"
+          className="hud rounded-xl overflow-hidden border border-[var(--border)]"
           style={{ background: 'rgba(10,15,28,0.8)', backdropFilter: 'blur(8px)' }}
         >
           {/* Terminal title bar */}
@@ -506,7 +513,7 @@ export default function About() {
 
       <section className="fade-up fade-up-5 space-y-4">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
           who i am
         </h2>
         <div className="space-y-4 max-w-prose">
@@ -555,7 +562,7 @@ export default function About() {
 
       <section className="fade-up fade-up-6 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
           what i build
         </h2>
         <ul className="space-y-2">
@@ -608,7 +615,7 @@ export default function About() {
 
       <section className="fade-up fade-up-7 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
           stack
         </h2>
         <div className="space-y-3 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
@@ -629,7 +636,7 @@ export default function About() {
 
       <section className="fade-up fade-up-8 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
           interests
         </h2>
         <div className="space-y-2 text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">
@@ -663,7 +670,7 @@ export default function About() {
       {/* Work with me */}
       <section className="fade-up fade-up-9 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-          <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
+          <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
           work with me
         </h2>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">

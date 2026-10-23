@@ -20,10 +20,14 @@
   --text-sec: #7fb8b8;
   --text-pri: #e2e8f0;
   --accent: #0d9488;
+  --sec: #3ddc97;
+  --sec-rgb: 61, 220, 151;
   --logo-filter: invert(1);
 }
 
 [data-theme="light"] {
+  --sec: #0f8a5a;
+  --sec-rgb: 15, 138, 90;
   --logo-filter: none;
   --bg: #f0f7f7;
   --bg-rgb: 240, 247, 247;
@@ -191,3 +195,31 @@
   0%   { transform: rotateY(0deg); }
   100% { transform: rotateY(360deg); }
 }
+
+/* ── Security accent: status + HUD details ───────────────────────────────────── */
+@keyframes secPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--sec-rgb), 0.55); }
+  50%      { box-shadow: 0 0 0 5px rgba(var(--sec-rgb), 0); }
+}
+.sec-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--sec);
+  animation: secPulse 2s ease-out infinite;
+}
+.hud { position: relative; }
+.hud::before,
+.hud::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border: 1px solid rgba(var(--sec-rgb), 0.55);
+  z-index: 1;
+}
+.hud::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+.hud::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 8px; }
+@media (prefers-reduced-motion: reduce) { .sec-dot { animation: none; } }

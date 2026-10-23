@@ -226,6 +226,13 @@ function Ticker() {
         borderBottom: '1px solid rgba(var(--border-rgb), 0.2)',
       }}
     >
+      <span
+        className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 pl-3 pr-4 text-[10px] tracking-widest"
+        style={{ fontFamily: 'monospace', color: 'var(--sec)', background: 'linear-gradient(to right, var(--bg) 70%, transparent)' }}
+      >
+        <span className="sec-dot" />
+        SOC // ONLINE
+      </span>
       <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 35s linear infinite', alignItems: 'center' }}>
         {items.map((item, i) => (
           <span key={i} style={{ fontFamily: 'monospace', color: 'var(--muted)' }} className="text-[10px] px-5 whitespace-nowrap">
