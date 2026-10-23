@@ -324,12 +324,21 @@ export default function About() {
             </p>
 
             <div>
-              <h1 style={{ fontSize: 'clamp(2.8rem, 9vw, 4rem)', fontWeight: 700, lineHeight: 0.92, letterSpacing: '-0.03em', color: 'var(--text-pri)' }}>
+              <h1 className="glitch" style={{ fontSize: 'clamp(2.8rem, 9vw, 4rem)', fontWeight: 700, lineHeight: 0.92, letterSpacing: '-0.03em', color: 'var(--text-pri)' }}>
                 Amirul<br />Hakimi<span style={{ color: 'var(--accent)', marginLeft: '0.1em' }}>→</span>
               </h1>
-              <p className="mt-3 text-[11px]" style={{ fontFamily: 'monospace', color: 'var(--sec)' }}>
-                $ whoami <span style={{ color: 'var(--muted)' }}>→ cybersecurity-technologist --start 2026-12-14</span>
-              </p>
+              <div className="mt-3 space-y-0.5 text-[11px]" style={{ fontFamily: 'monospace' }}>
+                <p className="boot-line neon" style={{ animationDelay: '0.3s' }}>$ whoami</p>
+                {[
+                  ['OK', 'amirul.hakimi → cybersecurity-technologist'],
+                  ['OK', 'detections: 5 loaded · sigma + spl'],
+                  ['OK', 'next: ExxonMobil IT Enterprise Security · 14 Dec 2026'],
+                ].map(([tag, msg], i) => (
+                  <p key={i} className="boot-line text-[var(--text-sec)]" style={{ animationDelay: `${0.8 + i * 0.45}s` }}>
+                    <span style={{ color: 'var(--sec)' }}>[ {tag} ]</span> {msg}
+                  </p>
+                ))}
+              </div>
               <p className="text-[var(--text-sec)] text-sm mt-1">
                 software engineer · malaysia ·{' '}
                 <span className="text-[var(--text-pri)]">{typed}</span>
@@ -489,7 +498,7 @@ export default function About() {
             <span className="sec-dot" /> lab · sample data
           </span>
         </h2>
-        <div className="hud rounded-xl border border-[var(--border)] overflow-hidden" style={{ background: 'rgba(var(--bg-rgb),0.6)', backdropFilter: 'blur(8px)' }}>
+        <div className="hud hud-glow rounded-xl border border-[var(--border)] overflow-hidden" style={{ background: 'rgba(var(--bg-rgb),0.6)', backdropFilter: 'blur(8px)' }}>
           {DETECTIONS.map(({ id, tactic, name }, i) => (
             <div
               key={name}
@@ -521,7 +530,7 @@ export default function About() {
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
-          className="hud rounded-xl overflow-hidden border border-[var(--border)]"
+          className="hud hud-glow rounded-xl overflow-hidden border border-[var(--border)]"
           style={{ background: 'rgba(10,15,28,0.8)', backdropFilter: 'blur(8px)' }}
         >
           {/* Terminal title bar */}

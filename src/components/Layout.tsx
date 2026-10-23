@@ -247,41 +247,41 @@ function Ticker() {
 
 // ── Side decorations ──────────────────────────────────────────────────────────
 const leftSymbols = [
-  { left: '2.5%',  delay: '0s',    duration: '3.0s', size: '1.1rem', opacity: 0.55, symbol: '</>'  },
-  { left: '6%',    delay: '1.3s',  duration: '4.2s', size: '0.95rem', opacity: 0.4, symbol: '{ }'  },
-  { left: '9.5%',  delay: '2.7s',  duration: '2.6s', size: '1.0rem', opacity: 0.5,  symbol: '=>'   },
-  { left: '1%',    delay: '4.1s',  duration: '3.6s', size: '0.9rem', opacity: 0.35, symbol: 'fn'   },
-  { left: '7%',    delay: '0.6s',  duration: '5.0s', size: '0.95rem', opacity: 0.3, symbol: '[ ]'  },
+  { left: '2.5%',  delay: '0s',    duration: '3.0s', size: '1.1rem', opacity: 0.55, symbol: '0x41'  },
+  { left: '6%',    delay: '1.3s',  duration: '4.2s', size: '0.95rem', opacity: 0.4, symbol: 'SSH'  },
+  { left: '9.5%',  delay: '2.7s',  duration: '2.6s', size: '1.0rem', opacity: 0.5,  symbol: '::1'   },
+  { left: '1%',    delay: '4.1s',  duration: '3.6s', size: '0.9rem', opacity: 0.35, symbol: 'TLS'   },
+  { left: '7%',    delay: '0.6s',  duration: '5.0s', size: '0.95rem', opacity: 0.3, symbol: 'XOR'  },
 ]
 
 const leftCodeLines = [
-  { left: '11%',  delay: '0s',    duration: '16s', text: 'npm run dev',           opacity: 0.22 },
-  { left: '14%',  delay: '5s',    duration: '20s', text: 'git push origin main',  opacity: 0.18 },
-  { left: '17%',  delay: '10s',   duration: '14s', text: '✓ built in 603ms',      opacity: 0.20 },
-  { left: '12%',  delay: '3s',    duration: '22s', text: 'const ui = new Kimi()', opacity: 0.15 },
-  { left: '15%',  delay: '8s',    duration: '18s', text: 'yarn dev --host',       opacity: 0.17 },
-  { left: '13%',  delay: '14s',   duration: '13s', text: '{ role: "swe" }',       opacity: 0.20 },
-  { left: '16%',  delay: '17s',   duration: '19s', text: 'import React from…',    opacity: 0.14 },
+  { left: '11%',  delay: '0s',    duration: '16s', text: 'nmap -sV 10.0.0.0/24',           opacity: 0.22 },
+  { left: '14%',  delay: '5s',    duration: '20s', text: 'tcpdump -i en0 port 53',  opacity: 0.18 },
+  { left: '17%',  delay: '10s',   duration: '14s', text: 'alert: LSASS memory access',      opacity: 0.20 },
+  { left: '12%',  delay: '3s',    duration: '22s', text: 'sha256sum payload.bin', opacity: 0.15 },
+  { left: '15%',  delay: '8s',    duration: '18s', text: 'grep 4688 sysmon.jsonl',       opacity: 0.17 },
+  { left: '13%',  delay: '14s',   duration: '13s', text: 'T1059.001 · execution',       opacity: 0.20 },
+  { left: '16%',  delay: '17s',   duration: '19s', text: 'sudo journalctl -u sshd',    opacity: 0.14 },
 ]
 
 const rightSymbols = [
   { right: '2%',   delay: '0.4s',  duration: '3.4s', symbol: '>_',  size: '1.0rem', opacity: 0.55, anim: 'launchUp'   },
-  { right: '6%',   delay: '1.8s',  duration: '4.8s', symbol: '#!',  size: '0.9rem', opacity: 0.4,  anim: 'launchUp'   },
-  { right: '10%',  delay: '3.2s',  duration: '2.9s', symbol: '//',  size: '1.0rem', opacity: 0.5,  anim: 'launchUp'   },
-  { right: '4%',   delay: '5.5s',  duration: '3.8s', symbol: 'λ',   size: '1.1rem', opacity: 0.35, anim: 'launchUp'   },
+  { right: '6%',   delay: '1.8s',  duration: '4.8s', symbol: '0day',  size: '0.9rem', opacity: 0.4,  anim: 'launchUp'   },
+  { right: '10%',  delay: '3.2s',  duration: '2.9s', symbol: 'CVE',  size: '1.0rem', opacity: 0.5,  anim: 'launchUp'   },
+  { right: '4%',   delay: '5.5s',  duration: '3.8s', symbol: 'EDR',   size: '1.1rem', opacity: 0.35, anim: 'launchUp'   },
   { right: '8%',   delay: '2.5s',  duration: '6.0s', symbol: '✦',   size: '1.0rem', opacity: 0.4,  anim: 'floatDrift' },
-  { right: '3.5%', delay: '1.0s',  duration: '5.5s', symbol: '∞',   size: '1.1rem', opacity: 0.3,  anim: 'floatDrift' },
+  { right: '3.5%', delay: '1.0s',  duration: '5.5s', symbol: 'IOC',   size: '1.1rem', opacity: 0.3,  anim: 'floatDrift' },
   { right: '11%',  delay: '4.0s',  duration: '7.0s', symbol: '✦',   size: '0.9rem', opacity: 0.25, anim: 'floatDrift' },
 ]
 
 const rightDesignTokens = [
-  { right: '11%',  delay: '2s',    duration: '17s', text: '#38bdf8',              opacity: 0.22 },
-  { right: '14%',  delay: '7s',    duration: '21s', text: 'border-radius: 12px',  opacity: 0.18 },
-  { right: '17%',  delay: '1s',    duration: '15s', text: 'font-weight: 600',      opacity: 0.20 },
-  { right: '12%',  delay: '12s',   duration: '19s', text: 'opacity: 0.85',         opacity: 0.15 },
-  { right: '15%',  delay: '6s',    duration: '24s', text: 'blur(20px)',            opacity: 0.17 },
-  { right: '13%',  delay: '16s',   duration: '14s', text: 'var(--accent)',         opacity: 0.20 },
-  { right: '16%',  delay: '9s',    duration: '20s', text: 'grid-cols: 3',          opacity: 0.14 },
+  { right: '11%',  delay: '2s',    duration: '17s', text: 'CVE-2024-3094',              opacity: 0.22 },
+  { right: '14%',  delay: '7s',    duration: '21s', text: 'deny tcp any any eq 23',  opacity: 0.18 },
+  { right: '17%',  delay: '1s',    duration: '15s', text: 'event_id: 10',      opacity: 0.20 },
+  { right: '12%',  delay: '12s',   duration: '19s', text: 'src=185.220.x.x',         opacity: 0.15 },
+  { right: '15%',  delay: '6s',    duration: '24s', text: 'severity: CRITICAL',            opacity: 0.17 },
+  { right: '13%',  delay: '16s',   duration: '14s', text: 'MFA: enforced',         opacity: 0.20 },
+  { right: '16%',  delay: '9s',    duration: '20s', text: 'IOC: comsvcs MiniDump',          opacity: 0.14 },
 ]
 
 function SideDecorations() {
@@ -290,7 +290,7 @@ function SideDecorations() {
       {leftSymbols.map((sym, i) => (
         <span key={`sym-${i}`} className="fixed top-0 z-0" style={{
           left: sym.left, fontSize: sym.size, opacity: sym.opacity,
-          fontFamily: 'monospace', color: 'var(--accent)', fontWeight: 600,
+          fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 600,
           animation: `raceDown ${sym.duration} linear infinite`,
           animationDelay: sym.delay,
         }}>{sym.symbol}</span>
@@ -298,7 +298,7 @@ function SideDecorations() {
       {leftCodeLines.map((line, i) => (
         <span key={`code-${i}`} className="fixed top-0 z-0" style={{
           left: line.left, opacity: line.opacity, fontSize: '10px',
-          fontFamily: 'monospace', color: 'var(--accent)', whiteSpace: 'nowrap',
+          fontFamily: 'monospace', color: 'var(--sec)', whiteSpace: 'nowrap',
           animation: `driftDown ${line.duration} linear infinite`,
           animationDelay: line.delay,
           writingMode: 'vertical-rl', textOrientation: 'mixed',
@@ -444,6 +444,7 @@ export default function Layout({ children }: LayoutProps) {
       <ScrollRings />
       <GradientMesh />
       <NoiseOverlay />
+      <div className="scanlines" aria-hidden="true" />
       <CursorGlow />
       <CursorTrail />
       <SideDecorations />
