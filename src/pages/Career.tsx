@@ -9,6 +9,7 @@ interface Milestone {
   type: 'education' | 'internship' | 'freelance' | 'milestone' | 'work'
   logoInitials?: string
   logo?: string
+  logoWide?: boolean
   tags?: string[]
   current?: boolean
 }
@@ -21,7 +22,8 @@ const timeline: Milestone[] = [
     description: 'Joining the IT Enterprise Security team at ExxonMobil\'s global business and technology center in Kuala Lumpur, which supports the company\'s Upstream, Product Solutions and Low Carbon Solutions businesses worldwide. The role is to identify, detect, protect against, and respond to cyber threats across on-premises and cloud systems, keeping data confidential, intact, and available. Day to day that means monitoring, supporting, and investigating security events and incidents; supporting cyber and network security tools; vulnerability management and testing; threat intelligence; managing external network connections and firewall policy; and tuning monitoring and alerting, coding the changes into production. It also means working with other teams and vendors to apply security best practice, and raising security awareness. A deliberate move from building software into defending it — preparing with a hands-on SOC detection lab (Sigma and Splunk rules, Python log analysis, MITRE ATT&CK mapping).',
     type: 'work',
     logoInitials: 'XOM',
-    logo: '/logos/exxonmobil.png',
+    logo: '/logos/exxonmobil.svg',
+    logoWide: true,
     tags: ['IT Enterprise Security', 'threat detection', 'incident response', 'security monitoring', 'vulnerability management', 'threat intelligence', 'firewall policy', 'SIEM', 'MITRE ATT&CK', 'Python', 'cloud security'],
   },
   {
@@ -72,6 +74,7 @@ const timeline: Milestone[] = [
     type: 'internship',
     logoInitials: 'Rev',
     logo: '/logos/mediaprima.svg',
+    logoWide: true,
     tags: ['video editing', 'TV9', 'OhBulan!', 'photography'],
   },
   {
@@ -275,7 +278,7 @@ export default function Career() {
                   <div className="p-4 flex gap-4">
                     {/* Logo */}
                     <div
-                      className="w-10 h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden"
+                      className={`${item.logoWide ? 'w-20' : 'w-10'} h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden`}
                       style={{ background: item.logo ? '#ffffff' : cfg.bg, borderColor: cfg.border, color: cfg.color }}
                     >
                       {item.logo ? (
