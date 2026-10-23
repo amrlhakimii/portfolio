@@ -109,6 +109,17 @@ const categories: Category[] = [
     ],
   },
   {
+    label: 'security learning',
+    emoji: '🛡️',
+    items: [
+      { name: 'Sigma', description: 'Vendor-neutral format for writing detection rules. I write each rule once as Sigma, then translate it to Splunk SPL and a Python detector, with every rule tagged to a MITRE ATT&CK technique.', tag: 'detection' },
+      { name: 'Splunk SPL', description: 'Search language for the SIEM. So far I have written the searches for my lab detections; standing up Splunk Free to run them on real logs is the next step.', tag: 'siem' },
+      { name: 'Python + pytest', description: 'Log parser and detector for Sysmon events, with tests that cover the near-misses a rule must ignore as well as the attacks it must catch.', tag: 'automation' },
+      { name: 'tcpdump', description: 'Packet capture from the terminal. Used it to watch my own DNS lookups go out and come back, and to learn how to read the questions and answers.', tag: 'network' },
+      { name: 'Atomic Red Team', description: 'Small, safe attack simulations mapped to MITRE ATT&CK. Planned for my lab VM, to test whether my rules actually fire on real telemetry.', tag: 'planned' },
+    ],
+  },
+  {
     label: 'photography workflow',
     emoji: '📷',
     items: [

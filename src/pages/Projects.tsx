@@ -17,6 +17,22 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'SOC Detection Lab',
+    description: 'A hands-on learning project for moving from software engineering into security operations. Detections for five common attacker techniques — encoded PowerShell, LSASS credential access, comsvcs.dll MiniDump, scheduled-task persistence, and registry Run-key persistence — each written three ways: as a Sigma rule, a Splunk SPL search, and a Python detector that parses Sysmon JSON events, decodes PowerShell payloads, scores severity, and prints findings mapped to MITRE ATT&CK. Covered by pytest tests that check both the alerts and the near-misses it must ignore (an allowlisted svchost reading LSASS, a harmless schtasks /query). So far validated on sample log data I wrote myself; the next step is a Windows VM with Sysmon and Atomic Red Team to test the rules against real telemetry.',
+    stack: ['Python', 'pytest', 'Sigma', 'Splunk SPL', 'MITRE ATT&CK', 'Sysmon'],
+    category: 'software',
+    status: 'in progress',
+    year: '2026',
+    highlight: 'detection engineering · learning project',
+    featured: true,
+    updates: [
+      '5 detections across credential access, execution, and persistence, each with Sigma + SPL + Python versions',
+      'Tests cover false-positive cases, not just the attacks',
+      'Documented lab setup (Windows VM, Sysmon, Splunk/Wazuh, Atomic Red Team) and an incident report template',
+      'Honest status: rules not yet validated on real attack telemetry — that is the next milestone',
+    ],
+  },
+  {
     title: 'Dewasa 101',
     description: 'A personal finance tracking web app, hosted on AWS end-to-end to learn AWS infra hands-on. React app served from a fully private S3 bucket behind CloudFront (Origin Access Control only — no public bucket access), with an ACM certificate in us-east-1 for HTTPS on a custom domain. Every resource — S3, CloudFront, ACM, IAM — is defined in Terraform (plan/apply, no console clicking). GitHub Actions deploys on every push, authenticating via IAM OIDC federation so no AWS access key is ever stored as a secret. Diagnosed and fixed a real production auth failure caused by a GitHub OIDC `sub` claim format change breaking the IAM trust policy. Auth and financial data storage run on Firebase (Auth + Firestore).',
     stack: ['React', 'TypeScript', 'Firebase', 'Firestore', 'AWS S3', 'AWS CloudFront', 'AWS ACM', 'AWS IAM', 'AWS OIDC Federation', 'Terraform', 'GitHub Actions'],

@@ -95,7 +95,7 @@ doc.fontSize(8.5).font('Helvetica').fillColor(MUTE)
 
 doc.moveDown(0.9)
 doc.fontSize(8.5).font('Helvetica').fillColor(GRAY)
-  .text('Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, and was absorbed into a permanent Software Engineer role with the Workforce AI team.',
+  .text('Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, was absorbed into a permanent Software Engineer role with the Workforce AI team, and will join ExxonMobil as a Cybersecurity Technologist in December 2026.',
     L, doc.y, { width: W, lineGap: 2, align: 'justify' })
 
 // ── AREA OF EXPERTISE ─────────────────────────────────────────────────────────
@@ -119,6 +119,7 @@ rows.forEach(row => {
 // ── KEY ACHIEVEMENTS ──────────────────────────────────────────────────────────
 section('Key Achievements')
 boldBullet('Absorbed to Permanent Software Engineer', 'Promoted from intern to a permanent Software Engineer position with the Workforce AI team at The Access Group, working with the Romania team.')
+boldBullet('SOC Detection Lab', 'Sigma/SPL rules and a tested Python detector for 5 attacker techniques, mapped to MITRE ATT&CK.')
 boldBullet('Flightpath Automation Tool', 'Built an internal app at The Access Group APAC that auto-generates structured client welcome emails by joining two FocalPoint data sources — eliminating a manual copy-paste process for the Professional Services team.')
 boldBullet('PO Ticketing System & SHR Timesheet Log', 'Built an office-wide ticketing system for the PO Team and a global timesheet logging tool rolled out across APAC, EMEA, and the Americas for the SHR team.')
 boldBullet('First Class Diploma, 3.76 Degree CGPA', "Graduated First Class Honours (CGPA 3.54) in Diploma of Computer Science and currently maintaining a CGPA of 3.76 in the Bachelor's degree.")
@@ -127,7 +128,11 @@ boldBullet('7+ Years Freelancing', 'Running Blugrafix (graphic design & jersey p
 // ── PROFESSIONAL EXPERIENCE ───────────────────────────────────────────────────
 section('Professional Experience')
 
-job('Software Engineer,  Workforce AI, The Access Group', '26 Jul 2026 – Present', [
+job('Cybersecurity Technologist - Advanced,  ExxonMobil, Kuala Lumpur', 'Starts 14 Dec 2026', [
+  'Role scope: detect, investigate, and respond to cyber threats across on-premises and cloud systems; monitor security events and incidents.',
+  'Support SIEM, EDR, and network security tooling, vulnerability management, and firewall policy; tune monitoring and alerting as code.',
+])
+job('Software Engineer,  Workforce AI, The Access Group', 'Jul 2026 – Oct 2026', [
   'Absorbed into a permanent Software Engineer position with the Workforce AI team following completion of internship.',
   'Working with the Romania team on Workforce AI product engineering.',
 ])
@@ -197,7 +202,7 @@ job('QR Attendance System  —  Final Year Project', '2025 – 2026', [
 // ── ADDITIONAL INFORMATION ────────────────────────────────────────────────────
 section('Additional Information')
 boldBullet('Languages', 'Malay (Native), English (Fluent), Bahasa Indonesia (Proficient), Mandarin (Basic).')
-boldBullet('Technical Skills', 'React, React Native, TypeScript, Node.js, .NET, Python, MySQL, Firebase, Supabase, Microsoft Azure, Azure DevOps, Azure Container Apps, Azure Blob Storage, Docker, Rancher, TailwindCSS, Figma, Adobe Photoshop, Illustrator, Premiere Pro, Lightroom, Git, Salesforce, EVO Builder, EVO Workflow Automation, n8n.')
+boldBullet('Technical Skills', 'React, React Native, TypeScript, Node.js, .NET, Python, MySQL, Firebase, Supabase, Microsoft Azure, Azure DevOps, Azure Container Apps, Azure Blob Storage, Docker, Rancher, TailwindCSS, Figma, Adobe Photoshop, Illustrator, Premiere Pro, Lightroom, Git, Salesforce, EVO Builder, EVO Workflow Automation, n8n, Sigma and Splunk SPL detection rules, MITRE ATT&CK, security log analysis, Linux command line, tcpdump.')
 boldBullet('Activities', 'President of Photography Club, SMK Jitra (2020–2021). Volunteer Designer, Youths.My (2020–2025).')
 
 // ── EDUCATION ─────────────────────────────────────────────────────────────────

@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 const techTiers: Record<string, string[]> = {
   expert:     ['React.js', 'TypeScript', 'C#', 'ASP.NET Core', 'Expo', 'React Native', 'JavaScript', 'Java', 'REST APIs'],
   proficient: ['.NET', 'EF Core', 'SQL Server', 'Node.js', 'Git', 'TailwindCSS', 'C++', 'MySQL', 'Firebase', 'Docker', 'OIDC / JWT Auth', 'GSAP', 'Framer Motion', 'Microsoft Azure', 'Azure DevOps'],
-  familiar:   ['Python', 'PHP', 'AI / ML', 'AWS', 'Anime.js', 'Databricks', 'Supabase'],
+  familiar:   ['Python', 'PHP', 'AI / ML', 'AWS', 'Anime.js', 'Databricks', 'Supabase', 'Detection rules (Sigma / SPL)', 'MITRE ATT&CK', 'Log analysis', 'Network basics (DNS / HTTP / tcpdump)', 'Linux command line'],
+  'learning now': ['Splunk / SIEM', 'EDR tooling', 'Sysmon', 'Wireshark', 'PowerShell', 'Incident response', 'Vulnerability management', 'Threat intelligence'],
 }
 
 const designTiers: Record<string, string[]> = {
@@ -34,6 +35,8 @@ const funFacts = [
   '🎓 First Class Honours in Diploma CS (CGPA 3.54)',
   '🌙 Does best work after midnight',
   '🤝 Handed a cross-team AI project as an intern at Access Group',
+  '🛡️ Moving from building software to defending it — cybersecurity at ExxonMobil',
+  '🔬 Building a home SOC lab: Sigma rules, Splunk searches, Python log analysis',
   '🚀 Shipped PWA + Google Auth + push notifications in one Hootang update',
   '⚡ Uses Claude Code daily to ship faster',
 ]
@@ -42,8 +45,8 @@ const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
-  { label: 'role',      value: 'CS Graduate · Full-Stack Software Engineer (AI tooling) · Designer · Photographer · Videographer & Editor' },
-  { label: 'currently', value: 'Software Engineer @ The Access Group APAC' },
+  { label: 'role',      value: 'CS Graduate · Software Engineer turned Cybersecurity Technologist · Designer · Photographer · Videographer & Editor' },
+  { label: 'currently', value: 'Joining ExxonMobil (Kuala Lumpur) as Cybersecurity Technologist · Dec 2026' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 

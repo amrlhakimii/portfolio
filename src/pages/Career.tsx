@@ -14,14 +14,22 @@ interface Milestone {
 
 const timeline: Milestone[] = [
   {
+    title: 'Cybersecurity Technologist - Advanced',
+    organization: 'ExxonMobil, Kuala Lumpur',
+    period: 'Starts 14 Dec 2026',
+    description: 'Joining the IT Enterprise Security team at ExxonMobil\'s global business and technology center in Kuala Lumpur, which supports the company\'s Upstream, Product Solutions and Low Carbon Solutions businesses worldwide. The role is to identify, detect, protect against, and respond to cyber threats across on-premises and cloud systems, keeping data confidential, intact, and available. Day to day that means monitoring, supporting, and investigating security events and incidents; supporting cyber and network security tools; vulnerability management and testing; threat intelligence; managing external network connections and firewall policy; and tuning monitoring and alerting, coding the changes into production. It also means working with other teams and vendors to apply security best practice, and raising security awareness. A deliberate move from building software into defending it — preparing with a hands-on SOC detection lab (Sigma and Splunk rules, Python log analysis, MITRE ATT&CK mapping).',
+    type: 'work',
+    logoInitials: 'XOM',
+    tags: ['IT Enterprise Security', 'threat detection', 'incident response', 'security monitoring', 'vulnerability management', 'threat intelligence', 'firewall policy', 'SIEM', 'MITRE ATT&CK', 'Python', 'cloud security'],
+  },
+  {
     title: 'Software Engineer',
     organization: 'Workforce AI, The Access Group',
-    period: '26 Jul 2026 — present',
+    period: 'Jul 2026 — Oct 2026',
     description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on PolicyIQ, a multi-tenant cyber governance, risk & compliance platform — full-stack across React interfaces, ASP.NET Core APIs, EF Core/SQL Server data modelling, authentication and authorization, Azure infrastructure, automated testing, and CI/CD.',
     type: 'work',
     logoInitials: 'TAG',
     tags: ['Workforce AI', 'PolicyIQ', 'React 19', 'TypeScript', 'C#', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Azure', 'Docker', 'multi-tenant authorization', 'Romania team', 'Product Engineering'],
-    current: true,
   },
   {
     title: 'Associate Project Coordinator / Associate Software Engineer Intern',

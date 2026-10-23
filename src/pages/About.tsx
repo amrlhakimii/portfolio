@@ -7,7 +7,8 @@ const TYPED_PHRASES = [
   'crafting clean interfaces',
   'exploring workforce AI solutions',
   'taking on full-stack freelance work',
-  'engineering workforce AI at The Access Group',
+  'moving into cybersecurity at ExxonMobil',
+  'writing detection rules in a home SOC lab',
   'shooting weddings since 2018',
   'designing jerseys for Blugrafix',
   'shipping side projects',
@@ -101,9 +102,9 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 
 const terminal = [
   { prompt: '$ whoami',      out: 'amirul hakimi — cs graduate · full-stack dev · designer · photographer' },
-  { prompt: '$ cat role.txt', out: 'Software Engineer @ Workforce AI, The Access Group' },
-  { prompt: '$ cat building.txt', out: 'Dewasa 101 (AWS infra) · QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
-  { prompt: '$ cat open_to.txt', out: 'AI engineering · full-stack freelance · freelance design · photography gigs' },
+  { prompt: '$ cat role.txt', out: 'Cybersecurity Technologist @ ExxonMobil from Dec 2026 · previously Software Engineer @ Workforce AI, The Access Group' },
+  { prompt: '$ cat building.txt', out: 'SOC Detection Lab · Dewasa 101 (AWS infra) · QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
+  { prompt: '$ cat open_to.txt', out: 'cybersecurity · AI engineering · full-stack freelance · freelance design · photography gigs' },
 ]
 
 function HeroSection({ typed }: { typed: string }) {
@@ -325,7 +326,7 @@ export default function About() {
             {/* Status */}
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-emerald-300 border border-emerald-500/20 bg-emerald-500/10">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Software Engineer @ The Access Group · since Jul 2026
+              Joining ExxonMobil · Cybersecurity Technologist · Dec 2026
             </span>
 
             {/* Socials */}
@@ -495,8 +496,10 @@ export default function About() {
         <div className="space-y-4 max-w-prose">
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           I'm a CS graduate from UiTM Tapah — First Class Honours in my diploma, <span className="text-[var(--text-pri)]">3.76 CGPA</span> on
-          the degree — now writing code for a living as a Software Engineer on the Workforce
-          AI team at <span className="text-[var(--text-pri)]">The Access Group APAC</span>. I didn't start there as an engineer, though:
+          the degree — who spent 2026 as a Software Engineer on the Workforce AI team at{' '}
+          <span className="text-[var(--text-pri)]">The Access Group APAC</span> and is joining{' '}
+          <span className="text-[var(--text-pri)]">ExxonMobil</span> in Kuala Lumpur this December as a
+          Cybersecurity Technologist. I didn't start at Access as an engineer, though:
           I came in as an Associate Project Coordinator, and got handed real engineering work
           once it was clear I could do it.
         </p>
@@ -507,6 +510,13 @@ export default function About() {
           and web, same as most of what I still build. Lately I'm pulling AI further into the
           actual workflow, not just the autocomplete — prompt engineering and LLM integration
           as part of how things actually ship.
+        </p>
+        <p className="text-[var(--text-sec)] leading-relaxed text-sm">
+          The next chapter is <span className="text-[var(--text-pri)]">cybersecurity</span>. Working on PolicyIQ, a
+          governance, risk and compliance platform, got me thinking about the defending side, so I'm
+          learning it properly: networking basics, reading logs, and a home{' '}
+          <span className="text-[var(--text-pri)]">SOC detection lab</span> where I write Sigma and Splunk
+          rules, map them to MITRE ATT&CK, and automate checks in Python. Still early, still learning in public.
         </p>
         <p className="text-[var(--text-sec)] leading-relaxed text-sm">
           Before any of this was a job title, I was cutting video. I interned at <span className="text-[var(--text-pri)]">Rev Media

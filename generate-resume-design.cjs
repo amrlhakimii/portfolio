@@ -226,6 +226,7 @@ sbSection('Technical Skills')
   'Prompt Eng. / LLM Integration',
   'Adobe Suite / Figma',
   'Git / Salesforce',
+  'Sigma / Splunk SPL / ATT&CK',
 ].forEach(s => sbSkill(s))
 
 // ── SIDEBAR: LANGUAGES ────────────────────────────────────────────────────────
@@ -259,7 +260,7 @@ my += 9
 // ── Summary
 doc.fontSize(8).font('Helvetica').fillColor(GRAY)
   .text(
-    'Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, and was absorbed into a permanent Software Engineer role with the Workforce AI team.',
+    'Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, was absorbed into a permanent Software Engineer role with the Workforce AI team, and will join ExxonMobil as a Cybersecurity Technologist in December 2026.',
     MX, my, { width: MW, lineGap: 2, align: 'justify' }
   )
 my = doc.y + 4
@@ -267,7 +268,12 @@ my = doc.y + 4
 // ── Professional Experience
 mainSection('Professional Experience')
 
-mainJob('Software Engineer,  Workforce AI, The Access Group', '26 Jul 2026 – Present', [
+mainJob('Cybersecurity Technologist - Advanced,  ExxonMobil, Kuala Lumpur', 'Starts 14 Dec 2026', [
+  'Role scope: detect, investigate, and respond to cyber threats across on-premises and cloud systems; monitor security events and incidents.',
+  'Support SIEM, EDR, and network security tooling, vulnerability management, and firewall policy; tune monitoring and alerting as code.',
+])
+
+mainJob('Software Engineer,  Workforce AI, The Access Group', 'Jul 2026 – Oct 2026', [
   'Absorbed into a permanent Software Engineer position with the Workforce AI team following completion of internship.',
   'Working with the Romania team on Workforce AI product engineering.',
 ])
@@ -313,6 +319,8 @@ mainSection('Key Achievements')
 
 mainBoldBullet('Absorbed to Permanent Software Engineer',
   'Promoted from intern to a permanent Software Engineer position with the Workforce AI team at The Access Group, working with the Romania team.')
+mainBoldBullet('SOC Detection Lab (learning project)',
+  'Wrote detections for five attacker techniques as Sigma rules, Splunk searches, and a tested Python detector mapped to MITRE ATT&CK; validated on sample data, with real-telemetry testing planned.')
 mainBoldBullet('Flightpath Automation Tool',
   'Built an internal app at The Access Group APAC that auto-generates structured client welcome emails — eliminating a manual copy-paste process for the Professional Services team.')
 mainBoldBullet('PO Ticketing System & SHR Timesheet Log',

@@ -198,7 +198,8 @@ function DotGrid() {
 
 // ── Top ticker ────────────────────────────────────────────────────────────────
 const TICKER_ITEMS = [
-  'Software Engineer @ Workforce AI, The Access Group',
+  'Joining ExxonMobil · Cybersecurity Technologist · Dec 2026',
+  'Previously Software Engineer @ Workforce AI, The Access Group',
   'Freelance Full-Stack Dev · open to projects',
   'Based in Jitra, Kedah · Malaysia',
   'React · TypeScript · Node.js · Supabase · Firebase',

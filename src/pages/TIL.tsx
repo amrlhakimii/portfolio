@@ -10,6 +10,20 @@ interface TILEntry {
 
 const entries: TILEntry[] = [
   {
+    id: 31,
+    content: 'TIL that macOS\'s default unified log recorded that `tcpdump` ran and when, but not which user ran it — a visibility gap that is exactly why enterprises add Sysmon or an EDR agent: process-creation logs with user, command line, and parent process are what make an investigation possible.',
+    date: '2026-10-23',
+    tag: 'security',
+    source: 'learning security logging',
+  },
+  {
+    id: 30,
+    content: 'TIL that a failed ping does not mean a server is down — many hosts deliberately drop ICMP. My own site timed out on every ping but answered `curl -I` with `HTTP/2 200` straight away, and the headers showed it was served by Netlify.',
+    date: '2026-10-23',
+    tag: 'security',
+    source: 'learning network basics',
+  },
+  {
     id: 29,
     content: 'TIL that EF Core optimistic concurrency needs a `[Timestamp]` (or a `RowVersion` byte array) column, not just a manual `UpdatedAt` check — without the DB-enforced token, two concurrent saves can both "succeed" and silently overwrite each other.',
     date: '2026-08-28',
