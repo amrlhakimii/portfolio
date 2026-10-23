@@ -99,6 +99,7 @@ const timeline: Milestone[] = [
     description: 'Volunteered as a designer for the @youths.my social media accounts, collaborating remotely and contributing to various volunteering initiatives.',
     type: 'freelance',
     logoInitials: 'YM',
+    logo: '/logos/youthsmy.jpg',
     tags: ['volunteer', 'social media', 'graphic design'],
   },
   {
