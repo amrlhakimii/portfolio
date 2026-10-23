@@ -33,11 +33,13 @@ export default async () => {
     const albums: Array<{ artist: string; album: string; year: string; genre: string; cover: string }> = []
 
     for (const track of tracksData.items ?? []) {
-      const albumId = track.album?.id
-      if (!albumId || seenAlbums.has(albumId)) continue
-      seenAlbums.add(albumId)
-
       const primaryArtist = track.artists?.[0]
+      // Spotify can list the same album under several ids (single, deluxe, re-release),
+      // so dedupe on artist + album title rather than album id.
+      const albumKey = `${primaryArtist?.name ?? ''}|${track.album?.name ?? ''}`.trim().toLowerCase()
+      if (!track.album?.id || seenAlbums.has(albumKey)) continue
+      seenAlbums.add(albumKey)
+
       albums.push({
         artist: primaryArtist?.name ?? 'Unknown',
         album: track.album.name,
