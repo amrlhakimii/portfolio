@@ -262,7 +262,7 @@ export default function Profile() {
 
         <div className="space-y-4">
           {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills], tierIdx) => (
-            <div key={tier} className="space-y-2">
+            <div key={`${skillTab}-${tier}`} className="space-y-2">
               <motion.p
                 className="text-[10px] uppercase tracking-widest text-[var(--muted)]"
                 initial={{ opacity: 0, x: -20 }}
