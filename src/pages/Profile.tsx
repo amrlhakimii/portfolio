@@ -10,6 +10,20 @@ const techTiers: Record<string, string[]> = {
   'learning now': ['Splunk / SIEM', 'EDR tooling', 'Sysmon', 'Wireshark', 'PowerShell', 'Incident response', 'Vulnerability management', 'Threat intelligence'],
 }
 
+// Skill name -> icon in /public/skills (skills without a brand mark stay text-only)
+const skillIcons: Record<string, string> = {
+  'React.js': 'react', 'React Native': 'react', 'TypeScript': 'typescript', 'C#': 'csharp', 'ASP.NET Core': 'dotnetcore',
+  'Expo': 'expo', 'JavaScript': 'javascript', 'Java': 'java', '.NET': 'dotnetcore', 'EF Core': 'dotnetcore',
+  'SQL Server': 'sqlserver', 'Node.js': 'nodejs', 'Git': 'git', 'TailwindCSS': 'tailwindcss', 'C++': 'cplusplus',
+  'MySQL': 'mysql', 'Firebase': 'firebase', 'Docker': 'docker', 'GSAP': 'gsap', 'Framer Motion': 'framermotion',
+  'Microsoft Azure': 'azure', 'Azure DevOps': 'azuredevops', 'Python': 'python', 'PHP': 'php', 'AWS': 'aws',
+  'Databricks': 'databricks', 'Supabase': 'supabase', 'Linux command line': 'linux', 'Wireshark': 'wireshark',
+  'PowerShell': 'powershell', 'Splunk / SIEM': 'splunk',
+  'Adobe Lightroom': 'lightroom', 'Adobe Photoshop': 'photoshop', 'Canva': 'canva', 'Adobe Illustrator': 'illustrator',
+  'Affinity Designer': 'affinity', 'Figma': 'figma', 'Adobe Premiere Pro': 'premiere', 'DaVinci Resolve': 'davinci',
+  'Adobe After Effects': 'aftereffects',
+}
+
 const designTiers: Record<string, string[]> = {
   expert:     ['Adobe Lightroom', 'Adobe Photoshop', 'Canva'],
   proficient: ['Adobe Illustrator', 'Affinity Designer', 'Figma', 'Adobe Premiere Pro', 'DaVinci Resolve'],
@@ -273,9 +287,18 @@ export default function Profile() {
                       visible: { opacity: 1, scale: 1,    y: 0  },
                     }}
                     transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)]"
+                    className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)] inline-flex items-center gap-1.5"
                     style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
                   >
+                    {skillIcons[skill] && (
+                      <img
+                        src={`/skills/${skillIcons[skill]}.svg`}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="w-4 h-4 rounded-[3px] bg-white p-[1.5px] object-contain shrink-0"
+                      />
+                    )}
                     {skill}
                   </motion.span>
                 ))}
