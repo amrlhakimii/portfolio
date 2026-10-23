@@ -277,12 +277,16 @@ function HeroSection({ typed }: { typed: string }) {
   )
 }
 
-const DETECTIONS = [
-  { id: 'T1059.001', tactic: 'Execution', name: 'Encoded PowerShell command' },
-  { id: 'T1003.001', tactic: 'Credential Access', name: 'LSASS memory access' },
-  { id: 'T1003.001', tactic: 'Credential Access', name: 'comsvcs.dll MiniDump' },
-  { id: 'T1053.005', tactic: 'Persistence', name: 'Scheduled task creation' },
-  { id: 'T1547.001', tactic: 'Persistence', name: 'Registry Run key' },
+const PROFILE_ROWS = [
+  ['name', 'Amirul Hakimi'],
+  ['location', 'Jitra, Kedah · Malaysia'],
+  ['now', 'Software Engineer · Workforce AI, The Access Group'],
+  ['next', 'Cybersecurity Technologist - Advanced · ExxonMobil · 14 Dec 2026'],
+  ['education', 'BSc Computer Science (Hons.), UiTM · CGPA 3.76'],
+  ['builds', 'React, TypeScript, .NET, mobile apps, AI-assisted workflows'],
+  ['creates', 'Photo and video since 2018 · Blugrafix since 2019'],
+  ['languages', 'Malay · English · Bahasa Indonesia · Mandarin'],
+  ['off duty', 'Arsenal, Mercedes F1, music'],
 ]
 
 // Logo-only stack slider — [file in /public/skills, label for alt/title]
@@ -489,37 +493,27 @@ export default function About() {
         </div>
       </section>
 
-      {/* Detection coverage — SOC lab */}
+      {/* Profile record */}
       <section className="fade-up fade-up-3 space-y-3">
         <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
           <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
-          detection coverage
+          profile.dat
           <span className="ml-auto inline-flex items-center gap-1.5 normal-case tracking-normal text-[10px]" style={{ fontFamily: 'monospace', color: 'var(--sec)' }}>
-            <span className="sec-dot" /> lab · sample data
+            <span className="sec-dot" /> open to freelance
           </span>
         </h2>
         <div className="hud hud-glow rounded-xl border border-[var(--border)] overflow-hidden" style={{ background: 'rgba(var(--bg-rgb),0.6)', backdropFilter: 'blur(8px)' }}>
-          {DETECTIONS.map(({ id, tactic, name }, i) => (
+          {PROFILE_ROWS.map(([key, value], i) => (
             <div
-              key={name}
-              className="flex items-center gap-3 px-4 py-2.5 text-xs"
+              key={key}
+              className="flex items-baseline gap-4 px-4 py-2.5 text-xs"
               style={{ fontFamily: 'monospace', borderTop: i ? '1px solid var(--border)' : 'none' }}
             >
-              <span style={{ color: 'var(--sec)' }} className="w-20 shrink-0">{id}</span>
-              <span className="flex-1 min-w-0 truncate text-[var(--text-pri)]">{name}</span>
-              <span className="hidden sm:inline text-[var(--muted)] w-36 shrink-0">{tactic}</span>
-              <span
-                className="px-2 py-0.5 rounded text-[10px] tracking-widest shrink-0"
-                style={{ color: 'var(--sec)', background: 'rgba(var(--sec-rgb),0.1)', border: '1px solid rgba(var(--sec-rgb),0.35)' }}
-              >
-                SIGMA + SPL
-              </span>
+              <span style={{ color: 'var(--sec)' }} className="w-20 shrink-0">{key}</span>
+              <span className="flex-1 min-w-0 text-[var(--text-pri)]">{value}</span>
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-[var(--muted)]" style={{ fontFamily: 'monospace' }}>
-          5 rules · MITRE ATT&amp;CK mapped · Python tests · validated on sample logs only
-        </p>
       </section>
 
       {/* Terminal block */}
