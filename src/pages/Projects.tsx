@@ -146,6 +146,7 @@ const projects: Project[] = [
     description: 'A wedding planning web app for Muslim couples in Malaysia. Built from the reality of how complex planning a wedding can be — nikah forms, pre-marriage courses, hantaran, vendors, guests, budget — all scattered everywhere. NakKahwin brings everything into one place, with an information hub covering mas kahwin rates by state, wedding customs, and Malaysian Islamic procedures.',
     stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS', 'React Router', 'LocalStorage'],
     link: 'https://nakkahwin.amrlhakimi.my',
+    image: '/projects/nakkahwin.png',
     github: 'https://github.com/amrlhakimii/nakkahwin',
     category: 'software',
     status: 'shipped',
@@ -168,6 +169,7 @@ const projects: Project[] = [
     description: 'A collab with Waiz (waizhzq) — we built this together. Mobile-first academic schedule tracker and study productivity app. Users sign in with Google, manage their weekly timetable, track tasks with priority scoring, and use a focus timer in Pomodoro or Free mode — all synced to Firebase. Dashboard surfaces today\'s schedule as a visual timeline, upcoming deadlines, weekly stats, and a daily to-do checklist. An auto-scheduler generates study sessions from task deadlines and user preferences. Full week PDF export via jsPDF. ~2,700 lines of TypeScript across 10 source files.',
     stack: ['React 19', 'TypeScript', 'Vite', 'Firebase', 'Anime.js', 'jsPDF', 'Netlify'],
     link: 'https://tt4me.waizhzq.my',
+    image: '/projects/timetable4me.png',
     github: 'https://github.com/waizhzq/timetable4me',
     category: 'software',
     status: 'shipped',
@@ -179,6 +181,7 @@ const projects: Project[] = [
     description: 'A freelance project — built in collaboration with a UiTM lecturer to help medical students study cytopathology beyond lecture slides. The lecturer provided the clinical expertise and slide content; I handled the entire technical build. Features 18 annotated Pap smear slides across 5 diagnostic categories, interactive morphology cue markers, a zoomable image viewer, a diagnostic quiz system with hints, and a challenge mode with timed quiz, rapid screening, and randomized cases. Progress tracked with XP, achievements, and category unlocking.',
     stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS v3', 'Firebase', 'Framer Motion'],
     link: 'https://papvision.amrlhakimi.my',
+    image: '/projects/papvision.png',
     github: 'https://github.com/amrlhakimii/papvision',
     category: 'software',
     status: 'shipped',
@@ -342,6 +345,25 @@ export default function Projects() {
               }}
               onClick={() => setExpanded(isOpen ? null : project.title)}
             >
+              {/* Placeholder preview for projects without a screenshot */}
+              {!project.image && (
+                <div
+                  className="relative h-28 sm:h-32 border-b overflow-hidden flex flex-col justify-end p-4"
+                  style={{
+                    borderColor: 'var(--border)',
+                    background: `radial-gradient(ellipse at 85% 0%, ${cat.bg} 0%, transparent 60%), repeating-linear-gradient(0deg, transparent 0, transparent 23px, rgba(var(--border-rgb),0.35) 24px), repeating-linear-gradient(90deg, transparent 0, transparent 23px, rgba(var(--border-rgb),0.35) 24px)`,
+                  }}
+                >
+                  <p className="text-[10px]" style={{ fontFamily: 'monospace', color: cat.color }}>
+                    $ cat {project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.md
+                  </p>
+                  <p className="text-lg font-semibold text-[var(--text-pri)] leading-tight">{project.title}</p>
+                  {project.highlight && (
+                    <p className="text-[10px] text-[var(--muted)] mt-0.5" style={{ fontFamily: 'monospace' }}>{project.highlight}</p>
+                  )}
+                </div>
+              )}
+
               {/* Screenshot preview + site button */}
               {project.image && (
                 <div className="relative border-b" style={{ borderColor: 'var(--border)' }}>
