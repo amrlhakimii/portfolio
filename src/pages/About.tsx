@@ -102,7 +102,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 
 const terminal = [
   { prompt: '$ whoami',      out: 'amirul hakimi — cs graduate · full-stack dev · designer · photographer' },
-  { prompt: '$ cat role.txt', out: 'Cybersecurity Technologist @ ExxonMobil from Dec 2026 · previously Software Engineer @ Workforce AI, The Access Group' },
+  { prompt: '$ cat role.txt', out: 'Cybersecurity Technologist - Advanced @ ExxonMobil from Dec 2026 · previously Software Engineer @ Workforce AI, The Access Group' },
   { prompt: '$ cat building.txt', out: 'SOC Detection Lab · Dewasa 101 (AWS infra) · QR Attendance FYP · VoltaList · PapVision (freelance) · Blugrafix · more side projects' },
   { prompt: '$ cat open_to.txt', out: 'cybersecurity · AI engineering · full-stack freelance · freelance design · photography gigs' },
 ]
@@ -326,7 +326,7 @@ export default function About() {
             {/* Status */}
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium text-emerald-300 border border-emerald-500/20 bg-emerald-500/10">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Joining ExxonMobil · Cybersecurity Technologist · Dec 2026
+              Joining ExxonMobil · Cybersecurity Technologist - Advanced · Dec 2026
             </span>
 
             {/* Socials */}
@@ -499,7 +499,7 @@ export default function About() {
           the degree — who spent 2026 as a Software Engineer on the Workforce AI team at{' '}
           <span className="text-[var(--text-pri)]">The Access Group APAC</span> and is joining{' '}
           <span className="text-[var(--text-pri)]">ExxonMobil</span> in Kuala Lumpur this December as a
-          Cybersecurity Technologist. I didn't start at Access as an engineer, though:
+          Cybersecurity Technologist - Advanced. I didn't start at Access as an engineer, though:
           I came in as an Associate Project Coordinator, and got handed real engineering work
           once it was clear I could do it.
         </p>

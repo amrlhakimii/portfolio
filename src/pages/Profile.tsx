@@ -45,8 +45,8 @@ const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
   { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
-  { label: 'role',      value: 'CS Graduate · Software Engineer turned Cybersecurity Technologist · Designer · Photographer · Videographer & Editor' },
-  { label: 'currently', value: 'Joining ExxonMobil (Kuala Lumpur) as Cybersecurity Technologist · Dec 2026' },
+  { label: 'role',      value: 'CS Graduate · Software Engineer turned Cybersecurity Technologist - Advanced · Designer · Photographer · Videographer & Editor' },
+  { label: 'currently', value: 'Joining ExxonMobil (Kuala Lumpur) as Cybersecurity Technologist - Advanced · Dec 2026' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
 ]
 

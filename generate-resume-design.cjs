@@ -260,7 +260,7 @@ my += 9
 // ── Summary
 doc.fontSize(8).font('Helvetica').fillColor(GRAY)
   .text(
-    'Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, was absorbed into a permanent Software Engineer role with the Workforce AI team, and will join ExxonMobil as a Cybersecurity Technologist in December 2026.',
+    'Final-year Computer Science student (CGPA 3.76) with 7+ years of freelance experience across full-stack development, graphic design, and photography. Interned as Associate Project Coordinator / Associate Software Engineer at The Access Group APAC, where I built AI-powered internal automation tools for the Professional Services and SHR teams, was absorbed into a permanent Software Engineer role with the Workforce AI team, and will join ExxonMobil as a Cybersecurity Technologist - Advanced in December 2026.',
     MX, my, { width: MW, lineGap: 2, align: 'justify' }
   )
 my = doc.y + 4

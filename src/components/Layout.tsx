@@ -198,7 +198,7 @@ function DotGrid() {
 
 // ── Top ticker ────────────────────────────────────────────────────────────────
 const TICKER_ITEMS = [
-  'Joining ExxonMobil · Cybersecurity Technologist · Dec 2026',
+  'Joining ExxonMobil · Cybersecurity Technologist - Advanced · Dec 2026',
   'Previously Software Engineer @ Workforce AI, The Access Group',
   'Freelance Full-Stack Dev · open to projects',
   'Based in Jitra, Kedah · Malaysia',
