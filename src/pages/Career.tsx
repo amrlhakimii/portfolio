@@ -131,6 +131,7 @@ const timeline: Milestone[] = [
     description: 'Led the school photography club — organised and photographed major school events, coordinated a team of photographers across multiple concurrent assignments.',
     type: 'milestone',
     logoInitials: '🏆',
+    logo: '/logos/smkjitra.png',
     tags: ['leadership', 'photography'],
   },
   {
@@ -140,6 +141,7 @@ const timeline: Milestone[] = [
     description: 'Achieved 8As in PT3 and 6As in SPM. Active in extracurricular activities throughout secondary school.',
     type: 'education',
     logoInitials: 'SMK',
+    logo: '/logos/smkjitra.png',
     tags: ['6As', 'SPM', '8As PT3'],
   },
 ]
