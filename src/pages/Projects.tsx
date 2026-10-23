@@ -7,6 +7,7 @@ interface Project {
   stack: string[]
   link?: string
   image?: string
+  imageCredit?: { text: string; url: string }
   github?: string
   category: 'software' | 'ai' | 'design'
   status: 'shipped' | 'in progress' | 'wip'
@@ -72,6 +73,8 @@ const projects: Project[] = [
   },
   {
     title: 'SOC Detection Lab',
+    image: '/projects/stock/soc.jpg',
+    imageCredit: { text: 'U.S. Space Force S4S by David Dozoretz · Public domain', url: 'https://commons.wikimedia.org/wiki/File:Combined_Space_Operations_Center_(CSpOC)_staff_monitors_workstations_(Screen_images_have_been_altered_for_operational_security)_(9169412).jpg' },
     description: 'A hands-on learning project for moving from software engineering into security operations. Detections for five common attacker techniques — encoded PowerShell, LSASS credential access, comsvcs.dll MiniDump, scheduled-task persistence, and registry Run-key persistence — each written three ways: as a Sigma rule, a Splunk SPL search, and a Python detector that parses Sysmon JSON events, decodes PowerShell payloads, scores severity, and prints findings mapped to MITRE ATT&CK. Covered by pytest tests that check both the alerts and the near-misses it must ignore (an allowlisted svchost reading LSASS, a harmless schtasks /query). So far validated on sample log data I wrote myself; the next step is a Windows VM with Sysmon and Atomic Red Team to test the rules against real telemetry.',
     stack: ['Python', 'pytest', 'Sigma', 'Splunk SPL', 'MITRE ATT&CK', 'Sysmon'],
     category: 'software',
@@ -87,6 +90,8 @@ const projects: Project[] = [
   },
   {
     title: 'Flightpath Welcome Email Tool',
+    image: '/projects/stock/flightpath.jpg',
+    imageCredit: { text: 'Joshua Tree National Park · Public domain', url: 'https://commons.wikimedia.org/wiki/File:Partner_Staff_(52388904223).jpg' },
     description: 'Internal automation tool built at The Access Group to eliminate the manual copy-paste process for client welcome emails. The tool joins two FocalPoint data sources — Sales Handover and SOW Booking Enquiry — by Project Code, groups booking records under each project, and auto-generates a structured welcome email draft per client. Built using EVO Builder in collaboration with the Workforce AI Team from Product Engineering. Phase 1 uses FocalPoint Excel exports as the data source; Phase 2 will replace this with a live FocalPoint API and auto-send via Outlook.',
     stack: ['React', '.NET', 'Microsoft Azure', 'Azure DevOps', 'Azure Container Apps', 'Docker', 'Rancher', 'Azure Blob Storage', 'CI/CD Pipelines', 'EVO Builder', 'EVO Workflow Automation', 'n8n', 'Access FocalPoint', 'Excel Integration', 'Devin CLI', 'Process Automation'],
     category: 'software',
@@ -101,6 +106,8 @@ const projects: Project[] = [
   },
   {
     title: 'OneTrust Connector & MCP Server',
+    image: '/projects/stock/onetrust.jpg',
+    imageCredit: { text: 'Dooffy · CC0', url: 'https://commons.wikimedia.org/wiki/File:Gdpr_Europe.jpg' },
     description: 'A OneTrust connector for Access EVO, plus an MCP (Model Context Protocol) server, that gives users access to everything the OneTrust API offers — so OneTrust can be queried and driven from EVO workflows and AI assistants instead of calling endpoints by hand.',
     stack: ['Access EVO', 'EVO Builder', 'EVO Workflow Automation', 'OneTrust API', 'MCP', 'MCP SDK', 'REST APIs', 'OpenAPI', 'OAuth', 'Node.js', '.NET', 'Python', 'Docker', 'Microsoft Azure', 'Azure DevOps', 'CI/CD Pipelines', 'xUnit', 'Vitest', 'pytest'],
     category: 'ai',
@@ -110,6 +117,8 @@ const projects: Project[] = [
   },
   {
     title: 'PolicyIQ',
+    image: '/projects/stock/policyiq.jpg',
+    imageCredit: { text: 'DeGRANDSON Global · CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:ISO_27000_Standards_by_Type_Table.jpg' },
     description: 'A multi-tenant cyber governance, risk & compliance platform used to author, assess, review, approve, publish, and export enterprise governance documents, mapped to frameworks like ISO 27001, NIST CSF, SOC 2, UK GDPR, and DORA. Contributed full-stack across the platform: tenant isolation hardening, a centralized role/scope/capability/tenant/record-level authorization model, secure database-backed download workflows with cryptographically secure tokens, document review & approval workflows, and identity-lifecycle handling for externally provisioned users. Deployed via a multi-stage Docker build to Azure Container Apps through Azure DevOps pipelines running backend/frontend tests, linting, and type checks.',
     stack: ['React 19', 'TypeScript', 'C#', '.NET 10', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Microsoft Azure', 'Azure Container Apps', 'Azure Blob Storage', 'Docker', 'Azure DevOps', 'CI/CD Pipelines', 'OIDC/JWT', 'xUnit', 'Vitest'],
     category: 'software',
@@ -125,6 +134,8 @@ const projects: Project[] = [
   },
   {
     title: 'PO Ticketing System',
+    image: '/projects/stock/po-ticketing.jpg',
+    imageCredit: { text: 'Chris McKenna · CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Wikimania_2014_level_4_helpdesk_on_hackathon_day_2_01.jpg' },
     description: 'Internal ticketing tool built for the Project Office (PO) Team at The Access Group APAC, letting anyone across the office raise a request and have it tracked through to completion — replacing ad-hoc email and chat requests with a structured queue for the PO Team to action.',
     stack: ['EVO Builder', 'EVO Workflow Automation', 'Process Automation'],
     category: 'software',
@@ -134,6 +145,8 @@ const projects: Project[] = [
   },
   {
     title: 'SHR Timesheet Log',
+    image: '/projects/stock/shr-timesheet.jpg',
+    imageCredit: { text: 'Frederick A. Halsey · Public domain', url: 'https://commons.wikimedia.org/wiki/File:Time_ticket,_1891.jpg' },
     description: 'Global timesheet logging tool built for the SHR team at The Access Group, rolled out for use across APAC, EMEA, and the Americas. Built end-to-end — from requirements to delivery — within a 3-week window, coordinating with stakeholders across regions along the way.',
     stack: ['EVO Builder', 'EVO Workflow Automation', 'Process Automation'],
     category: 'software',
@@ -155,6 +168,8 @@ const projects: Project[] = [
   },
   {
     title: 'VoltaList',
+    image: '/projects/stock/voltalist.jpg',
+    imageCredit: { text: 'Medelam · CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:2026_AFC_Futsal_Asian_Cup,_Korea_Republic_vs_Kyrgyzstan_04.jpg' },
     description: 'A mobile-first futsal session sign-up web app that replaces messy WhatsApp text lists. Captains create sessions, players register their slots — with fair quota enforcement (max 2 entries per player), a dedicated GK slot, and real-time updates. Built to feel like a lightweight companion app, not a management dashboard.',
     stack: ['React 19', 'TypeScript', 'Vite 8', 'TailwindCSS v4', 'Firebase', 'React Router v7'],
     link: 'https://voltalist.amrlhakimi.my',
@@ -190,6 +205,8 @@ const projects: Project[] = [
   },
   {
     title: 'UbatLog',
+    image: '/projects/stock/ubatlog.jpg',
+    imageCredit: { text: 'Stevepb · CC0', url: 'https://commons.wikimedia.org/wiki/File:Pill_Organizer_With_Vitamins_And_Medicines.jpg' },
     description: "A small clinic tracked every medication purchase by hand in a physical notebook — no search, no filtering, and pricing math (medications bought in one pack size but sold in different unit quantities, e.g. a 28-tablet pack sold in strips of 10) done mentally every time. UbatLog replaces the notebook with a web app built to feel like a smarter version of it, not a database tool: fast to log a new purchase, fast to find an old one, and correct pricing math without anyone doing it by hand. Google Sign-In with an email whitelist enforced by Firestore security rules keeps access closed to a small team. A pricing engine computes cost-per-unit and a 30%-margin recommended price, rounded to the nearest RM0.05, live as you type. Purchase history is grouped by generic medication name rather than brand, mirroring how the physical logbook was organised, with real-time multi-user sync so the admin and family members can use it concurrently. Records are filterable client-side by date range, manufacturer, pharmacy, and type; a standalone calculator checks a recommended price without creating a record; and deletes go through a 5-second undo window before anything is actually removed.",
     stack: ['React', 'TypeScript', 'Vite', 'TailwindCSS v4', 'Firebase', 'Netlify'],
     link: 'https://ubatlog.amrlhakimi.my',
@@ -201,6 +218,8 @@ const projects: Project[] = [
   },
   {
     title: 'MyCampus QR Attendance System',
+    image: '/projects/stock/qr-attendance.jpg',
+    imageCredit: { text: 'Gangulybiswarup · CC BY 4.0', url: 'https://commons.wikimedia.org/wiki/File:Jyoti_Chiring_Scanning_The_QR_Code_Using_Her_Mobile_Phone_-_Closing_Ceremony_-_WikiConference_India_2026_-_Kochi_2026-09-06_00260.jpg' },
     description: 'iOS React Native app + web platform for UiTM students to record attendance via QR code scanning. Features secure login, attendance records, course registration, custom timetable, and a student academic dashboard. Final Year Project.',
     stack: ['React Native', 'React.js', 'MySQL', 'Expo', 'Node.js', 'TailwindCSS'],
     github: 'https://github.com/amrlhakimii/myCampus',
@@ -211,6 +230,8 @@ const projects: Project[] = [
   },
   {
     title: 'Dah Qada Kimi',
+    image: '/projects/stock/dah-qada-kimi.jpg',
+    imageCredit: { text: 'Mian09 · CC0', url: 'https://commons.wikimedia.org/wiki/File:Prayer_Mat.jpg' },
     description: 'An offline-first prayer tracking app for Malaysian Muslims to log and manage qada (missed) prayers. Covers all 14 states with JAKIM prayer zone codes.',
     stack: ['React 19', 'TypeScript', 'Vite', 'Material-UI', 'Dexie.js', 'TanStack Query', 'Axios'],
     github: 'https://github.com/amrlhakimii/dah-qada-kimi',
@@ -221,6 +242,8 @@ const projects: Project[] = [
   },
   {
     title: 'KiraKira — Car Loan Chatbot',
+    image: '/projects/stock/kirakira.jpg',
+    imageCredit: { text: 'Alexander-93 · CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Lexus_LBX_Auto_Zuerich_2024_DSC_6491.jpg' },
     description: 'A friendly chatbot helping young Malaysians and first-time car buyers estimate monthly loan payments. Collects car price, down payment, interest rate, and loan duration — presented in a casual, emoji-enhanced style to ease financial decision-making.',
     stack: ['Python', 'AI/NLP', 'Chatbot'],
     github: 'https://github.com/amrlhakimii/KiraKira',
@@ -231,6 +254,8 @@ const projects: Project[] = [
   },
   {
     title: 'Malaysia Socioeconomic Data Visualisation',
+    image: '/projects/stock/socioeconomic.jpg',
+    imageCredit: { text: 'James Kerwin from Tbilisi · CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:The_Twins_SE_Asia_2019_(49171985716).jpg' },
     description: "A detailed visualisation of Malaysia's socioeconomic classes paired with a data storytelling magazine. Designed to make complex economic data accessible and visually engaging.",
     stack: ['PowerBI', 'Adobe Illustrator', 'Data Storytelling'],
     link: 'https://udzvyi.staticfast.com',
@@ -241,6 +266,8 @@ const projects: Project[] = [
   },
   {
     title: 'Portfolio Website',
+    image: '/projects/stock/portfolio.jpg',
+    imageCredit: { text: 'Markus Spiske markusspiske · CC0', url: 'https://commons.wikimedia.org/wiki/File:Code_on_computer_monitor_(Unsplash).jpg' },
     description: "The site you're looking at — personal portfolio with floating glass navbar, cursor glow, animated side decorations, gradient mesh, noise overlay, canvas cursor trail, and smooth page transitions.",
     stack: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'Framer Motion'],
     github: 'https://github.com/amrlhakimii',
@@ -345,25 +372,6 @@ export default function Projects() {
               }}
               onClick={() => setExpanded(isOpen ? null : project.title)}
             >
-              {/* Placeholder preview for projects without a screenshot */}
-              {!project.image && (
-                <div
-                  className="relative h-28 sm:h-32 border-b overflow-hidden flex flex-col justify-end p-4"
-                  style={{
-                    borderColor: 'var(--border)',
-                    background: `radial-gradient(ellipse at 85% 0%, ${cat.bg} 0%, transparent 60%), repeating-linear-gradient(0deg, transparent 0, transparent 23px, rgba(var(--border-rgb),0.35) 24px), repeating-linear-gradient(90deg, transparent 0, transparent 23px, rgba(var(--border-rgb),0.35) 24px)`,
-                  }}
-                >
-                  <p className="text-[10px]" style={{ fontFamily: 'monospace', color: cat.color }}>
-                    $ cat {project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.md
-                  </p>
-                  <p className="text-lg font-semibold text-[var(--text-pri)] leading-tight">{project.title}</p>
-                  {project.highlight && (
-                    <p className="text-[10px] text-[var(--muted)] mt-0.5" style={{ fontFamily: 'monospace' }}>{project.highlight}</p>
-                  )}
-                </div>
-              )}
-
               {/* Screenshot preview + site button */}
               {project.image && (
                 <div className="relative border-b" style={{ borderColor: 'var(--border)' }}>
@@ -374,7 +382,20 @@ export default function Projects() {
                     className="w-full h-44 sm:h-56 object-cover object-top"
                   />
                   <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(var(--bg-rgb),0.85) 0%, transparent 55%)' }} />
-                  {project.link && (
+                  {project.imageCredit && (
+                    <a
+                      href={project.imageCredit.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="absolute bottom-2 right-3 text-[9px] text-[var(--text-sec)] hover:text-[var(--text-pri)] transition-colors max-w-[85%] truncate"
+                      style={{ fontFamily: 'monospace' }}
+                      title="Illustrative stock photo, not a screenshot of the project"
+                    >
+                      illustrative photo · {project.imageCredit.text}
+                    </a>
+                  )}
+                  {project.link && !project.imageCredit && (
                     <a
                       href={project.link}
                       target="_blank"
