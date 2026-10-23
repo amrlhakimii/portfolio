@@ -9,7 +9,6 @@ interface Milestone {
   type: 'education' | 'internship' | 'freelance' | 'milestone' | 'work'
   logoInitials?: string
   logo?: string
-  logoWide?: boolean
   tags?: string[]
   current?: boolean
 }
@@ -23,7 +22,6 @@ const timeline: Milestone[] = [
     type: 'work',
     logoInitials: 'XOM',
     logo: '/logos/exxonmobil.svg',
-    logoWide: true,
     tags: ['IT Enterprise Security', 'threat detection', 'incident response', 'security monitoring', 'vulnerability management', 'threat intelligence', 'firewall policy', 'SIEM', 'MITRE ATT&CK', 'Python', 'cloud security'],
   },
   {
@@ -74,7 +72,6 @@ const timeline: Milestone[] = [
     type: 'internship',
     logoInitials: 'Rev',
     logo: '/logos/mediaprima.svg',
-    logoWide: true,
     tags: ['video editing', 'TV9', 'OhBulan!', 'photography'],
   },
   {
@@ -278,11 +275,11 @@ export default function Career() {
                   <div className="p-4 flex gap-4">
                     {/* Logo */}
                     <div
-                      className={`${item.logoWide ? 'w-20' : 'w-10'} h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden`}
+                      className="w-10 h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden"
                       style={{ background: item.logo ? '#ffffff' : cfg.bg, borderColor: cfg.border, color: cfg.color }}
                     >
                       {item.logo ? (
-                        <img src={item.logo} alt={item.organization} className="w-full h-full object-contain p-1" loading="lazy" />
+                        <img src={item.logo} alt={item.organization} className="w-full h-full object-contain p-0.5" loading="lazy" />
                       ) : (
                         item.logoInitials ?? item.organization[0]
                       )}
