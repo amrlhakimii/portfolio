@@ -110,6 +110,7 @@ const timeline: Milestone[] = [
     description: 'Running my own company specialising in jersey sublimation printing and graphic design. Handling everything from client brief to final print-ready artwork.',
     type: 'freelance',
     logoInitials: '🎨',
+    logo: '/logos/blugrafix.png',
     tags: ['sublimation', 'jersey design', 'founder'],
     current: true,
   },
