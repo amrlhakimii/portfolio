@@ -71,6 +71,21 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'SecKit MCP Server',
+    description: 'A read-only MCP server that gives AI assistants authoritative defensive-security lookups instead of guesses. It checks a password against known breaches without ever sending it (k-anonymity: only a 5-character hash prefix leaves the machine), looks up CVEs from NVD, explains and searches MITRE ATT&CK techniques from a bundled offline snapshot, parses log lines, and defangs or refangs indicators. Defensive and educational only: no scanning, no exploitation, no telemetry, no file writes. Outbound traffic is restricted to two allow-listed hosts.',
+    stack: ['TypeScript', 'Node.js', 'MCP', 'MCP SDK', 'Zod', 'Vitest', 'MITRE ATT&CK', 'NVD API'],
+    github: 'https://github.com/amrlhakimii/seckit-mcp',
+    category: 'ai',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'security MCP · read-only · privacy-preserving',
+    updates: [
+      '9 tools, 2 resources, and a triage prompt; ATT&CK v20 (706 techniques) bundled for offline use',
+      '94 tests, all offline, including proof that the breach check only ever requests a 5-character hash prefix',
+      'Host allow-list, input limits, and a test that the server writes nothing to stdout except protocol frames',
+    ],
+  },
+  {
     title: 'Design System MCP Server',
     description: 'An MCP (Model Context Protocol) server that gives AI assistants my personal design system as tools, so UI they build comes out consistent instead of default-looking. It generates a full 8-stop palette from one accent colour, returns exact component class strings and rules (dark and light themes), outputs a starter Tailwind stylesheet, and reviews JSX against the rules, flagging things like flat cards, focus rings, and missing press animations. Hootang is the reference implementation, and the reviewer passes on its real components.',
     stack: ['TypeScript', 'Node.js', 'MCP', 'MCP SDK', 'Zod', 'Vitest', 'Tailwind CSS'],
