@@ -28,11 +28,11 @@ const timeline: Milestone[] = [
     title: 'Software Engineer',
     organization: 'Workforce AI, The Access Group',
     period: 'Jul 2026 — Oct 2026',
-    description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on PolicyIQ, a multi-tenant cyber governance, risk & compliance platform — full-stack across React interfaces, ASP.NET Core APIs, EF Core/SQL Server data modelling, authentication and authorization, Azure infrastructure, automated testing, and CI/CD.',
+    description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on PolicyIQ, a multi-tenant cyber governance, risk & compliance platform — full-stack across React interfaces, ASP.NET Core APIs, EF Core/SQL Server data modelling, authentication and authorization, Azure infrastructure, automated testing, and CI/CD. Also built a OneTrust connector for Access EVO and an MCP server that expose the full OneTrust API to users.',
     type: 'work',
     logoInitials: 'TAG',
     logo: '/logos/access.png',
-    tags: ['Workforce AI', 'PolicyIQ', 'React 19', 'TypeScript', 'C#', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Azure', 'Docker', 'multi-tenant authorization', 'Romania team', 'Product Engineering'],
+    tags: ['Workforce AI', 'PolicyIQ', 'React 19', 'TypeScript', 'C#', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Azure', 'Docker', 'Access EVO', 'OneTrust connector', 'MCP', 'multi-tenant authorization', 'Romania team', 'Product Engineering'],
   },
   {
     title: 'Associate Project Coordinator / Associate Software Engineer Intern',
