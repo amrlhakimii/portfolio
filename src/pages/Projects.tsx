@@ -71,6 +71,21 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'LogLens',
+    description: 'A browser-based log analyzer. Drop in a Sysmon or Linux auth log and it runs explainable detection rules (encoded PowerShell, LSASS access, comsvcs MiniDump, scheduled-task and Run-key persistence, SSH brute force), each mapped to MITRE ATT&CK, then shows a timeline and raw event search. Every alert explains why it matters and what to check next, and the triage flow makes you close, investigate or escalate with a note, like a real SOC. Parsing and detection run in a Web Worker, and files never leave the browser. Rules are heuristics validated on invented sample data only.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Web Workers', 'Vitest', 'MITRE ATT&CK', 'Sigma'],
+    github: 'https://github.com/amrlhakimii/loglens',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'security tooling · runs fully in your browser',
+    updates: [
+      '6 detection rules ported from my SOC lab, each with a true-positive and a false-positive test',
+      '85 tests, including one proving no network request is made during analysis, and a strict no-inline-script CSP',
+      '25 MB log analysed in about 0.2 s in Node; the UI worker path was checked in Chrome on the sample files',
+    ],
+  },
+  {
     title: 'SecKit MCP Server',
     description: 'A read-only MCP server that gives AI assistants authoritative defensive-security lookups instead of guesses. It checks a password against known breaches without ever sending it (k-anonymity: only a 5-character hash prefix leaves the machine), looks up CVEs from NVD, explains and searches MITRE ATT&CK techniques from a bundled offline snapshot, parses log lines, and defangs or refangs indicators. Defensive and educational only: no scanning, no exploitation, no telemetry, no file writes. Outbound traffic is restricted to two allow-listed hosts.',
     stack: ['TypeScript', 'Node.js', 'MCP', 'MCP SDK', 'Zod', 'Vitest', 'MITRE ATT&CK', 'NVD API'],
