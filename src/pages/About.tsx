@@ -277,6 +277,22 @@ function HeroSection({ typed }: { typed: string }) {
   )
 }
 
+// Logo-only stack slider — [file in /public/skills, label for alt/title]
+const STACK_ROW_1: [string, string][] = [
+  ['react', 'React / React Native'], ['typescript', 'TypeScript'], ['javascript', 'JavaScript'], ['nodejs', 'Node.js'],
+  ['csharp', 'C#'], ['dotnetcore', '.NET / ASP.NET Core / EF Core'], ['python', 'Python'], ['java', 'Java'],
+  ['cplusplus', 'C++'], ['php', 'PHP'], ['mysql', 'MySQL'], ['sqlserver', 'SQL Server'], ['firebase', 'Firebase'],
+  ['supabase', 'Supabase'], ['expo', 'Expo'], ['databricks', 'Databricks'], ['linux', 'Linux'],
+]
+const STACK_ROW_2: [string, string][] = [
+  ['tailwindcss', 'TailwindCSS'], ['vite', 'Vite'], ['git', 'Git'], ['github', 'GitHub'], ['githubactions', 'GitHub Actions'],
+  ['githubcopilot', 'GitHub Copilot'], ['docker', 'Docker'], ['azure', 'Microsoft Azure'], ['azuredevops', 'Azure DevOps'],
+  ['aws', 'AWS'], ['terraform', 'Terraform'], ['reactrouter', 'React Router'], ['framermotion', 'Framer Motion'], ['gsap', 'GSAP'],
+  ['jwt', 'JWT'], ['splunk', 'Splunk'], ['wireshark', 'Wireshark'], ['powershell', 'PowerShell'],
+  ['photoshop', 'Photoshop'], ['illustrator', 'Illustrator'], ['affinity', 'Affinity Designer'], ['premiere', 'Premiere Pro'],
+  ['davinci', 'DaVinci Resolve'], ['lightroom', 'Lightroom'], ['figma', 'Figma'], ['canva', 'Canva'], ['aftereffects', 'After Effects'],
+]
+
 export default function About() {
   const typed = useTypewriter(TYPED_PHRASES)
 
@@ -595,35 +611,19 @@ export default function About() {
           <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
           stack
         </h2>
-        <div className="space-y-2 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-          {/* Row 1 — scrolls left */}
-          {(() => {
-            const row = ['React', 'React Native', 'TypeScript', 'JavaScript', 'Node.js', 'C#', '.NET', 'ASP.NET Core', 'EF Core', 'Python', 'Java', 'C++', 'PHP', 'MySQL', 'SQL Server', 'Firebase', 'Supabase', 'Expo', 'Databricks']
-            const items = [...row, ...row]
-            return (
-              <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 28s linear infinite', gap: '8px' }}>
-                {items.map((t, i) => (
-                  <span key={i} className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-1 rounded whitespace-nowrap shrink-0">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )
-          })()}
-          {/* Row 2 — scrolls right */}
-          {(() => {
-            const row = ['TailwindCSS', 'Vite', 'Git', 'Docker', 'Azure DevOps', 'AWS S3', 'AWS CloudFront', 'AWS IAM', 'AWS ACM', 'Terraform', 'GitHub Actions', 'React Router', 'Framer Motion', 'GSAP', 'Anime.js', 'REST APIs', 'OIDC/JWT', 'Claude Code', 'Prompt Engineering', 'Microsoft Azure', 'GitHub Copilot', 'Adobe Photoshop', 'Adobe Illustrator', 'Affinity Designer', 'Adobe Premiere Pro', 'DaVinci Resolve', 'Adobe Lightroom', 'Figma']
-            const items = [...row, ...row]
-            return (
-              <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRight 32s linear infinite', gap: '8px' }}>
-                {items.map((t, i) => (
-                  <span key={i} className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-1 rounded whitespace-nowrap shrink-0">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )
-          })()}
+        <div className="space-y-3 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
+          {[
+            { logos: STACK_ROW_1, anim: 'marqueeLeft 40s linear infinite' },
+            { logos: STACK_ROW_2, anim: 'marqueeRight 44s linear infinite' },
+          ].map(({ logos, anim }, r) => (
+            <div key={r} style={{ display: 'flex', width: 'max-content', animation: anim, gap: '12px' }}>
+              {[...logos, ...logos].map(([file, name], i) => (
+                <div key={i} className="w-11 h-11 rounded-lg border border-[var(--border)] bg-white flex items-center justify-center shrink-0">
+                  <img src={`/skills/${file}.svg`} alt={name} title={name} loading="lazy" className="w-6 h-6 object-contain" />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
