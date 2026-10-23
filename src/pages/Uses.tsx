@@ -24,7 +24,7 @@ const categories: Category[] = [
       { name: 'iPhone', description: 'Primary phone. Also my main camera for casual shots when the DSLR is overkill.', tag: 'always on me' },
       { name: 'Sony A6400', description: 'Mirrorless camera with fast AF and excellent video specs. Compact enough to bring everywhere, capable enough for serious shoots.', tag: 'photography', love: true },
       { name: 'Fujifilm XT30-ii', description: 'Film simulation and that Fuji colour science. Still reach for it when I want a specific look or the vibe calls for it.', tag: 'photography', love: true },
-      { name: 'External Monitor', description: '24" 1080p IPS. Colour accuracy matters when editing photos and designing — this delivers.', tag: 'workspace' },
+      { name: 'Xiaomi 34" Curved Gaming Monitor', description: '34" ultrawide curve. Editor, terminal, and browser side by side for coding, and a wide canvas for photo and video editing.', tag: 'workspace' },
       { name: 'Mechanical Keyboard', description: 'Tactile switches. Long sessions are way easier. Clickiest thing in my setup.', tag: 'workspace' },
       { name: 'DJI Action 5 Pro', description: 'My videography firearm — compact, stable, and packed with features for action shots.', tag: 'videography' },
 
