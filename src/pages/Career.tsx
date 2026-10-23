@@ -8,6 +8,7 @@ interface Milestone {
   description: string
   type: 'education' | 'internship' | 'freelance' | 'milestone' | 'work'
   logoInitials?: string
+  logo?: string
   tags?: string[]
   current?: boolean
 }
@@ -20,6 +21,7 @@ const timeline: Milestone[] = [
     description: 'Joining the IT Enterprise Security team at ExxonMobil\'s global business and technology center in Kuala Lumpur, which supports the company\'s Upstream, Product Solutions and Low Carbon Solutions businesses worldwide. The role is to identify, detect, protect against, and respond to cyber threats across on-premises and cloud systems, keeping data confidential, intact, and available. Day to day that means monitoring, supporting, and investigating security events and incidents; supporting cyber and network security tools; vulnerability management and testing; threat intelligence; managing external network connections and firewall policy; and tuning monitoring and alerting, coding the changes into production. It also means working with other teams and vendors to apply security best practice, and raising security awareness. A deliberate move from building software into defending it — preparing with a hands-on SOC detection lab (Sigma and Splunk rules, Python log analysis, MITRE ATT&CK mapping).',
     type: 'work',
     logoInitials: 'XOM',
+    logo: '/logos/exxonmobil.png',
     tags: ['IT Enterprise Security', 'threat detection', 'incident response', 'security monitoring', 'vulnerability management', 'threat intelligence', 'firewall policy', 'SIEM', 'MITRE ATT&CK', 'Python', 'cloud security'],
   },
   {
@@ -29,6 +31,7 @@ const timeline: Milestone[] = [
     description: 'Absorbed into a permanent Software Engineer position with the Workforce AI team at The Access Group, following the completion of an internship as Associate Project Coordinator / Associate Software Engineer Intern. Working with the Romania team on PolicyIQ, a multi-tenant cyber governance, risk & compliance platform — full-stack across React interfaces, ASP.NET Core APIs, EF Core/SQL Server data modelling, authentication and authorization, Azure infrastructure, automated testing, and CI/CD.',
     type: 'work',
     logoInitials: 'TAG',
+    logo: '/logos/access.png',
     tags: ['Workforce AI', 'PolicyIQ', 'React 19', 'TypeScript', 'C#', 'ASP.NET Core', 'EF Core', 'SQL Server', 'Azure', 'Docker', 'multi-tenant authorization', 'Romania team', 'Product Engineering'],
   },
   {
@@ -38,6 +41,7 @@ const timeline: Milestone[] = [
     description: 'Interned as an Associate Project Coordinator at The Access Group APAC. Scheduled and managed meetings between consultants and clients, handled communications with clients from across the globe, and supported the UK team in coordinating between clients and consultants. Used Salesforce and Access Focalpoint daily to manage workflows and track project activity. After being assessed, was handed a cross-team project to support Professional Services — collaborating with the Workforce AI Team from Product Engineering to build the Flightpath Welcome Email Tool: an internal automation app that joins Sales Handover and SOW Booking data from FocalPoint, groups bookings by Project Code, and auto-generates structured welcome email drafts. Built in EVO Builder; Phase 2 replaces Excel exports with a live FocalPoint API and Outlook auto-send. At an internal Connector-thon hackathon, built a Flightpath API webhook connector using n8n and EVO workflow automation. Also built the PO Ticketing System, letting anyone in the office raise requests for the PO Team to track and action, and the SHR Timesheet Log, rolled out globally for the SHR team across APAC, EMEA, and the Americas — delivered end-to-end in 3 weeks. Throughout, coordinated with stakeholders across regions and joined meetings with Access APAC\'s top leadership. Also picked up Azure CI/CD end-to-end — setting up pipelines, resource groups, container apps, Rancher, Docker, and blob storage. Internship extended to 26 Jul 2026, after which absorbed into a permanent Software Engineer role with Workforce AI.',
     type: 'internship',
     logoInitials: 'TAG',
+    logo: '/logos/access.png',
     tags: ['project coordination', 'client comms', 'Salesforce', 'Access Focalpoint', 'UK team support', 'AI automation', 'Flightpath', 'n8n', 'Connector-thon', 'PO Ticketing System', 'SHR Timesheet Log', 'stakeholder management', 'Azure CI/CD', 'Docker', 'Rancher', 'Professional Services', 'Workforce AI Team'],
   },
   {
@@ -57,6 +61,7 @@ const timeline: Milestone[] = [
     description: 'Graduated with a CGPA of 3.76. Final-year project: a React Native iOS app + web platform for UiTM students to record attendance via QR code scanning, integrated with MySQL for secure login, attendance records, timetable, and student dashboard.',
     type: 'education',
     logoInitials: 'UiTM',
+    logo: '/logos/uitm.png',
     tags: ['React Native', 'MySQL', 'CGPA 3.76'],
   },
   {
@@ -84,6 +89,7 @@ const timeline: Milestone[] = [
     description: 'Graduated February 2024 with First Class Honours, CGPA 3.54. Coursework covered web development, mobile app development, data structures, software engineering, database management, compilers, data visualisation, and multimedia.',
     type: 'education',
     logoInitials: 'UiTM',
+    logo: '/logos/uitm.png',
     tags: ['First Class', 'CGPA 3.54', 'web dev'],
   },
   {
@@ -263,10 +269,14 @@ export default function Career() {
                   <div className="p-4 flex gap-4">
                     {/* Logo */}
                     <div
-                      className="w-10 h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0"
-                      style={{ background: cfg.bg, borderColor: cfg.border, color: cfg.color }}
+                      className="w-10 h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden"
+                      style={{ background: item.logo ? '#ffffff' : cfg.bg, borderColor: cfg.border, color: cfg.color }}
                     >
-                      {item.logoInitials ?? item.organization[0]}
+                      {item.logo ? (
+                        <img src={item.logo} alt={item.organization} className="w-full h-full object-contain p-1" loading="lazy" />
+                      ) : (
+                        item.logoInitials ?? item.organization[0]
+                      )}
                     </div>
 
                     <div className="flex-1 min-w-0 space-y-1">

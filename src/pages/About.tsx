@@ -312,7 +312,7 @@ export default function About() {
 
             {/* Role badges */}
             <div className="flex flex-wrap gap-2">
-              {['Full-Stack Dev', 'Photographer', 'Videographer', 'Editor', 'Graphic Designer', 'AI Engineering'].map((role) => (
+              {['Cybersecurity', 'Full-Stack Dev', 'Photographer', 'Videographer', 'Editor', 'Graphic Designer', 'AI Engineering'].map((role) => (
                 <span
                   key={role}
                   className="px-3 py-1.5 rounded-full text-[11px] border"
@@ -548,6 +548,7 @@ export default function About() {
             'web and mobile apps with React, React Native, and TypeScript',
             'backend APIs and services with Node.js, .NET, MySQL, Firebase, and Supabase — deployed on Azure with CI/CD pipelines',
             'ai-powered workflows — prompt engineering, PRD drafting with AI, and integrating LLMs into the build process',
+            'detection rules and log analysis in a home SOC lab — Sigma, Splunk SPL, and Python, mapped to MITRE ATT&CK',
             'graphic designs, jerseys, and print-ready artwork via Blugrafix',
             'small utilities that scratch my own itch',
           ].map((item, i) => (
@@ -665,8 +666,9 @@ export default function About() {
           <span style={{ fontFamily: 'monospace', color: 'var(--muted)', fontWeight: 400 }}>//</span>
           work with me
         </h2>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {[
+            { code: 'SEC', color: '#34d399', title: 'Cybersecurity', desc: 'Detection rules, log analysis, and security-minded builds — early-career, learning in public' },
             { code: 'AI', color: '#e879f9', title: 'AI Engineering', desc: 'Prompt engineering, LLM integration, AI-powered workflows and tooling' },
             { code: 'FS', color: '#60a5fa', title: 'Full-Stack Dev', desc: 'React, TypeScript, Node.js, Supabase, Firebase — web or mobile, end to end' },
             { code: 'GD', color: '#f9a8d4', title: 'Graphic Design', desc: 'Branding, social media, print, jersey artwork' },

@@ -204,6 +204,7 @@ const TICKER_ITEMS = [
   'Based in Jitra, Kedah · Malaysia',
   'React · TypeScript · Node.js · Supabase · Firebase',
   'Prompt Engineering · AI-assisted workflows',
+  'Sigma · Splunk SPL · MITRE ATT&CK · Python',
   'Photographer since 2018',
   'Founder of Blugrafix',
   'Arsenal FC 🔴',
