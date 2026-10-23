@@ -71,6 +71,21 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'Design System MCP Server',
+    description: 'An MCP (Model Context Protocol) server that gives AI assistants my personal design system as tools, so UI they build comes out consistent instead of default-looking. It generates a full 8-stop palette from one accent colour, returns exact component class strings and rules (dark and light themes), outputs a starter Tailwind stylesheet, and reviews JSX against the rules, flagging things like flat cards, focus rings, and missing press animations. Hootang is the reference implementation, and the reviewer passes on its real components.',
+    stack: ['TypeScript', 'Node.js', 'MCP', 'MCP SDK', 'Zod', 'Vitest', 'Tailwind CSS'],
+    github: 'https://github.com/amrlhakimii/design-system-mcp',
+    category: 'ai',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'MCP server · design system tooling',
+    updates: [
+      '6 tools: palette generator, foundations, component rules, starter CSS, UI reviewer, and a component list',
+      'End-to-end tests start the real server over stdio and call the tools like an MCP client',
+      'The tests caught a false-positive bug in my own reviewer, found by running it on Hootang',
+    ],
+  },
+  {
     title: 'SOC Detection Lab',
     description: 'A hands-on learning project for moving from software engineering into security operations. Detections for five common attacker techniques — encoded PowerShell, LSASS credential access, comsvcs.dll MiniDump, scheduled-task persistence, and registry Run-key persistence — each written three ways: as a Sigma rule, a Splunk SPL search, and a Python detector that parses Sysmon JSON events, decodes PowerShell payloads, scores severity, and prints findings mapped to MITRE ATT&CK. Covered by pytest tests that check both the alerts and the near-misses it must ignore (an allowlisted svchost reading LSASS, a harmless schtasks /query). So far validated on sample log data I wrote myself; the next step is a Windows VM with Sysmon and Atomic Red Team to test the rules against real telemetry.',
     stack: ['Python', 'pytest', 'Sigma', 'Splunk SPL', 'MITRE ATT&CK', 'Sysmon'],
