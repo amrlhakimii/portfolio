@@ -278,12 +278,8 @@ function HeroSection({ typed }: { typed: string }) {
 }
 
 const PROFILE_ROWS = [
-  ['name', 'Amirul Hakimi'],
   ['location', 'Jitra, Kedah · Malaysia'],
-  ['now', 'Software Engineer · Workforce AI, The Access Group'],
-  ['next', 'Cybersecurity Technologist - Advanced · ExxonMobil · 14 Dec 2026'],
   ['education', 'BSc Computer Science (Hons.), UiTM · CGPA 3.76'],
-  ['builds', 'React, TypeScript, .NET, mobile apps, AI-assisted workflows'],
   ['creates', 'Photo and video since 2018 · Blugrafix since 2019'],
   ['languages', 'Malay · English · Bahasa Indonesia · Mandarin'],
   ['off duty', 'Arsenal, Mercedes F1, music'],
