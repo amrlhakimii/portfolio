@@ -81,6 +81,7 @@ const timeline: Milestone[] = [
     description: 'Worked as a graphic designer for FexieWear during a semester break, producing designs for the brand\'s apparel and marketing materials.',
     type: 'work',
     logoInitials: 'FW',
+    logo: '/logos/fexiewear.jpg',
     tags: ['apparel design', 'branding'],
   },
   {
