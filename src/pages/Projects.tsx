@@ -58,6 +58,23 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'Japan, Slowly',
+    description: 'An interactive family-trip itinerary for a slow-paced Japan trip with a baby, built as a no-framework PWA. A swipeable day-by-day plan, a map of every stop with photos, a today view, a packing and prep checklist, a practical guide (transport, eSIM, money, language) and a yen-to-ringgit expense tracker with budgets. It plans around the family: low walking pace, feeds and naps, and prayer times scheduled as jamak. Installable and usable offline through a service worker, with a print-to-PDF export.',
+    stack: ['JavaScript', 'Leaflet', 'MapLibre GL', 'PWA', 'Service Worker', 'HTML', 'CSS', 'Netlify'],
+    link: 'https://japan.amrlhakimi.my',
+    github: 'https://github.com/amrlhakimii/japan-iti',
+    category: 'software',
+    status: 'shipped',
+    year: '2026',
+    highlight: 'family itinerary · offline PWA · map + expenses',
+    updates: [
+      'Day-by-day plan with swipeable day slider, a today view and photo-rich stop cards',
+      'Interactive map with every stop, plus a yen-to-ringgit expense tracker with budgets by category',
+      'Installable PWA with a service worker that updates itself, so it works offline while travelling',
+      'Prayer breaks planned as jamak, and a low-walking-pace route built around a baby',
+    ],
+  },
+  {
     title: 'myRoda',
     description: 'A vehicle maintenance, fuel, and expense tracker built for Malaysian car and motorcycle owners. Register vehicles, log every workshop visit and refuel, set maintenance/road tax/insurance reminders, and see spending on a live dashboard — all synced in real time via Firestore. Consumption analysis on the fuel tracker, expense charts, and multi-vehicle support.',
     stack: ['React 19', 'TypeScript', 'Vite', 'TailwindCSS v4', 'React Router', 'React Hook Form', 'Zod', 'TanStack Query', 'Zustand', 'Recharts', 'Firebase', 'Netlify'],
