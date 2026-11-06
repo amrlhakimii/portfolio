@@ -147,6 +147,12 @@ const timeline: Milestone[] = [
   },
 ]
 
+const TRACKS: { key: string; title: string; blurb: string; types: Milestone['type'][] }[] = [
+  { key: 'professional', title: 'Professional', blurb: 'Engineering and security roles', types: ['work', 'internship'] },
+  { key: 'creative', title: 'Freelance & creative', blurb: 'Client work, design and photography', types: ['freelance', 'milestone'] },
+  { key: 'education', title: 'Education', blurb: 'Degrees and schooling', types: ['education'] },
+]
+
 const FILTERS = ['all', 'education', 'internship', 'freelance', 'work', 'milestone'] as const
 
 export default function Career() {
@@ -155,13 +161,9 @@ export default function Career() {
 
   const visible = filter === 'all' ? timeline : timeline.filter(t => t.type === filter)
 
-  const groups = visible.reduce<{ year: string; items: Milestone[] }[]>((acc, item) => {
-    const year = item.period.match(/\d{4}/)?.[0] ?? ''
-    const last = acc[acc.length - 1]
-    if (last && last.year === year) last.items.push(item)
-    else acc.push({ year, items: [item] })
-    return acc
-  }, [])
+  const groups = TRACKS
+    .map(track => ({ ...track, items: visible.filter(t => track.types.includes(t.type)) }))
+    .filter(g => g.items.length > 0)
 
   const stats = [
     { value: timeline.filter(t => t.type === 'internship').length, label: 'internships' },
@@ -215,18 +217,16 @@ export default function Career() {
       </div>
 
       <div className="fade-up fade-up-4 space-y-12">
-        {groups.map(({ year, items }) => (
-          <section key={year} className="grid md:grid-cols-[8rem_1fr] gap-x-8 gap-y-4">
+        {groups.map(({ key, title, blurb, items }) => (
+          <section key={key} className="grid md:grid-cols-[11rem_1fr] gap-x-8 gap-y-4">
             <div className="md:sticky md:top-8 self-start">
               <h2
-                className="font-serif tabular-nums"
-                style={{ fontSize: 'clamp(2.5rem, 8vw, 3.75rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--gold)' }}
+                className="font-serif"
+                style={{ fontSize: 'clamp(1.75rem, 5vw, 1.875rem)', fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--gold)' }}
               >
-                {year}
+                {title}
               </h2>
-              <p className="mt-2 text-xs text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
-                {items.length} {items.length === 1 ? 'entry' : 'entries'}
-              </p>
+              <p className="mt-2 text-xs text-[var(--muted)]">{blurb}</p>
             </div>
 
             <ol className="space-y-3 min-w-0">
