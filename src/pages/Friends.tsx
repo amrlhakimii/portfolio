@@ -1,5 +1,13 @@
 import { useState } from 'react'
 import PageHeader from '../components/PageHeader'
+import { MiniCard, type Suit } from '../components/PlayingCard'
+
+const RELATION_CARD: Record<string, { rank: string; suit: Suit }> = {
+  brother: { rank: 'K', suit: '♥' },
+  'best friend': { rank: 'Q', suit: '♥' },
+  groupmate: { rank: 'J', suit: '♠' },
+  community: { rank: '10', suit: '♦' },
+}
 
 interface Friend {
   name: string
@@ -123,12 +131,15 @@ export default function Friends() {
 
       <ul className="fade-up fade-up-4 border-b border-[var(--border)]">
         {visible.map((person) => (
-          <li key={person.name} className="border-t border-[var(--border)] py-5 grid md:grid-cols-[13rem_1fr] gap-2 md:gap-8">
-            <div>
+          <li key={person.name} className="border-t border-[var(--border)] py-5 grid md:grid-cols-[17rem_1fr] gap-2 md:gap-8">
+            <div className="flex items-start gap-4">
+              <MiniCard rank={RELATION_CARD[person.relation].rank} suit={RELATION_CARD[person.relation].suit} />
+              <div>
               <p className="font-serif text-xl text-[var(--text-pri)]">{person.name}</p>
               <p className="text-xs text-[var(--muted)] capitalize mt-1">
                 {person.relation}{person.since && ` · ${person.since}`}
               </p>
+              </div>
             </div>
             <div className="space-y-2">
               <p className="text-sm text-[var(--text-sec)] leading-relaxed max-w-prose">{person.description}</p>

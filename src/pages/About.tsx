@@ -75,6 +75,16 @@ const STACK_ROW_2: [string, string][] = [
 ]
 
 
+const STACK_NAME: Record<string, string> = Object.fromEntries([...STACK_ROW_1, ...STACK_ROW_2])
+
+const STACK_GROUPS: { label: string; files: string[] }[] = [
+  { label: 'Frontend', files: ['react', 'typescript', 'javascript', 'tailwindcss', 'vite', 'reactrouter', 'framermotion', 'gsap', 'expo'] },
+  { label: 'Backend and data', files: ['nodejs', 'csharp', 'dotnetcore', 'python', 'java', 'cplusplus', 'php', 'mysql', 'sqlserver', 'firebase', 'supabase', 'databricks', 'jwt'] },
+  { label: 'Cloud and DevOps', files: ['git', 'github', 'githubactions', 'githubcopilot', 'docker', 'azure', 'azuredevops', 'aws', 'terraform', 'linux'] },
+  { label: 'Security', files: ['splunk', 'wireshark', 'powershell'] },
+  { label: 'Creative', files: ['photoshop', 'illustrator', 'affinity', 'premiere', 'davinci', 'lightroom', 'figma', 'canva', 'aftereffects'] },
+]
+
 const ROLES = ['Cybersecurity', 'Full-stack dev', 'Photographer', 'Videographer', 'Editor', 'Graphic designer', 'AI engineering']
 
 const HAND: { rank: string; suit: Suit; title: string; desc: string }[] = [
@@ -369,10 +379,17 @@ export default function About() {
       <section className="fade-up fade-up-7 grid md:grid-cols-[10rem_1fr] gap-4 md:gap-10">
         <div className="md:sticky md:top-6 self-start"><SectionLabel>Stack</SectionLabel></div>
         <div className="space-y-3 min-w-0">
-        <div className="flex flex-wrap gap-2">
-          {[...STACK_ROW_1, ...STACK_ROW_2].map(([file, name]) => (
-            <div key={file} className="w-10 h-10 rounded-lg border border-[var(--border)] bg-white flex items-center justify-center">
-              <img src={`/skills/${file}.svg`} alt={name} title={name} loading="lazy" className="w-6 h-6 object-contain" />
+        <div className="space-y-5">
+          {STACK_GROUPS.map(({ label, files }) => (
+            <div key={label} className="space-y-2">
+              <p className="text-xs text-[var(--muted)]">{label}</p>
+              <div className="flex flex-wrap gap-2">
+                {files.map((file) => (
+                  <div key={file} className="w-10 h-10 rounded-lg border border-[var(--border)] bg-white flex items-center justify-center">
+                    <img src={`/skills/${file}.svg`} alt={STACK_NAME[file] ?? file} title={STACK_NAME[file] ?? file} loading="lazy" className="w-6 h-6 object-contain" />
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

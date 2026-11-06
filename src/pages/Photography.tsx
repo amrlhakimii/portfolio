@@ -1,5 +1,11 @@
 import { useState } from 'react'
 import SectionLabel from '../components/SectionLabel'
+
+const SUIT: Record<string, { glyph: string; red: boolean }> = {
+  weddings: { glyph: '♥', red: true },
+  events: { glyph: '♦', red: true },
+  street: { glyph: '♠', red: false },
+}
 import PageHeader from '../components/PageHeader'
 
 interface Photo {
@@ -89,12 +95,22 @@ export default function Photography() {
             onClick={() => setLightbox(photo)}
             className={`text-left space-y-2 cursor-pointer ${i === 0 ? 'col-span-2 lg:col-span-3' : ''}`}
           >
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className={`w-full object-cover rounded-xl border border-[var(--border)] ${i === 0 ? 'aspect-[16/9] lg:aspect-[21/9]' : 'aspect-[4/3]'}`}
-              onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3' }}
-            />
+            <span className="relative block">
+                          <img
+                src={photo.src}
+                alt={photo.alt}
+                className={`w-full object-cover rounded-xl border border-[var(--border)] ${i === 0 ? 'aspect-[16/9] lg:aspect-[21/9]' : 'aspect-[4/3]'}`}
+                onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3' }}
+              />
+              <span
+                className="absolute top-2 left-2 flex flex-col items-center leading-none font-serif text-xs rounded px-1.5 py-1"
+                style={{ background: '#f6f3ec', color: SUIT[photo.category]?.red ? '#c8102e' : '#0a1a33' }}
+                aria-hidden="true"
+              >
+                <span>{['A', '2', '3', '4', '5', '6'][i] ?? ''}</span>
+                <span>{SUIT[photo.category]?.glyph}</span>
+              </span>
+            </span>
             <span className="block text-xs text-[var(--text-pri)]">
               {photo.alt}
               {photo.location && <span className="text-[var(--muted)]"> · {photo.location}</span>}

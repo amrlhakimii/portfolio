@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { CardBack } from './PlayingCard'
 
 interface SplashScreenProps {
   onDone: () => void
@@ -163,17 +164,27 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
         className="relative z-10 select-none flex flex-col items-center gap-6"
         style={{ fontFamily: "ui-monospace, 'Cascadia Code', 'Courier New', monospace" }}
       >
-        <div>
-          <img
-            src="/logo.png"
-            alt="logo"
+        <div style={{ perspective: '900px', width: '11rem' }} aria-hidden="true">
+          <div
+            className="relative"
             style={{
-              width: '120px',
-              height: '120px',
-              objectFit: 'contain',
-              filter: 'invert(1)',
+              transformStyle: 'preserve-3d',
+              transition: 'transform 700ms cubic-bezier(0.2, 0, 0, 1)',
+              transform: started ? 'rotateY(180deg)' : 'rotateY(0deg)',
             }}
-          />
+          >
+            <div style={{ backfaceVisibility: 'hidden' }}>
+              <CardBack className="w-44" />
+            </div>
+            <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+              <img
+                src="/joker.svg"
+                alt=""
+                className="w-full h-full object-cover rounded-xl"
+                style={{ border: '2px solid #f6f3ec', background: '#0a1a33' }}
+              />
+            </div>
+          </div>
         </div>
 
         {!started ? (
@@ -198,7 +209,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
                 color: '#98a1b6',
               }}
             >
-              Press any key
+              Press any key to deal
             </span>
           </div>
         ) : (

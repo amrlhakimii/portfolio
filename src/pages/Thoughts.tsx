@@ -82,7 +82,7 @@ export default function Thoughts() {
               className="group grid md:grid-cols-[3rem_1fr_10rem] gap-2 md:gap-6 py-6 items-baseline"
             >
               <span className="text-xs tabular-nums text-[var(--accent)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
-                {String(i + 1).padStart(2, '0')}
+                {['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'][i] ?? i + 1}♠
               </span>
               <span className="space-y-2">
                 <span className="block font-serif text-2xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">{post.title}</span>

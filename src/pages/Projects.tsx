@@ -2,6 +2,9 @@ import { useState } from 'react'
 import SectionLabel from '../components/SectionLabel'
 import PageHeader from '../components/PageHeader'
 
+const CHIP_RANKS = ['K', 'Q', 'J', '10', '9', '8', '7']
+const CHIP_SUIT = { software: '♠', ai: '♣', design: '♦' } as const
+
 interface Project {
   title: string
   description: string
@@ -398,6 +401,14 @@ export default function Projects() {
               return (
                 <article key={project.title} className={`space-y-4 ${i === 0 ? 'md:col-span-2' : ''}`}>
                   <div className="relative rounded-2xl overflow-hidden border border-[var(--border)]">
+                    <span
+                      className="absolute top-3 left-3 z-10 flex flex-col items-center leading-none font-serif text-sm rounded-md px-2 py-1.5"
+                      style={{ background: '#f6f3ec', color: project.category === 'design' ? '#c8102e' : '#0a1a33' }}
+                      aria-hidden="true"
+                    >
+                      <span>{CHIP_RANKS[i] ?? ''}</span>
+                      <span>{CHIP_SUIT[project.category]}</span>
+                    </span>
                     {project.link ? (
                       <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title}`}>
                         <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" className={`w-full object-cover object-top hover:opacity-90 transition-opacity duration-150 ${i === 0 ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'}`} />

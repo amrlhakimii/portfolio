@@ -70,3 +70,38 @@ export function JokerCard({ rotate, caption }: { rotate: number; caption: string
     </div>
   )
 }
+
+const suitColor = (suit: Suit) => (suit === '♥' || suit === '♦' ? RED : INK)
+
+// Small decorative card: rank and suit in the corners, suit in the middle.
+export function MiniCard({ rank, suit, rotate = 0, className = '' }: { rank: string; suit: Suit; rotate?: number; className?: string }) {
+  const color = suitColor(suit)
+  return (
+    <span
+      className={`relative inline-block aspect-[5/7] rounded-lg overflow-hidden shrink-0 ${className}`}
+      style={{ width: '2.75rem', background: PAPER, border: `1px solid ${INK}`, rotate: `${rotate}deg`, color }}
+      aria-hidden="true"
+    >
+      <span className="absolute top-1 left-1.5 flex flex-col items-center font-serif leading-none" style={{ fontSize: '0.7rem' }}>
+        <span>{rank}</span>
+        <span>{suit}</span>
+      </span>
+      <span className="absolute inset-0 flex items-center justify-center font-serif" style={{ fontSize: '1.4rem', opacity: 0.9 }}>{suit}</span>
+    </span>
+  )
+}
+
+// Card back: navy with a red lattice and a gold border.
+export function CardBack({ className = '' }: { className?: string }) {
+  return (
+    <span
+      className={`block aspect-[5/7] rounded-xl ${className}`}
+      style={{
+        background: `repeating-linear-gradient(45deg, #ef0107 0 2px, transparent 2px 11px), repeating-linear-gradient(-45deg, #ef0107 0 2px, transparent 2px 11px), ${INK}`,
+        border: '3px solid #d2b06a',
+        outline: `1px solid ${INK}`,
+      }}
+      aria-hidden="true"
+    />
+  )
+}
