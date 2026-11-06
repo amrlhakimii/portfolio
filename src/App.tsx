@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { ThemeProvider } from './context/ThemeContext'
 import { SplashScreen } from './components/SplashScreen'
 import Layout from './components/Layout'
+import ScrollToTop from './components/ScrollToTop'
 import About from './pages/About'
 import Thoughts from './pages/Thoughts'
 import TIL from './pages/TIL'
@@ -28,6 +29,7 @@ export default function App() {
       {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
       <ThemeProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<RootRedirect />} />
             <Route
