@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PageHeader from '../components/PageHeader'
+import SectionLabel from '../components/SectionLabel'
 
 interface Milestone {
   title: string
@@ -217,90 +218,43 @@ export default function Career() {
       </div>
 
       <div className="fade-up fade-up-4 space-y-12">
-        {groups.map(({ key, title, blurb, items }) => (
-          <section key={key} className="grid md:grid-cols-[11rem_1fr] gap-x-8 gap-y-4">
-            <div className="md:sticky md:top-8 self-start">
-              <h2
-                className="font-serif"
-                style={{ fontSize: 'clamp(1.75rem, 5vw, 1.875rem)', fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--gold)' }}
-              >
-                {title}
-              </h2>
-              <p className="mt-2 text-xs text-[var(--muted)]">{blurb}</p>
-            </div>
-
-            <ol className="space-y-3 min-w-0">
+        {groups.map(({ key, title, items }) => (
+          <section key={key} className="space-y-3">
+            <SectionLabel aside={<span className="text-xs text-[var(--muted)] tabular-nums">{items.length}</span>}>
+              {title}
+            </SectionLabel>
+            <ol className="border-b border-[var(--border)]">
               {items.map((item) => {
                 const id = `${item.title}|${item.organization}|${item.period}`
                 const isOpen = expanded === id
                 return (
-                  <li
-                    key={id}
-                    className="rounded-2xl border overflow-hidden transition-colors duration-150 hover:border-[var(--border-hover)]"
-                    style={{
-                      borderColor: isOpen ? 'var(--border-hover)' : 'var(--border)',
-                      background: isOpen ? 'rgba(var(--border-rgb),0.25)' : 'transparent',
-                      borderLeft: `3px solid ${item.current ? 'var(--sec)' : 'var(--border-hover)'}`,
-                    }}
-                  >
+                  <li key={id} className="border-t border-[var(--border)]">
                     <button
                       type="button"
                       aria-expanded={isOpen}
                       onClick={() => setExpanded(isOpen ? null : id)}
-                      className="w-full text-left p-4 sm:p-5 cursor-pointer group flex items-center gap-4"
+                      className="w-full text-left grid md:grid-cols-[11rem_1fr_1.5rem] gap-1 md:gap-6 py-4 items-baseline cursor-pointer group"
                     >
-                      <span
-                        className="w-12 h-12 rounded-xl border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
-                        style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
-                      >
-                        {item.logo ? (
-                          <img src={item.logo} alt="" className="w-full h-full object-contain p-1" loading="lazy" />
-                        ) : (
-                          item.logoInitials ?? item.organization[0]
-                        )}
+                      <span className="text-xs tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                        {item.period}
                       </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-serif text-lg sm:text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
+                      <span className="min-w-0">
+                        <span className="block font-serif text-lg leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
                           {item.title}
+                          {item.current && <span className="ml-2 font-sans text-xs text-[var(--sec)]">· now</span>}
                         </span>
                         <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
-                        <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--muted)]">
-                          <span className="tabular-nums" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>{item.period}</span>
-                          <span className="capitalize">· {item.type}</span>
-                          {item.current && (
-                            <span className="inline-flex items-center gap-1.5 text-[var(--sec)]">
-                              <span className="sec-dot" aria-hidden="true" />
-                              Active
-                            </span>
-                          )}
-                        </span>
                       </span>
-                      <span
-                        aria-hidden="true"
-                        className="shrink-0 text-[var(--muted)] transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="m6 9 6 6 6-6" />
-                        </svg>
-                      </span>
+                      <span className="hidden md:block text-right text-[var(--muted)]" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                     </button>
 
                     {isOpen && (
-                      <div className="px-4 sm:px-5 pb-5 space-y-4 border-t border-[var(--border)] pt-4">
+                      <div className="md:pl-[12.5rem] pb-6 space-y-3 max-w-prose">
                         <p className="text-sm text-[var(--text-sec)] leading-relaxed">{item.description}</p>
                         {item.tags && item.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {item.tags.map(tag => (
-                              <span
-                                key={tag}
-                                className="text-xs px-2 py-1 rounded-md border text-[var(--text-sec)]"
-                                style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                          <p className="text-xs text-[var(--muted)] leading-relaxed" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                            {item.tags.join(' · ')}
+                          </p>
                         )}
                       </div>
                     )}
@@ -312,7 +266,7 @@ export default function Career() {
         ))}
       </div>
 
-      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Tap an entry to read more · {timeline.length} total</p>
+      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Select an entry to expand · {timeline.length} total</p>
     </div>
   )
 }
