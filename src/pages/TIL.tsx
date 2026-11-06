@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import PageHeader from '../components/PageHeader'
 
 interface TILEntry {
   id: number
@@ -228,26 +229,6 @@ const entries: TILEntry[] = [
   },
 ]
 
-const TAG_COLORS: Record<string, { color: string; bg: string; border: string }> = {
-  react:       { color: '#61dafb', bg: 'rgba(97,218,251,0.08)',   border: 'rgba(97,218,251,0.2)'  },
-  typescript:  { color: '#acbac4', bg: 'rgba(172,186,196,0.08)',  border: 'rgba(172,186,196,0.2)' },
-  javascript:  { color: '#f7df1e', bg: 'rgba(247,223,30,0.08)',   border: 'rgba(247,223,30,0.2)'  },
-  css:         { color: '#a78bfa', bg: 'rgba(167,139,250,0.08)',  border: 'rgba(167,139,250,0.2)' },
-  databases:   { color: '#34d399', bg: 'rgba(52,211,153,0.08)',   border: 'rgba(52,211,153,0.2)'  },
-  git:         { color: '#f97316', bg: 'rgba(249,115,22,0.08)',   border: 'rgba(249,115,22,0.2)'  },
-  design:      { color: '#f9a8d4', bg: 'rgba(249,168,212,0.08)',  border: 'rgba(249,168,212,0.2)' },
-  photography: { color: '#e1d9bc', bg: 'rgba(225,217,188,0.08)',  border: 'rgba(225,217,188,0.2)' },
-  firebase:    { color: '#fbbf24', bg: 'rgba(251,191,36,0.08)',   border: 'rgba(251,191,36,0.2)'  },
-  ai:          { color: '#e879f9', bg: 'rgba(232,121,249,0.08)',  border: 'rgba(232,121,249,0.2)' },
-  animation:   { color: '#4ade80', bg: 'rgba(74,222,128,0.08)',   border: 'rgba(74,222,128,0.2)'  },
-  devops:      { color: '#60a5fa', bg: 'rgba(96,165,250,0.08)',   border: 'rgba(96,165,250,0.2)'  },
-  backend:     { color: '#c084fc', bg: 'rgba(192,132,252,0.08)',  border: 'rgba(192,132,252,0.2)' },
-  docker:      { color: '#38bdf8', bg: 'rgba(56,189,248,0.08)',   border: 'rgba(56,189,248,0.2)'  },
-  security:    { color: '#fb7185', bg: 'rgba(251,113,133,0.08)',  border: 'rgba(251,113,133,0.2)' },
-}
-
-const fallbackTag = { color: '#acbac4', bg: 'rgba(172,186,196,0.08)', border: 'rgba(172,186,196,0.2)' }
-
 // Highlight inline code in backticks
 function HighlightedContent({ text }: { text: string }) {
   const parts = text.split(/(`[^`]+`)/)
@@ -257,8 +238,8 @@ function HighlightedContent({ text }: { text: string }) {
         part.startsWith('`') && part.endsWith('`') ? (
           <code
             key={i}
-            className="text-[var(--accent)] px-1 py-0.5 rounded text-[11px]"
-            style={{ background: 'rgba(240,240,219,0.1)', fontFamily: 'monospace' }}
+            className="text-[var(--text-pri)] px-1 py-0.5 rounded text-xs"
+            style={{ background: 'rgba(var(--border-rgb),0.5)', fontFamily: 'ui-monospace, Consolas, monospace' }}
           >
             {part.slice(1, -1)}
           </code>
@@ -293,21 +274,17 @@ export default function TIL() {
 
   return (
     <div className="space-y-8">
-      <header className="fade-up fade-up-1">
-        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>TIL</h1>
-        <p className="text-[var(--text-sec)] text-sm">today i learned — short notes on things that made me stop and think</p>
-      </header>
+      <PageHeader title="TIL" subtitle="Today I learned: short notes on things that made me stop and think" />
 
-      {/* Stats */}
-      <section className="fade-up fade-up-2 grid grid-cols-3 gap-2">
+      <section className="fade-up fade-up-2 grid grid-cols-3 gap-6 pt-6 border-t border-[var(--border)]">
         {[
-          { value: entries.length, label: 'entries' },
-          { value: allTags.length - 1, label: 'topics' },
-          { value: new Set(entries.map(e => e.date.slice(0, 7))).size, label: 'months' },
+          { value: entries.length, label: 'Entries' },
+          { value: allTags.length - 1, label: 'Topics' },
+          { value: new Set(entries.map(e => e.date.slice(0, 7))).size, label: 'Months' },
         ].map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
-            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
+          <div key={label} className="space-y-1">
+            <p className="text-2xl font-medium tabular-nums text-[var(--gold)]">{value}</p>
+            <p className="text-xs text-[var(--text-sec)]">{label}</p>
           </div>
         ))}
       </section>
@@ -319,16 +296,18 @@ export default function TIL() {
         </svg>
         <input
           type="text"
-          placeholder="search entries..."
+          placeholder="Search entries"
+          aria-label="Search entries"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-pri)] placeholder-[var(--border-hover)] outline-none transition-colors duration-150 focus:border-[var(--border-hover)]"
+          className="w-full pl-9 pr-4 py-3 rounded-xl border border-[var(--border)] text-sm text-[var(--text-pri)] placeholder-[var(--muted)] outline-none transition-colors duration-150 focus:border-[var(--border-hover)]"
           style={{ background: 'rgba(var(--bg-rgb),0.5)', fontFamily: 'inherit' }}
         />
         {search && (
           <button
             onClick={() => setSearch('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors"
+            aria-label="Clear search"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted)] hover:text-[var(--text-pri)] transition-colors duration-150"
           >✕</button>
         )}
       </div>
@@ -336,50 +315,46 @@ export default function TIL() {
       {/* Tag filters */}
       <div className="fade-up fade-up-4 flex flex-wrap gap-2">
         {allTags.map(tag => {
-          const cfg = tag !== 'all' ? (TAG_COLORS[tag] ?? fallbackTag) : null
           const count = tag === 'all' ? entries.length : entries.filter(e => e.tag === tag).length
+          const active = activeTag === tag
           return (
             <button
               key={tag}
               onClick={() => setActiveTag(tag)}
-              className="text-[10px] px-3 py-1.5 rounded-full border transition-all duration-150 flex items-center gap-1.5"
-              style={activeTag === tag ? {
-                background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
-                borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : 'var(--accent)',
+              aria-pressed={active}
+              className="text-xs px-3 py-2 rounded-lg border transition-colors duration-150"
+              style={active ? {
+                background: 'rgba(var(--border-rgb),0.6)',
+                borderColor: 'var(--border-hover)',
+                color: 'var(--text-pri)',
               } : {
-                background: 'rgba(var(--bg-rgb),0.3)',
+                background: 'transparent',
                 borderColor: 'var(--border)',
-                color: 'var(--muted)',
+                color: 'var(--text-sec)',
               }}
             >
-              #{tag}
-              <span className="opacity-60">{count}</span>
+              {tag === 'all' ? 'all' : `#${tag}`} <span className="text-[var(--muted)] tabular-nums">{count}</span>
             </button>
           )
         })}
       </div>
 
       {/* Entries */}
-      <div className="space-y-3 fade-up fade-up-5">
+      <div className="fade-up fade-up-5 border-b border-[var(--border)]">
         {filtered.length === 0 && (
-          <div className="text-center py-12 text-[var(--border-hover)] text-sm">no entries match "{search}"</div>
+          <div className="text-center py-12 text-[var(--muted)] text-sm">No entries match "{search}"</div>
         )}
         {filtered.map((entry) => {
-          const cfg = TAG_COLORS[entry.tag] ?? fallbackTag
           return (
             <div
               key={entry.id}
-              className="group border rounded-xl p-4 space-y-3 transition-all duration-150 hover:-translate-y-0.5"
-              style={{ borderColor: 'var(--border)', background: 'rgba(var(--bg-rgb),0.45)' }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = cfg.border}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'}
+              className="group border-t border-[var(--border)] py-5 space-y-3"
             >
               {/* Number + content */}
               <div className="flex gap-3">
                 <span
-                  className="text-[11px] tabular-nums shrink-0 mt-0.5 w-5 text-right"
-                  style={{ color: 'var(--border-hover)', fontFamily: 'monospace' }}
+                  className="text-xs tabular-nums shrink-0 mt-0.5 w-5 text-right"
+                  style={{ color: 'var(--muted)', fontFamily: 'ui-monospace, Consolas, monospace' }}
                 >
                   {String(entry.id).padStart(2, '0')}
                 </span>
@@ -391,23 +366,18 @@ export default function TIL() {
               {/* Meta row */}
               <div className="flex items-center justify-between pl-8">
                 <div className="flex items-center gap-2">
-                  <span
-                    className="text-[10px] px-2 py-0.5 rounded-full border"
-                    style={{ color: cfg.color, background: cfg.bg, borderColor: cfg.border }}
-                  >
-                    #{entry.tag}
-                  </span>
+                  <span className="text-xs text-[var(--text-sec)]">#{entry.tag}</span>
                   {entry.source && (
-                    <span className="text-[10px] text-[var(--border-hover)]">via {entry.source}</span>
+                    <span className="text-xs text-[var(--muted)]">via {entry.source}</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] text-[var(--border-hover)]">{entry.date}</span>
+                  <span className="text-xs text-[var(--muted)]">{entry.date}</span>
                   <button
                     onClick={() => handleCopy(entry)}
-                    className="text-[10px] text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 opacity-0 group-hover:opacity-100"
+                    className="text-xs text-[var(--muted)] hover:text-[var(--text-pri)] transition-colors duration-150"
                   >
-                    {copied === entry.id ? '✓ copied' : 'copy'}
+                    {copied === entry.id ? 'Copied' : 'Copy'}
                   </button>
                 </div>
               </div>
@@ -417,8 +387,8 @@ export default function TIL() {
       </div>
 
       {filtered.length > 0 && (
-        <p className="text-[10px] text-[var(--border)]">
-          showing {filtered.length} of {entries.length} entries
+        <p className="text-xs text-[var(--muted)]">
+          Showing {filtered.length} of {entries.length} entries
           {activeTag !== 'all' && ` · filtered by #${activeTag}`}
           {search && ` · searching "${search}"`}
         </p>

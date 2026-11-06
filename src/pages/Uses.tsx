@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import SectionLabel from '../components/SectionLabel'
+import PageHeader from '../components/PageHeader'
 
 interface Item {
   name: string
@@ -10,14 +12,12 @@ interface Item {
 
 interface Category {
   label: string
-  emoji: string
   items: Item[]
 }
 
 const categories: Category[] = [
   {
     label: 'hardware',
-    emoji: '🖥️',
     items: [
       { name: 'MacBook Air M5', description: 'New main machine. Handles everything — dev, Lightroom, Figma, VS Code — completely silent even under load. The M5 chip is absurd for the size.', tag: 'daily driver', love: true },
       { name: 'MacBook Pro M1', description: 'Previous main machine. Still used as a secondary for heavier video editing and when I need two setups running.', tag: 'backup' },
@@ -32,7 +32,6 @@ const categories: Category[] = [
   },
   {
     label: 'development',
-    emoji: '💻',
     items: [
       { name: 'VS Code', description: 'Primary editor. Extensions: Prettier, ESLint, GitLens, Tailwind IntelliSense, Auto Rename Tag.', tag: 'editor', love: true, url: 'https://code.visualstudio.com' },
       { name: 'iTerm2 + zsh', description: 'Terminal setup with Oh My Zsh and custom aliases. Fast, themeable, and way better than the default.', tag: 'terminal', url: 'https://iterm2.com' },
@@ -54,7 +53,6 @@ const categories: Category[] = [
   },
   {
     label: 'design',
-    emoji: '🎨',
     items: [
       { name: 'Figma', description: 'UI design, wireframes, and component exploration. The browser-based part means I can work from anywhere.', tag: 'ui/ux', love: true, url: 'https://figma.com' },
       { name: 'Adobe Photoshop', description: 'Photo retouching, composites, and anything that needs pixel-level control.', tag: 'adobe', love: true },
@@ -71,7 +69,6 @@ const categories: Category[] = [
   },
   {
     label: 'productivity',
-    emoji: '⚡',
     items: [
       { name: 'Notion', description: 'Notes, project tracking, and dumping ground for ideas. My second brain.', tag: 'notes', love: true, url: 'https://notion.so' },
       { name: 'Arc Browser', description: 'Replaced Chrome entirely. Spaces keep freelance and uni work separated cleanly.', tag: 'browser', love: true, url: 'https://arc.net' },
@@ -81,7 +78,6 @@ const categories: Category[] = [
   },
   {
     label: 'ai & prompting',
-    emoji: '🤖',
     items: [
       { name: 'Claude', description: 'My primary AI collaborator — for code reviews, PRD drafting, architecture decisions, and deep prompt engineering. The model I reach for first when quality of output actually matters.', tag: 'llm', love: true, url: 'https://claude.ai' },
       { name: 'Claude Code', description: 'Agentic coding tool in the terminal. Handles full dev workflows — reads, edits, runs commands, and ships code with context of the whole codebase. Daily driver for serious implementation work.', tag: 'coding ai', love: true },
@@ -94,7 +90,6 @@ const categories: Category[] = [
   },
   {
     label: 'tools & platforms',
-    emoji: '🛠️',
     items: [
       { name: 'Microsoft Azure', description: 'Cloud platform for hosting, identity, and infrastructure. Working with Azure services across the full deployment lifecycle — from dev to preprod to production.', tag: 'cloud', love: true },
       { name: 'AWS', description: 'Cloud platform used for hosting and infrastructure on side projects — S3, EC2, and IAM basics.', tag: 'cloud' },
@@ -110,7 +105,6 @@ const categories: Category[] = [
   },
   {
     label: 'security learning',
-    emoji: '🛡️',
     items: [
       { name: 'Sigma', description: 'Vendor-neutral format for writing detection rules. I write each rule once as Sigma, then translate it to Splunk SPL and a Python detector, with every rule tagged to a MITRE ATT&CK technique.', tag: 'detection' },
       { name: 'Splunk SPL', description: 'Search language for the SIEM. So far I have written the searches for my lab detections; standing up Splunk Free to run them on real logs is the next step.', tag: 'siem' },
@@ -121,7 +115,6 @@ const categories: Category[] = [
   },
   {
     label: 'photography workflow',
-    emoji: '📷',
     items: [
       { name: 'Sony A6400', description: 'Primary shooter. Fast AF, clean 4K video, and small enough to travel light. Goes to every shoot.', tag: 'camera', love: true },
       { name: 'Adobe Lightroom', description: 'Primary editing and culling. Import → cull → edit → export. Every single shoot.', tag: 'core', love: true },
@@ -142,25 +135,23 @@ export default function Uses() {
   const visible = active === ALL ? categories : categories.filter(c => c.label === active)
 
   return (
-    <div className="space-y-8">
-      <header className="fade-up fade-up-1">
-        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Uses</h1>
-        <p className="text-[var(--text-sec)] text-sm">the full stack — hardware, software, design tools, and creative workflow</p>
-      </header>
+    <div className="space-y-10">
+      <PageHeader title="Uses" subtitle="The full stack: hardware, software, design tools, and creative workflow" />
 
-      {/* Filter tabs */}
-      <div className="fade-up fade-up-2 flex flex-wrap gap-2">
+      <div className="fade-up fade-up-2 flex flex-wrap gap-2" role="tablist" aria-label="Filter by category">
         {filters.map((f) => (
           <button
             key={f}
+            role="tab"
+            aria-selected={active === f}
             onClick={() => setActive(f)}
-            className="text-xs px-3 py-1.5 rounded-full border transition-all duration-150 capitalize"
+            className="text-xs px-3 py-2 rounded-lg border transition-colors duration-150 capitalize"
             style={active === f ? {
-              background: 'rgba(240,240,219,0.12)',
-              borderColor: 'var(--accent)',
-              color: 'var(--accent)',
+              background: 'rgba(var(--border-rgb),0.6)',
+              borderColor: 'var(--border-hover)',
+              color: 'var(--text-pri)',
             } : {
-              background: 'rgba(var(--bg-rgb),0.4)',
+              background: 'transparent',
               borderColor: 'var(--border)',
               color: 'var(--text-sec)',
             }}
@@ -170,63 +161,38 @@ export default function Uses() {
         ))}
       </div>
 
-      {/* Categories */}
-      <div className="space-y-8 fade-up fade-up-3">
+      <div className="space-y-12 fade-up fade-up-3">
         {visible.map((cat) => (
-          <section key={cat.label} className="space-y-3">
-            <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2">
-              <span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>
-              {cat.label}
-            </h2>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {cat.items.map((item) => (
-                <div
-                  key={item.name}
-                  className="group relative rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 space-y-1.5 transition-all duration-150 hover:-translate-y-0.5"
-                  style={{ background: 'rgba(var(--bg-rgb),0.45)' }}
-                >
-                  {/* Love badge */}
-                  {item.love && (
-                    <span className="absolute top-3 right-3 text-[10px] text-[var(--text-pri)]/50">★</span>
-                  )}
-
-                  <div className="flex items-center gap-2 pr-4">
-                    <p className="text-sm font-medium text-[var(--text-pri)]">{item.name}</p>
-                    {item.tag && (
-                      <span
-                        className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded border"
-                        style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.6)' }}
-                      >
-                        {item.tag}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-xs text-[var(--text-sec)] leading-relaxed">{item.description}</p>
-
-                  {item.url && (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[10px] text-[var(--muted)] hover:text-[var(--text-sec)] transition-colors duration-150"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {item.url.replace('https://', '').replace('www.', '')} ↗
-                    </a>
-                  )}
-                </div>
-              ))}
+          <section key={cat.label} className="grid md:grid-cols-[10rem_1fr] gap-4 md:gap-10">
+            <div className="md:sticky md:top-6 self-start">
+              <SectionLabel><span className="capitalize">{cat.label}</span></SectionLabel>
             </div>
+            <ul className="border-b border-[var(--border)]">
+              {cat.items.map((item) => (
+                <li key={item.name} className="border-t border-[var(--border)] py-4 grid sm:grid-cols-[13rem_1fr] gap-1 sm:gap-6 items-baseline">
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif text-lg text-[var(--text-pri)]">{item.name}</span>
+                    {item.love && <span className="text-xs text-[var(--gold)]" title="Daily favourite" aria-label="Daily favourite">★</span>}
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-[var(--text-sec)] leading-relaxed">{item.description}</p>
+                    <p className="text-xs text-[var(--muted)] flex items-center gap-3 flex-wrap">
+                      {item.tag && <span>{item.tag}</span>}
+                      {item.url && (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors duration-150">
+                          {item.url.replace('https://', '').replace('www.', '')} ↗
+                        </a>
+                      )}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </section>
         ))}
       </div>
 
-      {/* Legend */}
-      <p className="fade-up fade-up-4 text-[10px] text-[var(--border)] flex items-center gap-2">
-        <span className="text-[var(--text-pri)]/40">★</span>
-        <span>= daily favourite</span>
-      </p>
+      <p className="fade-up fade-up-4 text-xs text-[var(--muted)]"><span className="text-[var(--gold)]">★</span> Daily favourite</p>
     </div>
   )
 }

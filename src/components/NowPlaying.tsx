@@ -41,16 +41,12 @@ export function NowPlaying() {
       className="flex items-center gap-4 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 transition-colors duration-150"
       style={{ background: 'rgba(var(--bg-rgb),0.6)' }}
     >
-      {/* Album art */}
-      <div className="relative shrink-0 w-12 h-12 rounded-lg overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a2e, #16213e)' }}>
+            <div className="relative shrink-0 w-12 h-12 rounded-lg overflow-hidden" style={{ background: 'rgba(var(--border-rgb),0.6)' }}>
         <img src={albumArt} alt="Album art" className="absolute inset-0 w-full h-full object-cover" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-        {isPlaying && (
-          <div className="absolute inset-0 rounded-lg border border-[var(--accent)]/30" style={{ animation: 'pulseRing 2s ease-out infinite' }} />
-        )}
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-0.5">
-          {isPlaying ? 'currently listening' : 'last played'}
+        <p className="text-xs text-[var(--muted)] mb-1">
+          {isPlaying ? 'Currently listening' : 'Last played'}
         </p>
         <p className="text-sm font-medium text-[var(--text-pri)] truncate">{title}</p>
         <p className="text-xs text-[var(--text-sec)] truncate">{artist} · {album}</p>

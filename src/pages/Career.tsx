@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import PageHeader from '../components/PageHeader'
 
 interface Milestone {
   title: string
@@ -147,15 +147,8 @@ const timeline: Milestone[] = [
   },
 ]
 
-const TYPE_CONFIG = {
-  education:  { color: '#60a5fa', bg: 'rgba(96,165,250,0.1)',  border: 'rgba(96,165,250,0.2)',  label: 'education',  dot: '#60a5fa' },
-  internship: { color: '#c084fc', bg: 'rgba(192,132,252,0.1)', border: 'rgba(192,132,252,0.2)', label: 'internship', dot: '#c084fc' },
-  freelance:  { color: '#4ade80', bg: 'rgba(74,222,128,0.1)',  border: 'rgba(74,222,128,0.2)',  label: 'freelance',  dot: '#4ade80' },
-  work: { color: '#bb5428ff', bg: 'rgba(145, 77, 32, 0.1)', border: 'rgba(162, 109, 61, 0.2)', label: 'work', dot: '#c44c4cff' },
-  milestone:  { color: '#fbbf24', bg: 'rgba(251,191,36,0.1)',  border: 'rgba(251,191,36,0.2)',  label: 'milestone',  dot: '#fbbf24' },
-}
-
 const FILTERS = ['all', 'education', 'internship', 'freelance', 'work', 'milestone'] as const
+
 export default function Career() {
   const [filter, setFilter] = useState<typeof FILTERS[number]>('all')
   const [expanded, setExpanded] = useState<number | null>(null)
@@ -165,201 +158,122 @@ export default function Career() {
   const stats = [
     { value: timeline.filter(t => t.type === 'internship').length, label: 'internships' },
     { value: timeline.filter(t => t.type === 'freelance').length,  label: 'freelance roles' },
-    { value: timeline.filter(t => t.type === 'work').length,  label: 'work roles' },
-    { value: new Date().getFullYear() - 2018, label: 'yrs experience' },
+    { value: timeline.filter(t => t.type === 'work').length,       label: 'work roles' },
+    { value: new Date().getFullYear() - 2018,                      label: 'yrs experience' },
   ]
 
   return (
-    <div className="space-y-8">
-
-      {/* Header */}
-      <header className="fade-up fade-up-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Career</h1>
-            <p className="text-[var(--text-sec)] text-sm">education, work, and milestones — newest first</p>
-          </div>
+    <div className="space-y-10">
+      <PageHeader
+        title="Career"
+        subtitle="Education, work, and milestones, newest first"
+        meta={stats.map(({ value, label }) => `${value} ${label}`).join(' · ')}
+        action={
           <a
             href="/AmirulHakimiCV.pdf"
             download="AmirulHakimiCV.pdf"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--border-hover)] text-xs text-[var(--text-sec)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all duration-150 shrink-0 mt-1"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--border)] text-xs text-[var(--text-pri)] hover:border-[var(--border-hover)] transition-colors duration-150"
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            download cv
+            Download CV
           </a>
-        </div>
-      </header>
+        }
+      />
 
-      {/* Stats */}
-      <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
-        {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
-            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Filter tabs */}
-      <div className="fade-up fade-up-3 flex flex-wrap gap-2">
+      <div className="fade-up fade-up-3 flex flex-wrap gap-2" role="tablist" aria-label="Filter by type">
         {FILTERS.map((f) => {
-          const cfg = f !== 'all' ? TYPE_CONFIG[f] : null
           const count = f === 'all' ? timeline.length : timeline.filter(t => t.type === f).length
+          const active = filter === f
           return (
             <button
               key={f}
+              role="tab"
+              aria-selected={active}
               onClick={() => setFilter(f)}
-              className="text-[10px] px-3 py-1.5 rounded-full border capitalize transition-all duration-150 flex items-center gap-1.5"
-              style={filter === f ? {
-                background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
-                borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : 'var(--accent)',
+              className="text-xs px-3 py-2 rounded-lg border capitalize transition-colors duration-150"
+              style={active ? {
+                background: 'rgba(var(--border-rgb),0.6)',
+                borderColor: 'var(--border-hover)',
+                color: 'var(--text-pri)',
               } : {
-                background: 'rgba(var(--bg-rgb),0.3)',
+                background: 'transparent',
                 borderColor: 'var(--border)',
-                color: 'var(--muted)',
+                color: 'var(--text-sec)',
               }}
             >
-              {cfg && <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: cfg.dot }} />}
-              {f} <span className="opacity-50">{count}</span>
+              {f} <span className="text-[var(--muted)] tabular-nums">{count}</span>
             </button>
           )
         })}
       </div>
 
-      {/* Timeline */}
-      <div className="fade-up fade-up-4 relative">
-        {/* Vertical line */}
-        <div
-          className="absolute left-[18px] top-0 bottom-0 w-px hidden sm:block"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent)' }}
-        />
-
-        <div className="space-y-3">
-          {visible.map((item, i) => {
-            const cfg = TYPE_CONFIG[item.type]
-            const isOpen = expanded === i
-
-            return (
-              <motion.div
-                key={i}
-                className="sm:pl-10 relative"
-                initial={{ opacity: 0, y: 48, scale: 0.97 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+      <ol className="fade-up fade-up-4 border-b border-[var(--border)]">
+        {visible.map((item, i) => {
+          const isOpen = expanded === i
+          return (
+            <li key={i} className="border-t border-[var(--border)]">
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                onClick={() => setExpanded(isOpen ? null : i)}
+                className="w-full text-left grid md:grid-cols-[11rem_1fr_6rem] gap-1 md:gap-6 py-5 items-baseline cursor-pointer group"
               >
-                {/* Timeline dot */}
-                <div
-                  className="absolute left-[13px] top-5 w-2.5 h-2.5 rounded-full border-2 hidden sm:block"
-                  style={{
-                    background: item.current ? cfg.dot : 'var(--bg)',
-                    borderColor: cfg.dot,
-                    boxShadow: item.current ? `0 0 8px ${cfg.dot}` : 'none',
-                  }}
-                />
-
-                <div
-                  className="border rounded-xl transition-all duration-200 overflow-hidden cursor-pointer"
-                  style={{
-                    borderColor: isOpen ? cfg.border : 'var(--border)',
-                    background: isOpen ? cfg.bg : 'rgba(var(--bg-rgb),0.45)',
-                  }}
-                  onClick={() => setExpanded(isOpen ? null : i)}
-                >
-                  {/* Card header — always visible */}
-                  <div className="p-4 flex gap-4">
-                    {/* Logo */}
-                    <div
-                      className="w-10 h-10 rounded-lg border flex items-center justify-center text-xs font-semibold shrink-0 overflow-hidden"
-                      style={{ background: item.logo ? '#ffffff' : cfg.bg, borderColor: cfg.border, color: cfg.color }}
-                    >
-                      {item.logo ? (
-                        <img src={item.logo} alt={item.organization} className="w-full h-full object-contain p-0.5" loading="lazy" />
-                      ) : (
-                        item.logoInitials ?? item.organization[0]
-                      )}
-                    </div>
-
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <div className="flex items-start justify-between gap-3 flex-wrap">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h2 className="text-sm font-medium text-[var(--text-pri)] leading-snug">{item.title}</h2>
-                          {item.current && (
-                            <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full"
-                              style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80', border: '1px solid rgba(74,222,128,0.2)' }}>
-                              <span className="w-1 h-1 rounded-full bg-green-400 animate-pulse" />
-                              active
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2 shrink-0">
-                          <span
-                            className="text-[10px] px-2 py-0.5 rounded-full capitalize"
-                            style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}
-                          >
-                            {item.type}
-                          </span>
-                          <span
-                            className="text-[var(--border-hover)] transition-transform duration-200 text-xs"
-                            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                          >
-                            ▾
-                          </span>
-                        </div>
-                      </div>
-                      <p className="text-xs" style={{ color: cfg.color }}>{item.organization} · {item.period}</p>
-                    </div>
-                  </div>
-
-                  {/* Expandable body */}
-                  <div
-                    className="overflow-hidden transition-all duration-300"
-                    style={{ maxHeight: isOpen ? '500px' : '0px' }}
+                <span className="text-xs tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                  {item.period}
+                </span>
+                <span className="flex gap-4 items-center min-w-0">
+                  <span
+                    className="w-10 h-10 rounded-lg border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
+                    style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
                   >
-                    <div className="px-4 pb-4 space-y-3 border-t" style={{ borderColor: cfg.border }}>
-                      <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{item.description}</p>
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5">
-                          {item.tags.map(tag => (
-                            <span
-                              key={tag}
-                              className="text-[10px] px-2 py-0.5 rounded border"
-                              style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.5)' }}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                    {item.logo ? (
+                      <img src={item.logo} alt="" className="w-full h-full object-contain p-0.5" loading="lazy" />
+                    ) : (
+                      item.logoInitials ?? item.organization[0]
+                    )}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-serif text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
+                      {item.title}
+                      {item.current && (
+                        <span className="ml-3 inline-flex items-center gap-2 text-xs font-sans text-[var(--sec)]">
+                          <span className="sec-dot" aria-hidden="true" />
+                          Active
+                        </span>
                       )}
+                    </span>
+                    <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
+                  </span>
+                </span>
+                <span className="flex items-center justify-between md:justify-end gap-3 text-xs text-[var(--muted)]">
+                  <span className="capitalize">{item.type}</span>
+                  <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
+                </span>
+              </button>
+
+              {isOpen && (
+                <div className="md:pl-[12.5rem] pb-6 space-y-3 max-w-prose">
+                  <p className="text-sm text-[var(--text-sec)] leading-relaxed">{item.description}</p>
+                  {item.tags && item.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map(tag => (
+                        <span
+                          key={tag}
+                          className="text-xs px-2 py-1 rounded border text-[var(--text-sec)]"
+                          style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                  </div>
+                  )}
                 </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
+              )}
+            </li>
+          )
+        })}
+      </ol>
 
-      {/* Legend */}
-      <div className="fade-up fade-up-5 flex flex-wrap gap-4 pt-2">
-        {Object.entries(TYPE_CONFIG).map(([type, cfg]) => (
-          <div key={type} className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full" style={{ background: cfg.dot }} />
-            <span className="text-[10px] text-[var(--muted)] capitalize">{type}</span>
-          </div>
-        ))}
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-[10px] text-[var(--muted)]">active / ongoing</span>
-        </div>
-      </div>
-
-      <p className="fade-up fade-up-6 text-[10px] text-[var(--border)]">click any card to expand · {timeline.length} entries total</p>
+      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Select an entry to expand · {timeline.length} total</p>
     </div>
   )
 }

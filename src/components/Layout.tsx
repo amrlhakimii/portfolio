@@ -1,328 +1,12 @@
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Container from './Container'
 
 interface LayoutProps {
   children: ReactNode
-}
-
-// ── Gradient mesh blobs ──────────────────────────────────────────────────────
-function GradientMesh() {
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div style={{
-        position: 'absolute', width: '700px', height: '700px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(13,148,136,0.09) 0%, transparent 70%)',
-        top: '5%', left: '15%',
-        animation: 'blobMove1 14s ease-in-out infinite',
-        filter: 'blur(50px)',
-      }} />
-      <div style={{
-        position: 'absolute', width: '550px', height: '550px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(127,184,184,0.05) 0%, transparent 70%)',
-        top: '40%', right: '10%',
-        animation: 'blobMove2 18s ease-in-out infinite',
-        filter: 'blur(60px)',
-      }} />
-      <div style={{
-        position: 'absolute', width: '450px', height: '450px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(13,148,136,0.05) 0%, transparent 70%)',
-        bottom: '10%', left: '25%',
-        animation: 'blobMove3 22s ease-in-out infinite',
-        filter: 'blur(70px)',
-      }} />
-      <div style={{
-        position: 'absolute', width: '350px', height: '350px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(13,148,136,0.04) 0%, transparent 70%)',
-        top: '60%', left: '5%',
-        animation: 'blobMove2 26s ease-in-out infinite reverse',
-        filter: 'blur(55px)',
-      }} />
-    </div>
-  )
-}
-
-// ── Noise / film grain overlay ────────────────────────────────────────────────
-function NoiseOverlay() {
-  return (
-    <div
-      className="pointer-events-none fixed inset-0 z-0"
-      style={{
-        opacity: 0.035,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: '200px 200px',
-      }}
-    />
-  )
-}
-
-// ── Cursor glow ───────────────────────────────────────────────────────────────
-function CursorGlow() {
-  const glowRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = glowRef.current
-    if (!el) return
-    const handler = (e: MouseEvent) => {
-      el.style.setProperty('--x', `${e.clientX}px`)
-      el.style.setProperty('--y', `${e.clientY}px`)
-    }
-    window.addEventListener('mousemove', handler, { passive: true })
-    return () => window.removeEventListener('mousemove', handler)
-  }, [])
-  return (
-    <div
-      ref={glowRef}
-      className="pointer-events-none fixed inset-0 z-0"
-      style={{
-        background: 'radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(13,148,136,0.08) 0%, transparent 70%)',
-      }}
-    />
-  )
-}
-
-// ── Cursor trail (canvas) ─────────────────────────────────────────────────────
-function CursorTrail() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const trail: Array<{ x: number; y: number; age: number }> = []
-    const onMove = (e: MouseEvent) => {
-      trail.push({ x: e.clientX, y: e.clientY, age: 0 })
-      if (trail.length > 18) trail.shift()
-    }
-    window.addEventListener('mousemove', onMove, { passive: true })
-
-    let raf: number
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      for (let i = trail.length - 1; i >= 0; i--) {
-        trail[i].age += 0.04
-        if (trail[i].age >= 1) { trail.splice(i, 1); continue }
-        const alpha = (1 - trail[i].age) * 0.45
-        const size = (1 - trail[i].age) * 3.5
-        ctx.beginPath()
-        ctx.arc(trail[i].x, trail[i].y, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(13,148,136,${alpha})`
-        ctx.fill()
-      }
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('resize', resize)
-      cancelAnimationFrame(raf)
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 z-[60]" />
-}
-
-// ── Scroll-driven background rings ───────────────────────────────────────────
-function ScrollRings() {
-  const { scrollY } = useScroll()
-
-  const r1y      = useTransform(scrollY, [0, 3000], [0,  -500])
-  const r1rotate = useTransform(scrollY, [0, 3000], [0,   40])
-  const r2y      = useTransform(scrollY, [0, 3000], [0,   260])
-  const r2rotate = useTransform(scrollY, [0, 3000], [0,  -25])
-  const r3y      = useTransform(scrollY, [0, 3000], [0,  -180])
-
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Large ring — top-left, drifts up + rotates */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: '90vw', height: '90vw',
-          maxWidth: 920, maxHeight: 920,
-          left: '-28%', top: '-8%',
-          border: '1px solid rgba(13,148,136,0.08)',
-          y: r1y,
-          rotate: r1rotate,
-        }}
-      />
-      {/* Medium ring — right side, drifts down */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: '60vw', height: '60vw',
-          maxWidth: 650, maxHeight: 650,
-          right: '-18%', top: '28%',
-          border: '1px solid rgba(13,148,136,0.06)',
-          y: r2y,
-          rotate: r2rotate,
-        }}
-      />
-      {/* Small ring — bottom center, slow drift */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: '38vw', height: '38vw',
-          maxWidth: 440, maxHeight: 440,
-          left: '15%', bottom: '-6%',
-          border: '1px solid rgba(13,148,136,0.05)',
-          y: r3y,
-        }}
-      />
-    </div>
-  )
-}
-
-// ── Dot grid ──────────────────────────────────────────────────────────────────
-function DotGrid() {
-  return (
-    <div
-      className="pointer-events-none fixed inset-0 z-0 opacity-20"
-      style={{
-        backgroundImage: 'radial-gradient(circle, rgba(45,74,74,0.6) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-      }}
-    />
-  )
-}
-
-// ── Top ticker ────────────────────────────────────────────────────────────────
-const TICKER_ITEMS = [
-  'Joining ExxonMobil · Cybersecurity Technologist - Advanced · Dec 2026',
-  'Previously Software Engineer @ Workforce AI, The Access Group',
-  'Freelance Full-Stack Dev · open to projects',
-  'Based in Jitra, Kedah · Malaysia',
-  'React · TypeScript · Node.js · Supabase · Firebase',
-  'Prompt Engineering · AI-assisted workflows',
-  'Sigma · Splunk SPL · MITRE ATT&CK · Python',
-  'Photographer since 2018',
-  'Founder of Blugrafix',
-  'Arsenal FC 🔴',
-  'Mercedes AMG F1 🏎️',
-  'CGPA 3.76',
-  'npm run dev',
-  'git push origin main',
-]
-
-function Ticker() {
-  const items = [...TICKER_ITEMS, ...TICKER_ITEMS]
-  return (
-    <div
-      className="fixed top-0 left-0 right-0 z-40 overflow-hidden flex items-center"
-      style={{
-        height: '28px',
-        background: 'rgba(var(--bg-rgb), 0.85)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(var(--border-rgb), 0.2)',
-      }}
-    >
-      <span
-        className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 pl-3 pr-4 text-[10px] tracking-widest"
-        style={{ fontFamily: 'monospace', color: 'var(--sec)', background: 'linear-gradient(to right, var(--bg) 70%, transparent)' }}
-      >
-        <span className="sec-dot" />
-        SOC // ONLINE
-      </span>
-      <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeLeft 35s linear infinite', alignItems: 'center' }}>
-        {items.map((item, i) => (
-          <span key={i} style={{ fontFamily: 'monospace', color: 'var(--muted)' }} className="text-[10px] px-5 whitespace-nowrap">
-            {item}
-            <span className="mx-3" style={{ fontFamily: 'monospace', color: 'var(--border-hover)' }}>//</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// ── Side decorations ──────────────────────────────────────────────────────────
-const leftSymbols = [
-  { left: '2.5%',  delay: '0s',    duration: '3.0s', size: '1.1rem', opacity: 0.55, symbol: '0x41'  },
-  { left: '6%',    delay: '1.3s',  duration: '4.2s', size: '0.95rem', opacity: 0.4, symbol: 'SSH'  },
-  { left: '9.5%',  delay: '2.7s',  duration: '2.6s', size: '1.0rem', opacity: 0.5,  symbol: '::1'   },
-  { left: '1%',    delay: '4.1s',  duration: '3.6s', size: '0.9rem', opacity: 0.35, symbol: 'TLS'   },
-  { left: '7%',    delay: '0.6s',  duration: '5.0s', size: '0.95rem', opacity: 0.3, symbol: 'XOR'  },
-]
-
-const leftCodeLines = [
-  { left: '11%',  delay: '0s',    duration: '16s', text: 'nmap -sV 10.0.0.0/24',           opacity: 0.22 },
-  { left: '14%',  delay: '5s',    duration: '20s', text: 'tcpdump -i en0 port 53',  opacity: 0.18 },
-  { left: '17%',  delay: '10s',   duration: '14s', text: 'alert: LSASS memory access',      opacity: 0.20 },
-  { left: '12%',  delay: '3s',    duration: '22s', text: 'sha256sum payload.bin', opacity: 0.15 },
-  { left: '15%',  delay: '8s',    duration: '18s', text: 'grep 4688 sysmon.jsonl',       opacity: 0.17 },
-  { left: '13%',  delay: '14s',   duration: '13s', text: 'T1059.001 · execution',       opacity: 0.20 },
-  { left: '16%',  delay: '17s',   duration: '19s', text: 'sudo journalctl -u sshd',    opacity: 0.14 },
-]
-
-const rightSymbols = [
-  { right: '2%',   delay: '0.4s',  duration: '3.4s', symbol: '>_',  size: '1.0rem', opacity: 0.55, anim: 'launchUp'   },
-  { right: '6%',   delay: '1.8s',  duration: '4.8s', symbol: '0day',  size: '0.9rem', opacity: 0.4,  anim: 'launchUp'   },
-  { right: '10%',  delay: '3.2s',  duration: '2.9s', symbol: 'CVE',  size: '1.0rem', opacity: 0.5,  anim: 'launchUp'   },
-  { right: '4%',   delay: '5.5s',  duration: '3.8s', symbol: 'EDR',   size: '1.1rem', opacity: 0.35, anim: 'launchUp'   },
-  { right: '8%',   delay: '2.5s',  duration: '6.0s', symbol: '✦',   size: '1.0rem', opacity: 0.4,  anim: 'floatDrift' },
-  { right: '3.5%', delay: '1.0s',  duration: '5.5s', symbol: 'IOC',   size: '1.1rem', opacity: 0.3,  anim: 'floatDrift' },
-  { right: '11%',  delay: '4.0s',  duration: '7.0s', symbol: '✦',   size: '0.9rem', opacity: 0.25, anim: 'floatDrift' },
-]
-
-const rightDesignTokens = [
-  { right: '11%',  delay: '2s',    duration: '17s', text: 'CVE-2024-3094',              opacity: 0.22 },
-  { right: '14%',  delay: '7s',    duration: '21s', text: 'deny tcp any any eq 23',  opacity: 0.18 },
-  { right: '17%',  delay: '1s',    duration: '15s', text: 'event_id: 10',      opacity: 0.20 },
-  { right: '12%',  delay: '12s',   duration: '19s', text: 'src=185.220.x.x',         opacity: 0.15 },
-  { right: '15%',  delay: '6s',    duration: '24s', text: 'severity: CRITICAL',            opacity: 0.17 },
-  { right: '13%',  delay: '16s',   duration: '14s', text: 'MFA: enforced',         opacity: 0.20 },
-  { right: '16%',  delay: '9s',    duration: '20s', text: 'IOC: comsvcs MiniDump',          opacity: 0.14 },
-]
-
-function SideDecorations() {
-  return (
-    <div className="pointer-events-none select-none hidden lg:block">
-      {leftSymbols.map((sym, i) => (
-        <span key={`sym-${i}`} className="fixed top-0 z-0" style={{
-          left: sym.left, fontSize: sym.size, opacity: sym.opacity,
-          fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 600,
-          animation: `raceDown ${sym.duration} linear infinite`,
-          animationDelay: sym.delay,
-        }}>{sym.symbol}</span>
-      ))}
-      {leftCodeLines.map((line, i) => (
-        <span key={`code-${i}`} className="fixed top-0 z-0" style={{
-          left: line.left, opacity: line.opacity, fontSize: '10px',
-          fontFamily: 'monospace', color: 'var(--sec)', whiteSpace: 'nowrap',
-          animation: `driftDown ${line.duration} linear infinite`,
-          animationDelay: line.delay,
-          writingMode: 'vertical-rl', textOrientation: 'mixed',
-        }}>{line.text}</span>
-      ))}
-      {rightSymbols.map((sym, i) => (
-        <span key={`rsym-${i}`} className="fixed top-0 z-0" style={{
-          right: sym.right, fontSize: sym.size, opacity: sym.opacity,
-          fontFamily: 'monospace', color: 'var(--text-sec)', fontWeight: 600,
-          animation: `${sym.anim} ${sym.duration} linear infinite`,
-          animationDelay: sym.delay,
-        }}>{sym.symbol}</span>
-      ))}
-      {rightDesignTokens.map((token, i) => (
-        <span key={`token-${i}`} className="fixed top-0 z-0" style={{
-          right: token.right, opacity: token.opacity, fontSize: '10px',
-          fontFamily: 'monospace', color: 'var(--text-sec)', whiteSpace: 'nowrap',
-          animation: `driftDown ${token.duration} linear infinite`,
-          animationDelay: token.delay,
-          writingMode: 'vertical-rl', textOrientation: 'mixed',
-        }}>{token.text}</span>
-      ))}
-    </div>
-  )
 }
 
 // ── Easter egg (canvas confetti) ──────────────────────────────────────────────
@@ -345,12 +29,12 @@ function EasterEgg() {
     const trigger = (isArsenal: boolean) => {
       if (activeRef.current) return
       activeRef.current = true
-      const msg = isArsenal ? '⚽ COYG! Come On You Gunners! 🔴' : "👋 hey, that's me!"
+      const msg = isArsenal ? 'COYG, Come On You Gunners' : "Hey, that's me"
       setMessage(msg)
 
       const colors = isArsenal
-        ? ['#ef4444', '#ffffff', '#dc2626', '#fef2f2', '#f97316']
-        : ['#38bdf8', '#a78bfa', '#f9a8d4', '#ffffff', '#34d399']
+        ? ['#ef0107', '#ffffff', '#d2b06a', '#063672']
+        : ['#f0f0db', '#e1d9bc', '#acbac4', '#98a1b6']
 
       const particles = Array.from({ length: 120 }, () => ({
         x: Math.random() * canvas.width,
@@ -420,13 +104,11 @@ function EasterEgg() {
           <div style={{
             background: 'rgba(var(--bg-rgb), 0.92)',
             border: '1px solid rgba(var(--border-rgb), 0.4)',
-            backdropFilter: 'blur(20px)',
-            padding: '18px 36px',
+                        padding: '18px 36px',
             borderRadius: '16px',
-            animation: 'fadeUp 0.3s ease forwards',
-          }}>
+                      }}>
             <p className="text-xl font-semibold text-[var(--text-pri)] text-center">{message}</p>
-            <p className="text-xs text-[var(--muted)] text-center mt-1">you found an easter egg 🥚</p>
+            <p className="text-xs text-[var(--muted)] text-center mt-1">You found an easter egg</p>
           </div>
         </div>
       )}
@@ -440,16 +122,8 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="relative min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text-pri)' }}>
-      <DotGrid />
-      <ScrollRings />
-      <GradientMesh />
-      <NoiseOverlay />
-      <div className="scanlines" aria-hidden="true" />
-      <CursorGlow />
-      <CursorTrail />
-      <SideDecorations />
-      <Ticker />
       <EasterEgg />
+      <div className="fixed top-0 left-0 right-0 z-50 h-1" style={{ background: 'var(--accent-fill)' }} aria-hidden="true" />
 
       <div className="relative z-10">
         <AnimatePresence mode="wait">
@@ -457,8 +131,8 @@ export default function Layout({ children }: LayoutProps) {
             key={location.pathname}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
           >
             <Container>{children}</Container>
           </motion.div>

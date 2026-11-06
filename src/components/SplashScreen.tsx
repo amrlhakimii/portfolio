@@ -36,17 +36,17 @@ const FRAMES: { text: string; hold: number }[] = [
 ]
 
 const CHAR_COLOR: Record<number, string> = {
-  0: '#c792ea', 1: '#c792ea', 2: '#c792ea', 3: '#c792ea', 4: '#c792ea',
-  5: '#3a4060',
-  6: '#82aaff', 7: '#82aaff', 8: '#82aaff',
-  9: '#3a4060', 10: '#89ddff', 11: '#3a4060',
+  0: '#ff4b4b', 1: '#ff4b4b', 2: '#ff4b4b', 3: '#ff4b4b', 4: '#ff4b4b',
+  5: '#98a1b6',
+  6: '#acbac4', 7: '#acbac4', 8: '#acbac4',
+  9: '#98a1b6', 10: '#98a1b6', 11: '#98a1b6',
 }
 
 function Highlighted({ text }: { text: string }) {
   return (
     <>
       {Array.from(text).map((char, i) => (
-        <span key={i} style={{ color: i >= 12 ? '#c3e88d' : (CHAR_COLOR[i] ?? '#e1d9bc') }}>
+        <span key={i} style={{ color: i >= 12 ? '#e1d9bc' : (CHAR_COLOR[i] ?? '#e1d9bc') }}>
           {char}
         </span>
       ))}
@@ -151,7 +151,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center"
       style={{
-        background: '#0d1117',
+        background: '#0a1a33',
         opacity: fading ? 0 : 1,
         transition: `opacity ${FADE_MS}ms ease`,
         pointerEvents: fading ? 'none' : 'auto',
@@ -159,32 +159,11 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
       }}
       onClick={handleStart}
     >
-      {/* Dot grid */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          opacity: 0.1,
-          backgroundImage: 'radial-gradient(circle, rgba(172,186,196,0.25) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          width: '600px', height: '180px',
-          background: 'radial-gradient(ellipse, rgba(130,170,255,0.07) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-
       <div
         className="relative z-10 select-none flex flex-col items-center gap-6"
         style={{ fontFamily: "ui-monospace, 'Cascadia Code', 'Courier New', monospace" }}
       >
-        {/* Logo — always spinning */}
-        <div style={{ perspective: '600px' }}>
+        <div>
           <img
             src="/logo.png"
             alt="logo"
@@ -192,7 +171,6 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
               width: '120px',
               height: '120px',
               objectFit: 'contain',
-              animation: 'coin-spin 3s linear infinite',
               filter: 'invert(1)',
             }}
           />
@@ -202,7 +180,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
           /* Idle — waiting for interaction */
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-2">
-              <span style={{ color: '#3a4060', fontSize: 'clamp(0.85rem, 3.5vw, 1.45rem)' }}>{'>'}</span>
+              <span style={{ color: '#98a1b6', fontSize: 'clamp(0.85rem, 3.5vw, 1.45rem)' }}>{'>'}</span>
               <span
                 style={{
                   display: 'inline-block',
@@ -216,31 +194,20 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
             </div>
             <span
               style={{
-                fontSize: 'clamp(0.55rem, 1.8vw, 0.7rem)',
-                color: '#2a3050',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                color: '#98a1b6',
               }}
             >
-              press any key
+              Press any key
             </span>
           </div>
         ) : (
           /* Typing */
           <>
             <div className="relative flex items-center gap-6">
-              <div
-                className="absolute"
-                style={{
-                  inset: '-10px -20px',
-                  background: 'rgba(130,170,255,0.04)',
-                  borderRadius: '6px',
-                  border: '1px solid rgba(130,170,255,0.06)',
-                }}
-              />
               <span
                 className="relative shrink-0 tabular-nums"
-                style={{ color: '#2a3050', fontSize: 'clamp(0.75rem, 2.5vw, 1rem)' }}
+                style={{ color: '#98a1b6', fontSize: 'clamp(0.75rem, 2.5vw, 1rem)' }}
               >
                 1
               </span>
@@ -264,13 +231,11 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
             </div>
             <span
               style={{
-                fontSize: 'clamp(0.6rem, 2vw, 0.75rem)',
-                color: '#2a3050',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                color: '#98a1b6',
               }}
             >
-              personal portfolio
+              Personal portfolio
             </span>
           </>
         )}

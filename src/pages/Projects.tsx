@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import SectionLabel from '../components/SectionLabel'
+import PageHeader from '../components/PageHeader'
 
 interface Project {
   title: string
@@ -327,207 +328,183 @@ const projects: Project[] = [
   },
 ]
 
-const CATEGORY_CONFIG = {
-  software: { color: '#60a5fa', bg: 'rgba(96,165,250,0.1)',  border: 'rgba(96,165,250,0.2)',  label: 'software' },
-  ai:       { color: '#c084fc', bg: 'rgba(192,132,252,0.1)', border: 'rgba(192,132,252,0.2)', label: 'ai' },
-  design:   { color: '#4ade80', bg: 'rgba(74,222,128,0.1)',  border: 'rgba(74,222,128,0.2)',  label: 'design' },
-}
+const CATEGORY_LABEL = { software: 'Software', ai: 'AI', design: 'Design' } as const
 
+// Status is the only semantic color on this page, toned to sit in the palette.
 const STATUS_CONFIG = {
-  'shipped':     { color: '#4ade80', bg: 'rgba(74,222,128,0.1)',  border: 'rgba(74,222,128,0.2)',  dot: true  },
-  'in progress': { color: '#fbbf24', bg: 'rgba(251,191,36,0.1)',  border: 'rgba(251,191,36,0.2)',  dot: true  },
-  'wip':         { color: '#f97316', bg: 'rgba(249,115,22,0.1)',   border: 'rgba(249,115,22,0.2)',  dot: false },
+  'shipped':     { color: 'var(--sec)', label: 'Shipped' },
+  'in progress': { color: '#d4a64a',    label: 'In progress' },
+  'wip':         { color: '#c9824a',    label: 'Work in progress' },
 }
 
 const FILTERS = ['all', 'software', 'ai', 'design'] as const
+
+const linkClass = 'inline-flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[var(--border)] text-[var(--text-pri)] hover:border-[var(--border-hover)] transition-colors duration-150'
 
 export default function Projects() {
   const [filter, setFilter] = useState<typeof FILTERS[number]>('all')
   const [expanded, setExpanded] = useState<string | null>(null)
 
   const visible = filter === 'all' ? projects : projects.filter(p => p.category === filter)
+  // Projects with a screenshot lead, featured first. Everything else follows as compact rows.
+  const showcase = visible.filter(p => p.image).sort((a, b) => Number(!!b.featured) - Number(!!a.featured))
+  const rest = [...visible.filter(p => !p.image)].sort((a, b) => Number(!!b.featured) - Number(!!a.featured))
 
   const stats = [
-    { value: projects.length,                                              label: 'total' },
-    { value: projects.filter(p => p.status === 'shipped').length,         label: 'shipped' },
-    { value: projects.filter(p => p.status === 'in progress').length,     label: 'in progress' },
-    { value: projects.filter(p => p.featured).length,                     label: 'featured' },
+    { value: projects.length,                                          label: 'total' },
+    { value: projects.filter(p => p.status === 'shipped').length,     label: 'shipped' },
+    { value: projects.filter(p => p.status === 'in progress').length, label: 'in progress' },
+    { value: projects.filter(p => p.featured).length,                 label: 'featured' },
   ]
 
   return (
     <div className="space-y-8">
 
-      {/* Header */}
-      <header className="fade-up fade-up-1">
-        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Projects</h1>
-        <p className="text-[var(--text-sec)] text-sm">things i've built, shipped, or abandoned at 90%</p>
-      </header>
+      <PageHeader title="Projects" subtitle="Things I've built, shipped, or abandoned at 90%" meta={stats.map(({ value, label }) => `${value} ${label}`).join(' · ')} />
 
-      {/* Stats */}
-      <section className="fade-up fade-up-2 grid grid-cols-4 gap-2">
-        {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[var(--border)] p-3 text-center" style={{ background: 'rgba(var(--bg-rgb),0.4)' }}>
-            <p className="text-lg font-semibold text-[var(--accent)]">{value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-[var(--muted)] mt-0.5">{label}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Filter tabs */}
-      <div className="fade-up fade-up-3 flex flex-wrap gap-2">
+      <div className="fade-up fade-up-3 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">
         {FILTERS.map((f) => {
-          const cfg = f !== 'all' ? CATEGORY_CONFIG[f] : null
           const count = f === 'all' ? projects.length : projects.filter(p => p.category === f).length
+          const active = filter === f
           return (
             <button
               key={f}
+              role="tab"
+              aria-selected={active}
               onClick={() => setFilter(f)}
-              className="text-[10px] px-3 py-1.5 rounded-full border capitalize transition-all duration-150 flex items-center gap-1.5"
-              style={filter === f ? {
-                background: cfg ? cfg.bg : 'rgba(240,240,219,0.1)',
-                borderColor: cfg ? cfg.border : 'rgba(240,240,219,0.2)',
-                color: cfg ? cfg.color : 'var(--accent)',
+              className="text-xs px-3 py-2 rounded-lg border capitalize transition-colors duration-150"
+              style={active ? {
+                background: 'rgba(var(--border-rgb),0.6)',
+                borderColor: 'var(--border-hover)',
+                color: 'var(--text-pri)',
               } : {
-                background: 'rgba(var(--bg-rgb),0.3)',
+                background: 'transparent',
                 borderColor: 'var(--border)',
-                color: 'var(--muted)',
+                color: 'var(--text-sec)',
               }}
             >
-              {cfg && <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: cfg.color }} />}
-              {f} <span className="opacity-50">{count}</span>
+              {f === 'ai' ? 'AI' : f} <span className="text-[var(--muted)] tabular-nums">{count}</span>
             </button>
           )
         })}
       </div>
 
-      {/* Project list */}
-      <div className="fade-up fade-up-4 space-y-3">
-        {visible.map((project, index) => {
-          const cat = CATEGORY_CONFIG[project.category]
-          const sta = STATUS_CONFIG[project.status]
-          const isOpen = expanded === project.title
-
-          return (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 56, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
-              className="border rounded-xl overflow-hidden transition-all duration-200 cursor-pointer"
-              style={{
-                borderColor: isOpen ? cat.border : 'var(--border)',
-                background: isOpen ? cat.bg : 'rgba(var(--bg-rgb),0.45)',
-              }}
-              onClick={() => setExpanded(isOpen ? null : project.title)}
-            >
-              {/* Screenshot preview + site button */}
-              {project.image && (
-                <div className="relative border-b" style={{ borderColor: 'var(--border)' }}>
-                  <img
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    loading="lazy"
-                    className="w-full h-44 sm:h-56 object-cover object-top"
-                  />
-                  <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(var(--bg-rgb),0.85) 0%, transparent 55%)' }} />
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={e => e.stopPropagation()}
-                      className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-medium px-4 py-2 rounded-lg border transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
-                      style={{ color: cat.color, borderColor: cat.border, background: 'rgba(var(--bg-rgb),0.85)', backdropFilter: 'blur(8px)' }}
-                    >
-                      Go to website
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              )}
-
-              {/* Card header */}
-              <div className="p-4 flex gap-4">
-                {/* Year badge */}
-                <div
-                  className="w-10 h-10 rounded-lg border flex items-center justify-center text-[10px] font-semibold shrink-0 tabular-nums"
-                  style={{ background: cat.bg, borderColor: cat.border, color: cat.color }}
-                >
-                  {project.year}
-                </div>
-
-                <div className="flex-1 min-w-0 space-y-1">
-                  <div className="flex items-start justify-between gap-3 flex-wrap">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h2 className="text-sm font-medium text-[var(--text-pri)] leading-snug">{project.title}</h2>
-                      {project.featured && (
-                        <span
-                          className="text-[9px] px-1.5 py-0.5 rounded-full border"
-                          style={{ background: 'rgba(240,240,219,0.08)', color: 'var(--accent)', borderColor: 'rgba(240,240,219,0.15)' }}
-                        >
-                          ★ featured
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0">
-                      {/* Status badge */}
-                      <span
-                        className="text-[9px] px-2 py-0.5 rounded-full border flex items-center gap-1"
-                        style={{ background: sta.bg, color: sta.color, borderColor: sta.border }}
-                      >
-                        {sta.dot && (
-                          <span
-                            className="w-1 h-1 rounded-full"
-                            style={{ background: sta.color, animation: project.status === 'in progress' ? 'pulse 2s infinite' : 'none' }}
-                          />
-                        )}
-                        {project.status}
-                      </span>
-                      {/* Category */}
-                      <span
-                        className="text-[9px] px-2 py-0.5 rounded-full capitalize border"
-                        style={{ background: cat.bg, color: cat.color, borderColor: cat.border }}
-                      >
-                        {project.category}
-                      </span>
-                      {/* Chevron */}
-                      <span
-                        className="text-[var(--border-hover)] transition-transform duration-200 text-xs"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                      >
-                        ▾
-                      </span>
-                    </div>
+      {showcase.length > 0 && (
+        <section className="fade-up fade-up-4 space-y-4">
+          <SectionLabel aside={<span className="text-xs font-normal tabular-nums text-[var(--muted)]">{showcase.length}</span>}>Selected work</SectionLabel>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+            {showcase.map((project, i) => {
+              const sta = STATUS_CONFIG[project.status]
+              return (
+                <article key={project.title} className={`space-y-4 ${i === 0 ? 'md:col-span-2' : ''}`}>
+                  <div className="relative rounded-2xl overflow-hidden border border-[var(--border)]">
+                    {project.link ? (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title}`}>
+                        <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" className={`w-full object-cover object-top hover:opacity-90 transition-opacity duration-150 ${i === 0 ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'}`} />
+                      </a>
+                    ) : (
+                      <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" className={`w-full object-cover object-top ${i === 0 ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'}`} />
+                    )}
                   </div>
+                  <div className="space-y-3">
+                    <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                      <h2 className="text-xl font-medium text-[var(--text-pri)]" style={{ letterSpacing: '-0.01em' }}>{project.title}</h2>
+                      <span className="flex items-center gap-3 text-xs text-[var(--text-sec)]">
+                        <span className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full" style={{ background: sta.color }} />
+                          {sta.label}
+                        </span>
+                        <span className="text-[var(--muted)] tabular-nums">{project.year}</span>
+                      </span>
+                    </div>
+                    {project.highlight && <p className="text-sm text-[var(--text-pri)]">{project.highlight}</p>}
+                    <p className="text-sm text-[var(--text-sec)] leading-relaxed line-clamp-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.slice(0, 6).map(tech => (
+                        <span key={tech} className="text-xs px-2 py-1 rounded border text-[var(--text-sec)]" style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}>
+                          {tech}
+                        </span>
+                      ))}
+                      {project.stack.length > 6 && <span className="text-xs px-1 py-1 text-[var(--muted)]">+{project.stack.length - 6}</span>}
+                    </div>
+                    {(project.github || project.link) && (
+                      <div className="flex gap-3">
+                        {project.link && (
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs px-4 py-2 rounded-lg font-medium transition-colors duration-150" style={{ background: 'var(--accent-fill)', color: 'var(--on-accent)' }}>
+                            Live demo ↗
+                          </a>
+                        )}
+                        {project.github && (
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                            GitHub
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+      )}
 
-                  {project.highlight && (
-                    <p className="text-[10px]" style={{ color: cat.color }}>{project.highlight}</p>
-                  )}
-                </div>
-              </div>
+      {rest.length > 0 && (
+        <section className="fade-up fade-up-5 space-y-3">
+          <SectionLabel aside={<span className="text-xs font-normal tabular-nums text-[var(--muted)]">{rest.length}</span>}>More projects</SectionLabel>
+          <div className="border-b border-[var(--border)]">
+            {rest.map((project) => {
+              const sta = STATUS_CONFIG[project.status]
+              const isOpen = expanded === project.title
 
-              {/* Expandable body */}
-              <div
-                className="overflow-hidden transition-all duration-300"
-                style={{ maxHeight: isOpen ? '700px' : '0px' }}
+              return (
+                <article
+              key={project.title}
+              className="border-t"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                onClick={() => setExpanded(isOpen ? null : project.title)}
+                className="w-full text-left p-4 flex gap-4 cursor-pointer"
               >
-                <div className="px-4 pb-4 space-y-4 border-t" style={{ borderColor: cat.border }}>
-                  <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-3">{project.description}</p>
+                <span className="w-12 shrink-0 text-xs tabular-nums text-[var(--muted)] pt-0.5" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                  {project.year}
+                </span>
 
-                  {/* Changelog */}
+                <span className="flex-1 min-w-0 space-y-1">
+                  <span className="flex items-start justify-between gap-3 flex-wrap">
+                    <span className="font-serif text-xl text-[var(--text-pri)] leading-snug">
+                      {project.title}
+                      {project.featured && <span className="ml-2 text-xs font-normal text-[var(--muted)]">Featured</span>}
+                    </span>
+                    <span className="flex items-center gap-3 shrink-0 text-xs text-[var(--text-sec)]">
+                      <span className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: sta.color }} />
+                        {sta.label}
+                      </span>
+                      <span className="text-[var(--muted)]">{CATEGORY_LABEL[project.category]}</span>
+                      <span aria-hidden="true" className="text-[var(--muted)]">{isOpen ? '−' : '+'}</span>
+                    </span>
+                  </span>
+                  {project.highlight && (
+                    <span className="block text-xs text-[var(--text-sec)]">{project.highlight}</span>
+                  )}
+                </span>
+              </button>
+
+              {isOpen && (
+                <div className="px-4 pb-4 space-y-4 border-t" style={{ borderColor: 'var(--border)' }}>
+                  <p className="text-sm text-[var(--text-sec)] leading-relaxed pt-4">{project.description}</p>
+
                   {project.updates && (
-                    <div className="space-y-1.5">
-                      <p className="text-[9px] uppercase tracking-widest" style={{ color: cat.color }}>what's new</p>
-                      <ul className="space-y-1">
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-[var(--text-pri)]">What's new</p>
+                      <ul className="space-y-2">
                         {project.updates.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-[11px] text-[var(--text-sec)]">
-                            <span className="mt-[3px] w-1 h-1 rounded-full shrink-0" style={{ background: cat.color }} />
+                          <li key={i} className="flex items-start gap-2 text-xs text-[var(--text-sec)] leading-relaxed">
+                            <span className="mt-1.5 w-1 h-1 rounded-full shrink-0 bg-[var(--muted)]" />
                             {item}
                           </li>
                         ))}
@@ -535,80 +512,50 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* Stack */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {project.stack.map(tech => (
                       <span
                         key={tech}
-                        className="text-[10px] px-2 py-0.5 rounded border"
-                        style={{ color: 'var(--text-sec)', borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.5)' }}
+                        className="text-xs px-2 py-1 rounded border text-[var(--text-sec)]"
+                        style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Links */}
                   {(project.github || project.link) && (
-                    <div className="flex gap-3 pt-1">
+                    <div className="flex gap-3">
                       {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                          className="flex items-center gap-1.5 text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-150 hover:-translate-y-0.5"
-                          style={{ color: '#f0f0db', borderColor: 'rgba(240,240,219,0.2)', background: 'rgba(240,240,219,0.06)' }}
-                        >
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
                           </svg>
-                          github
+                          GitHub
                         </a>
                       )}
                       {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                          className="flex items-center gap-1.5 text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-150 hover:-translate-y-0.5"
-                          style={{ color: cat.color, borderColor: cat.border, background: cat.bg }}
-                        >
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
                             <polyline points="15 3 21 3 21 9"/>
                             <line x1="10" y1="14" x2="21" y2="3"/>
                           </svg>
-                          live demo
+                          Live demo
                         </a>
                       )}
                     </div>
                   )}
                 </div>
-              </div>
-            </motion.article>
-          )
-        })}
-      </div>
-
-      {/* Legend */}
-      <div className="fade-up fade-up-5 flex flex-wrap gap-4 pt-2">
-        {Object.entries(CATEGORY_CONFIG).map(([cat, cfg]) => (
-          <div key={cat} className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full" style={{ background: cfg.color }} />
-            <span className="text-[10px] text-[var(--muted)] capitalize">{cat}</span>
+              )}
+            </article>
+              )
+            })}
           </div>
-        ))}
-        {Object.entries(STATUS_CONFIG).map(([status, cfg]) => (
-          <div key={status} className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full" style={{ background: cfg.color }} />
-            <span className="text-[10px] text-[var(--muted)]">{status}</span>
-          </div>
-        ))}
-      </div>
+        </section>
+      )}
 
-      <p className="fade-up fade-up-6 text-[10px] text-[var(--border)]">click any card to expand · {projects.length} projects total</p>
+      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Select a project to expand · {projects.length} total</p>
     </div>
   )
 }

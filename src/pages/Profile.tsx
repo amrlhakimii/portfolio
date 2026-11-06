@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import SectionLabel from '../components/SectionLabel'
+import PageHeader from '../components/PageHeader'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -31,34 +32,34 @@ const designTiers: Record<string, string[]> = {
 }
 
 const languages = [
-  { lang: 'Malay',            level: 'Native',       pct: 100, flag: '🇲🇾' },
-  { lang: 'English',          level: 'Native',       pct: 98,  flag: '🇬🇧' },
-  { lang: 'Bahasa Indonesia', level: 'Fluent',        pct: 80,  flag: '🇮🇩' },
-  { lang: 'Mandarin',         level: 'Intermediate', pct: 45,  flag: '🇨🇳' },
+  { lang: 'Malay',            level: 'Native',       pct: 100 },
+  { lang: 'English',          level: 'Native',       pct: 98,  flag: '' },
+  { lang: 'Bahasa Indonesia', level: 'Fluent',        pct: 80,  flag: '' },
+  { lang: 'Mandarin',         level: 'Intermediate', pct: 45,  flag: '' },
 ]
 
 const funFacts = [
-  '📷 Shot my first paid wedding at 16',
-  '🎽 Runs a sublimation printing business (Blugrafix)',
-  '⚽ Checks Arsenal lineup 30 min before every match',
-  '🏎️ Could explain DRS rules at 3am',
-  '🎬 Directed a 5-min TV show on TV9',
-  '💻 Full-stack: React front, .NET back, Azure in between',
-  '📺 Was the gaffer & video editor for OhBulan! YouTube',
-  '🇲🇾 Speaks 4 languages',
-  '🎓 First Class Honours in Diploma CS (CGPA 3.54)',
-  '🌙 Does best work after midnight',
-  '🤝 Handed a cross-team AI project as an intern at Access Group',
-  '🛡️ Moving from building software to defending it — cybersecurity at ExxonMobil',
-  '🔬 Building a home SOC lab: Sigma rules, Splunk searches, Python log analysis',
-  '🚀 Shipped PWA + Google Auth + push notifications in one Hootang update',
-  '⚡ Uses Claude Code daily to ship faster',
+  'Shot my first paid wedding at 16',
+  'Runs a sublimation printing business (Blugrafix)',
+  'Checks Arsenal lineup 30 min before every match',
+  'Could explain DRS rules at 3am',
+  'Directed a 5-min TV show on TV9',
+  'Full-stack: React front, .NET back, Azure in between',
+  'Was the gaffer & video editor for OhBulan! YouTube',
+  'Speaks 4 languages',
+  'First Class Honours in Diploma CS (CGPA 3.54)',
+  'Does best work after midnight',
+  'Handed a cross-team AI project as an intern at Access Group',
+  'Moving from building software to defending it — cybersecurity at ExxonMobil',
+  'Building a home SOC lab: Sigma rules, Splunk searches, Python log analysis',
+  'Shipped PWA + Google Auth + push notifications in one Hootang update',
+  'Uses Claude Code daily to ship faster',
 ]
 
 const identity = [
   { label: 'name',      value: 'Amirul Hakimi Bin Abdullah Sani' },
   { label: 'alias',     value: 'kimi · amrlhakimii' },
-  { label: 'based',     value: 'Jitra, Kedah, Malaysia 🇲🇾' },
+  { label: 'based',     value: 'Jitra, Kedah, Malaysia' },
   { label: 'role',      value: 'CS Graduate · Software Engineer turned Cybersecurity Technologist - Advanced · Designer · Photographer · Videographer & Editor' },
   { label: 'currently', value: 'Joining ExxonMobil (Kuala Lumpur) as Cybersecurity Technologist - Advanced · Dec 2026' },
   { label: 'email',     value: 'amirulxhakimi@gmail.com', href: 'mailto:amirulxhakimi@gmail.com' },
@@ -78,17 +79,12 @@ function FunFactCarousel() {
     setTimeout(() => { setIdx(i => (i - 1 + funFacts.length) % funFacts.length); setFading(false) }, 200)
   }
 
-  useEffect(() => {
-    const t = setInterval(next, 3500)
-    return () => clearInterval(t)
-  }, [])
-
   return (
     <div
       className="relative rounded-xl border border-[var(--border)] p-5 flex items-center gap-4"
       style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
     >
-      <button onClick={prev} className="text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 shrink-0 text-lg">‹</button>
+      <button onClick={prev} aria-label="Previous fact" className="w-9 h-9 text-[var(--muted)] hover:text-[var(--text-pri)] transition-colors duration-150 shrink-0 text-lg">‹</button>
       <div className="flex-1 text-center min-h-[2rem] flex items-center justify-center">
         <p
           className="text-sm text-[var(--text-pri)] transition-opacity duration-200"
@@ -97,7 +93,7 @@ function FunFactCarousel() {
           {funFacts[idx]}
         </p>
       </div>
-      <button onClick={next} className="text-[var(--border-hover)] hover:text-[var(--text-sec)] transition-colors duration-150 shrink-0 text-lg">›</button>
+      <button onClick={next} aria-label="Next fact" className="w-9 h-9 text-[var(--muted)] hover:text-[var(--text-pri)] transition-colors duration-150 shrink-0 text-lg">›</button>
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
         {funFacts.map((_, i) => (
           <div key={i} className="w-1 h-1 rounded-full transition-colors duration-200"
@@ -109,7 +105,7 @@ function FunFactCarousel() {
 }
 
 // ── Language bar ──────────────────────────────────────────────────────────────
-function LangBar({ lang, level, pct, flag }: { lang: string; level: string; pct: number; flag: string }) {
+function LangBar({ lang, level, pct }: { lang: string; level: string; pct: number }) {
   const [width, setWidth] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -126,13 +122,13 @@ function LangBar({ lang, level, pct, flag }: { lang: string; level: string; pct:
   return (
     <div ref={ref} className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-[var(--text-pri)] flex items-center gap-2">{flag} {lang}</span>
+        <span className="text-sm text-[var(--text-pri)]">{lang}</span>
         <span className="text-xs text-[var(--text-sec)] border border-[var(--border)] px-2 py-0.5 rounded-full">{level}</span>
       </div>
       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
         <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{ width: `${width}%`, background: 'linear-gradient(90deg, var(--muted), var(--text-pri))' }}
+          className="h-full w-full rounded-full origin-left"
+          style={{ transform: `scaleX(${width / 100})`, background: 'var(--text-sec)', transition: 'transform 700ms cubic-bezier(0.2, 0, 0, 1)' }}
         />
       </div>
     </div>
@@ -146,29 +142,27 @@ export default function Profile() {
   // Local time in Malaysia
   const [myTime, setMyTime] = useState(() => new Date())
   useEffect(() => {
-    const t = setInterval(() => setMyTime(new Date()), 1000)
+    const t = setInterval(() => setMyTime(new Date()), 30000)
     return () => clearInterval(t)
   }, [])
   const myTimeStr = myTime.toLocaleTimeString('en-MY', {
     timeZone: 'Asia/Kuala_Lumpur',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+    hour: '2-digit', minute: '2-digit', hour12: false,
   })
   const myHour = parseInt(myTime.toLocaleTimeString('en-MY', { timeZone: 'Asia/Kuala_Lumpur', hour: '2-digit', hour12: false }))
   const timeStatus = myHour >= 22 || myHour < 6
-    ? '🌙 probably asleep'
+    ? 'Probably asleep'
     : myHour >= 6 && myHour < 12
-    ? '☀️ morning grind'
+    ? 'Morning grind'
     : myHour >= 12 && myHour < 18
-    ? '💻 working'
-    : '🌆 late afternoon'
+    ? 'Working'
+    : 'Late afternoon'
 
   return (
     <div className="space-y-8">
-      <header className="fade-up fade-up-1">
-        <h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-3" style={{ letterSpacing: "-0.02em", lineHeight: "1" }}>Profile</h1>
-        <p className="text-[var(--text-sec)] text-sm">the full picture — who, what, where, and why</p>
-      </header>
+      <PageHeader title="Profile" subtitle="The full picture: who, what, where, and why" />
 
+      <div className="grid md:grid-cols-[1fr_18rem] gap-4 items-start">
       {/* Identity card */}
       <section className="fade-up fade-up-2">
         <div
@@ -181,16 +175,16 @@ export default function Profile() {
             style={{ background: 'rgba(0,0,0,0.2)' }}
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] uppercase tracking-widest text-[var(--muted)]">identity card</span>
+              <span className="sec-dot" aria-hidden="true" />
+              <span className="text-xs text-[var(--muted)]">Identity card</span>
             </div>
-            <span className="text-[10px] text-[var(--muted)]">🪪 kimi.dev</span>
+            <span className="text-xs text-[var(--muted)]">kimi.dev</span>
           </div>
 
           <div className="p-5 space-y-3">
             {identity.map(({ label, value, href }) => (
               <div key={label} className="flex items-start gap-4">
-                <span className="text-[10px] uppercase tracking-widest text-[var(--muted)] w-20 shrink-0 pt-0.5">{label}</span>
+                <span className="text-xs text-[var(--muted)] w-20 shrink-0 pt-0.5">{label}</span>
                 {href ? (
                   <a href={href} className="text-sm text-[var(--accent)] hover:underline">{value}</a>
                 ) : (
@@ -205,35 +199,36 @@ export default function Profile() {
       {/* Local time + status */}
       <section className="fade-up fade-up-3">
         <div
-          className="rounded-xl border border-[var(--border)] px-5 py-4 flex items-center justify-between"
+          className="rounded-xl border border-[var(--border)] p-5 flex flex-col items-start gap-4"
           style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
         >
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-1">local time — Jitra, Kedah (MYT)</p>
-            <p className="text-2xl font-semibold text-[var(--accent)] tabular-nums" style={{ fontFamily: 'monospace' }}>{myTimeStr}</p>
+            <p className="text-xs text-[var(--muted)] mb-1">Local time, Jitra, Kedah (MYT)</p>
+            <p className="text-2xl font-medium text-[var(--text-pri)] tabular-nums" style={{ fontFamily: 'monospace' }}>{myTimeStr}</p>
           </div>
-          <div className="text-right">
+          <div>
             <p className="text-xs text-[var(--text-sec)]">{timeStatus}</p>
-            <p className="text-[10px] text-[var(--border-hover)] mt-1">UTC +8:00</p>
+            <p className="text-xs text-[var(--muted)] mt-1">UTC +8:00</p>
           </div>
         </div>
       </section>
 
+      </div>
+
       {/* Fun facts carousel */}
       <section className="fade-up fade-up-4 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>fun facts</h2>
+        <SectionLabel>Fun facts</SectionLabel>
         <div className="relative">
           <FunFactCarousel />
         </div>
-        <p className="text-[10px] text-[var(--border-hover)]">auto-cycles every 3.5s · or click arrows</p>
       </section>
 
       {/* Languages */}
       <section className="fade-up fade-up-5 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>languages</h2>
+        <SectionLabel>Languages</SectionLabel>
         <div className="space-y-3">
-          {languages.map(({ lang, level, pct, flag }) => (
-            <LangBar key={lang} lang={lang} level={level} pct={pct} flag={flag} />
+          {languages.map(({ lang, level, pct }) => (
+            <LangBar key={lang} lang={lang} level={level} pct={pct} />
           ))}
         </div>
       </section>
@@ -241,15 +236,15 @@ export default function Profile() {
       {/* Skills with tab toggle */}
       <section className="fade-up fade-up-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>skills</h2>
+          <SectionLabel>Skills</SectionLabel>
           <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'rgba(var(--border-rgb),0.5)' }}>
             {(['tech', 'design'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setSkillTab(tab)}
-                className="text-[10px] px-3 py-1 rounded-md capitalize transition-all duration-150"
+                className="text-xs px-3 py-1 rounded-md capitalize transition-colors duration-150"
                 style={skillTab === tab ? {
-                  background: 'rgba(240,240,219,0.12)', color: 'var(--accent)',
+                  background: 'var(--bg)', color: 'var(--text-pri)',
                 } : {
                   color: 'var(--muted)',
                 }}
@@ -261,33 +256,14 @@ export default function Profile() {
         </div>
 
         <div className="space-y-4">
-          {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills], tierIdx) => (
+          {Object.entries(skillTab === 'tech' ? techTiers : designTiers).map(([tier, skills]) => (
             <div key={`${skillTab}-${tier}`} className="space-y-2">
-              <motion.p
-                className="text-[10px] uppercase tracking-widest text-[var(--muted)]"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: tierIdx * 0.1 }}
-              >
-                {tier}
-              </motion.p>
-              <motion.div
-                className="flex flex-wrap gap-1.5"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-30px' }}
-                variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: tierIdx * 0.08 } }, hidden: {} }}
-              >
+              <p className="text-xs text-[var(--muted)] capitalize">{tier}</p>
+              <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
-                  <motion.span
+                  <span
                     key={skill}
-                    variants={{
-                      hidden:  { opacity: 0, scale: 0.75, y: 14 },
-                      visible: { opacity: 1, scale: 1,    y: 0  },
-                    }}
-                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)] inline-flex items-center gap-1.5"
+                    className="text-xs px-2 py-1 rounded-md border border-[var(--border)] text-[var(--text-sec)] inline-flex items-center gap-1.5"
                     style={{ background: 'rgba(var(--bg-rgb),0.5)' }}
                   >
                     {skillIcons[skill] && (
@@ -300,9 +276,9 @@ export default function Profile() {
                       />
                     )}
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
-              </motion.div>
+              </div>
             </div>
           ))}
         </div>
@@ -310,27 +286,26 @@ export default function Profile() {
 
       {/* Links */}
       <section className="fade-up fade-up-7 space-y-3">
-        <h2 className="text-xs uppercase tracking-widest text-[var(--text-sec)] flex items-center gap-2"><span style={{ fontFamily: 'monospace', color: 'var(--sec)', fontWeight: 400 }}>//</span>links</h2>
+        <SectionLabel>Links</SectionLabel>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {[
-            { label: 'GitHub', url: 'https://github.com/amrlhakimii', icon: '🐙', sub: '@amrlhakimii' },
-            { label: 'LinkedIn', url: 'https://www.linkedin.com/in/amrlhakimii/', icon: '💼', sub: 'amrlhakimii' },
-            { label: 'Instagram', url: 'https://instagram.com/kimiflickr', icon: '📸', sub: '@kimiflickr' },
-          ].map(({ label, url, icon, sub }) => (
+            { label: 'GitHub', url: 'https://github.com/amrlhakimii', sub: '@amrlhakimii' },
+            { label: 'LinkedIn', url: 'https://www.linkedin.com/in/amrlhakimii/', sub: 'amrlhakimii' },
+            { label: 'Instagram', url: 'https://instagram.com/kimiflickr', sub: '@kimiflickr' },
+          ].map(({ label, url, sub }) => (
             <a
               key={label}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 transition-all duration-150 hover:-translate-y-0.5 group"
+              className="flex items-center gap-3 rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] p-4 transition-colors duration-150 group"
               style={{ background: 'rgba(var(--bg-rgb),0.4)' }}
             >
-              <span className="text-xl">{icon}</span>
               <div>
                 <p className="text-sm text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">{label}</p>
-                <p className="text-[10px] text-[var(--muted)]">{sub}</p>
+                <p className="text-xs text-[var(--muted)]">{sub}</p>
               </div>
-              <span className="ml-auto text-[var(--border-hover)] group-hover:text-[var(--text-sec)] transition-colors duration-150 text-sm">↗</span>
+              <span className="ml-auto text-[var(--muted)] group-hover:text-[var(--text-pri)] transition-colors duration-150 text-sm">↗</span>
             </a>
           ))}
         </div>

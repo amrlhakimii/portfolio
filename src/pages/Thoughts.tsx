@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import PageHeader from '../components/PageHeader'
+
 
 interface Post {
   title: string
@@ -52,110 +53,53 @@ const posts: Post[] = [
   },
 ]
 
-const tagColors: Record<string, string> = {
-  relationships: 'rgba(225,217,188,0.12)',
-  faith:         'rgba(172,186,196,0.12)',
-  'mental health': 'rgba(240,240,219,0.1)',
-  personal:      'rgba(225,217,188,0.08)',
-}
 
 export default function Thoughts() {
   return (
     <div className="space-y-10">
-      <header className="fade-up fade-up-1">
-        <h1
-          className="text-4xl sm:text-5xl font-bold mb-3"
-          style={{ color: 'var(--accent)', letterSpacing: '-0.02em', lineHeight: '1' }}
-        >
-          Thoughts
-        </h1>
-        <p style={{ color: 'var(--text-sec)' }} className="text-sm">
-          i write the color of the chaos in my mind.
-        </p>
-        <a
-          href="https://tulisankimi.medium.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 mt-3 text-xs transition-opacity duration-150 hover:opacity-80"
-          style={{ color: 'var(--text-sec)' }}
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-          </svg>
-          tulisankimi.medium.com →
-        </a>
-      </header>
-
-      <div className="space-y-3 fade-up fade-up-2">
-        {posts.map((post, i) => (
-          <motion.article
-            key={post.url}
-            initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50, y: 20 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 }}
+      <PageHeader
+        title="Thoughts"
+        subtitle="I write the color of the chaos in my mind"
+        action={
+          <a
+            href="https://tulisankimi.medium.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--border)] text-xs text-[var(--text-pri)] hover:border-[var(--border-hover)] transition-colors duration-150"
           >
+            tulisankimi.medium.com ↗
+          </a>
+        }
+      />
+
+      <ol className="fade-up fade-up-2 border-b border-[var(--border)]">
+        {posts.map((post, i) => (
+          <li key={post.url} className="border-t border-[var(--border)]">
             <a
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-xl p-5 transition-all duration-200 hover:-translate-y-0.5"
-              style={{
-                background: 'rgba(var(--bg-rgb),0.5)',
-                border: '1px solid rgba(172,186,196,0.1)',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,186,196,0.25)'
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,186,196,0.1)'
-              }}
+              className="group grid md:grid-cols-[3rem_1fr_10rem] gap-2 md:gap-6 py-6 items-baseline"
             >
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <h2
-                  className="text-sm font-medium leading-snug transition-colors duration-150"
-                  style={{ color: 'var(--text-pri)' }}
-                >
-                  {post.title}
-                </h2>
-                <span
-                  className="text-[10px] px-2 py-0.5 rounded-full shrink-0 capitalize"
-                  style={{
-                    color: 'var(--text-sec)',
-                    background: tagColors[post.tag] ?? 'rgba(172,186,196,0.1)',
-                    border: '1px solid rgba(172,186,196,0.15)',
-                  }}
-                >
-                  {post.tag}
+              <span className="text-xs tabular-nums text-[var(--accent)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="space-y-2">
+                <span className="block font-serif text-2xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">{post.title}</span>
+                <span className="block text-sm leading-relaxed text-[var(--text-sec)] max-w-prose line-clamp-2">{post.excerpt}</span>
+              </span>
+              <span className="text-xs text-[var(--muted)] md:text-right">
+                <span className="block capitalize">{post.tag}</span>
+                <span className="block tabular-nums">
+                  {new Date(post.date).toLocaleDateString('en-MY', { year: 'numeric', month: 'short', day: 'numeric' })} · {post.readTime}
                 </span>
-              </div>
-              <p className="text-xs leading-relaxed mb-3 line-clamp-2" style={{ color: 'var(--text-sec)' }}>
-                {post.excerpt}
-              </p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-[10px]" style={{ color: 'rgba(172,186,196,0.5)' }}>
-                    {new Date(post.date).toLocaleDateString('en-MY', { year: 'numeric', month: 'short', day: 'numeric' })}
-                  </span>
-                  <span className="text-[10px]" style={{ color: 'rgba(172,186,196,0.4)' }}>·</span>
-                  <span className="text-[10px]" style={{ color: 'rgba(172,186,196,0.5)' }}>{post.readTime}</span>
-                </div>
-                <span
-                  className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-                  style={{ color: 'var(--text-pri)' }}
-                >
-                  read on medium →
-                </span>
-              </div>
+              </span>
             </a>
-          </motion.article>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      {/* Footer note */}
-      <p className="fade-up fade-up-3 text-xs text-center pb-2" style={{ color: 'rgba(172,186,196,0.35)' }}>
-        all writings hosted on medium · click any card to read
-      </p>
+      <p className="fade-up fade-up-3 text-xs text-[var(--muted)]">All writings are hosted on Medium</p>
     </div>
   )
 }

@@ -1,30 +1,33 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import type { JSX } from 'react'
 import { useTheme } from '../context/ThemeContext'
 
-const links = [
-  { to: '/about',       label: '',       emoji: '👋' },
-  { to: '/thoughts',    label: '',    emoji: '💭' },
-  { to: '/til',         label: '',         emoji: '💡' },
-  { to: '/projects',    label: '',    emoji: '🛠️' },
-  { to: '/photography', label: '', emoji: '📷' },
-  { to: '/bookmarks',   label: '',   emoji: '🔖' },
-  { to: '/music',       label: '',       emoji: '🎵' },
-  { to: '/uses',        label: '',        emoji: '⚙️' },
-  { to: '/friends',     label: '',     emoji: '🤝' },
-  { to: '/profile',     label: '',     emoji: '🪪' },
-  { to: '/career',      label: '',      emoji: '📋' },
-]
+const ICONS: Record<string, JSX.Element> = {
+  about: <><circle cx="12" cy="8" r="4" /><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" /></>,
+  thoughts: <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />,
+  til: <><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></>,
+  projects: <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />,
+  photography: <><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" /><circle cx="12" cy="13" r="3" /></>,
+  bookmarks: <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />,
+  music: <><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></>,
+  uses: <><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4" /></>,
+  friends: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>,
+  profile: <><rect width="18" height="14" x="3" y="5" rx="2" /><circle cx="9" cy="11" r="2" /><path d="M14 10h4M14 14h4M6 17c0-1.5 1.5-2 3-2s3 .5 3 2" /></>,
+  career: <><rect width="20" height="14" x="2" y="7" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></>,
+}
+
+const links = Object.keys(ICONS).map((name) => ({ to: `/${name === 'bookmarks' ? 'bookmarks' : name}`, label: name[0].toUpperCase() + name.slice(1) }))
 
 function LiveClock() {
   const [time, setTime] = useState(() => new Date())
   useEffect(() => {
-    const id = setInterval(() => setTime(new Date()), 1000)
+    const id = setInterval(() => setTime(new Date()), 30000)
     return () => clearInterval(id)
   }, [])
   return (
     <span className="text-xs tabular-nums" style={{ color: 'var(--text-sec)' }}>
-      {time.toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+      {time.toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit' })}
     </span>
   )
 }
@@ -35,20 +38,20 @@ function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="w-7 h-7 rounded-full flex items-center justify-center transition-all duration-150 hover:scale-110"
+      className="w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-150 hover:text-[var(--text-pri)]"
       style={{
         background: 'rgba(var(--border-rgb), 0.5)',
-        border: '1px solid rgba(var(--border-rgb), 0.8)',
+        border: '1px solid var(--border)',
         color: 'var(--text-sec)',
       }}
     >
       {theme === 'dark' ? (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <circle cx="12" cy="12" r="4"/>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
         </svg>
       ) : (
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       )}
@@ -57,28 +60,23 @@ function ThemeToggle() {
 }
 
 export default function Navbar() {
-  const { theme } = useTheme()
   return (
     <div className="fixed bottom-5 left-4 right-4 z-50 flex justify-center pointer-events-none">
       <nav
         className="w-full max-w-[720px] rounded-2xl overflow-hidden pointer-events-auto"
         style={{
-          background: theme === 'dark' ? 'rgba(48, 54, 79, 0.82)' : 'rgba(240, 235, 224, 0.88)',
+          background: 'rgba(var(--bg-rgb), 0.88)',
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          border: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.08)'}`,
-          boxShadow: theme === 'dark'
-            ? '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)'
-            : '0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8)',
-          transition: 'background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease',
+          border: '1px solid var(--border)',
         }}
       >
         {/* Top row: name + clock + theme toggle + socials */}
         <div
           className="flex items-center justify-between px-4 py-2.5"
-          style={{ borderBottom: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}` }}
+          style={{ borderBottom: '1px solid var(--border)' }}
         >
-          <NavLink to="/about" style={{ perspective: '600px', display: 'inline-block', filter: 'var(--logo-filter)' }}>
+          <NavLink to="/about" style={{ display: 'inline-block', filter: 'var(--logo-filter)' }}>
             <img
               src="/logo.png"
               alt="amrlhakimii"
@@ -86,7 +84,6 @@ export default function Navbar() {
                 width: '28px',
                 height: '28px',
                 objectFit: 'contain',
-                animation: 'coin-spin 3s linear infinite',
               }}
             />
           </NavLink>
@@ -111,26 +108,25 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Bottom row: emoji nav */}
+        {/* Bottom row: icon nav */}
         <div className="flex items-center justify-between px-2 py-1.5">
-          {links.map(({ to, emoji }) => (
+          {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
-              title={to.replace('/', '')}
-              className={({ isActive }) =>
-                `flex items-center justify-center w-8 h-8 rounded-lg text-base transition-all duration-150 ${
-                  isActive ? 'scale-110' : ''
-                }`
-              }
+              aria-label={label}
+              title={label}
+              className="flex items-center justify-center w-9 h-9 rounded-lg transition-colors duration-150 hover:text-[var(--text-pri)]"
               style={({ isActive }) => isActive ? {
-                background: 'rgba(var(--border-rgb), 0.4)',
+                background: 'rgba(var(--border-rgb), 0.6)',
                 color: 'var(--accent)',
               } : {
                 color: 'var(--text-sec)',
               }}
             >
-              {emoji}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                {ICONS[to.slice(1)]}
+              </svg>
             </NavLink>
           ))}
         </div>
