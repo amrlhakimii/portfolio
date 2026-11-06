@@ -151,7 +151,7 @@ const FILTERS = ['all', 'education', 'internship', 'freelance', 'work', 'milesto
 
 export default function Career() {
   const [filter, setFilter] = useState<typeof FILTERS[number]>('all')
-  const [expanded, setExpanded] = useState<number | null>(null)
+  const [expanded, setExpanded] = useState<string | null>(null)
 
   const visible = filter === 'all' ? timeline : timeline.filter(t => t.type === filter)
 
@@ -206,74 +206,111 @@ export default function Career() {
         })}
       </div>
 
-      <ol className="fade-up fade-up-4 border-b border-[var(--border)]">
-        {visible.map((item, i) => {
-          const isOpen = expanded === i
+      <ol className="fade-up fade-up-4 relative space-y-4 pl-6 sm:pl-8">
+        <span
+          aria-hidden="true"
+          className="absolute left-[7px] sm:left-[9px] top-3 bottom-3 w-px"
+          style={{ background: 'var(--border)' }}
+        />
+        {visible.map((item) => {
+          const id = `${item.title}|${item.organization}|${item.period}`
+          const isOpen = expanded === id
           return (
-            <li key={i} className="border-t border-[var(--border)]">
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                onClick={() => setExpanded(isOpen ? null : i)}
-                className="w-full text-left grid md:grid-cols-[11rem_1fr_6rem] gap-1 md:gap-6 py-5 items-baseline cursor-pointer group"
+            <li key={id} className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute -left-6 sm:-left-8 top-6 w-[15px] h-[15px] sm:w-[19px] sm:h-[19px] rounded-full border-2 flex items-center justify-center"
+                style={{
+                  background: 'var(--bg)',
+                  borderColor: item.current ? 'var(--sec)' : 'var(--border-hover)',
+                }}
               >
-                <span className="text-xs tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
-                  {item.period}
-                </span>
-                <span className="flex gap-4 items-center min-w-0">
-                  <span
-                    className="w-10 h-10 rounded-lg border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
-                    style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
-                  >
-                    {item.logo ? (
-                      <img src={item.logo} alt="" className="w-full h-full object-contain p-0.5" loading="lazy" />
-                    ) : (
-                      item.logoInitials ?? item.organization[0]
-                    )}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block font-serif text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
-                      {item.title}
-                      {item.current && (
-                        <span className="ml-3 inline-flex items-center gap-2 text-xs font-sans text-[var(--sec)]">
-                          <span className="sec-dot" aria-hidden="true" />
-                          Active
-                        </span>
+                {item.current && <span className="sec-dot" />}
+              </span>
+
+              <div
+                className="rounded-2xl border transition-colors duration-150 hover:border-[var(--border-hover)]"
+                style={{
+                  borderColor: isOpen ? 'var(--border-hover)' : 'var(--border)',
+                  background: isOpen ? 'rgba(var(--border-rgb),0.25)' : 'rgba(var(--border-rgb),0.12)',
+                }}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setExpanded(isOpen ? null : id)}
+                  className="w-full text-left p-4 sm:p-5 cursor-pointer group"
+                >
+                  <span className="flex items-start gap-3 sm:gap-4">
+                    <span
+                      className="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
+                      style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
+                    >
+                      {item.logo ? (
+                        <img src={item.logo} alt="" className="w-full h-full object-contain p-1" loading="lazy" />
+                      ) : (
+                        item.logoInitials ?? item.organization[0]
                       )}
                     </span>
-                    <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
-                  </span>
-                </span>
-                <span className="flex items-center justify-between md:justify-end gap-3 text-xs text-[var(--muted)]">
-                  <span className="capitalize">{item.type}</span>
-                  <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
-                </span>
-              </button>
-
-              {isOpen && (
-                <div className="md:pl-[12.5rem] pb-6 space-y-3 max-w-prose">
-                  <p className="text-sm text-[var(--text-sec)] leading-relaxed">{item.description}</p>
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {item.tags.map(tag => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-1 rounded border text-[var(--text-sec)]"
-                          style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
-                        >
-                          {tag}
+                    <span className="min-w-0 flex-1 space-y-1">
+                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                        <span className="tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                          {item.period}
                         </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+                        <span
+                          className="px-2 py-0.5 rounded-full border capitalize text-[var(--text-sec)]"
+                          style={{ borderColor: 'var(--border)' }}
+                        >
+                          {item.type}
+                        </span>
+                        {item.current && (
+                          <span className="inline-flex items-center gap-1.5 text-[var(--sec)]">
+                            <span className="sec-dot" aria-hidden="true" />
+                            Active
+                          </span>
+                        )}
+                      </span>
+                      <span className="block font-serif text-lg sm:text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
+                        {item.title}
+                      </span>
+                      <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 mt-1 text-[var(--muted)] transition-transform duration-200"
+                      style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </span>
+                  </span>
+
+                  <span className={`mt-3 text-sm text-[var(--text-sec)] leading-relaxed ${isOpen ? 'block' : 'line-clamp-2'}`}>
+                    {item.description}
+                  </span>
+                </button>
+
+                {isOpen && item.tags && item.tags.length > 0 && (
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 flex flex-wrap gap-2">
+                    {item.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="text-xs px-2 py-1 rounded-md border text-[var(--text-sec)]"
+                        style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </li>
           )
         })}
       </ol>
 
-      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Select an entry to expand · {timeline.length} total</p>
+      <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Tap an entry to read more · {timeline.length} total</p>
     </div>
   )
 }
