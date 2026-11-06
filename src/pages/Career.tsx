@@ -233,17 +233,30 @@ export default function Career() {
                       type="button"
                       aria-expanded={isOpen}
                       onClick={() => setExpanded(isOpen ? null : id)}
-                      className="w-full text-left grid md:grid-cols-[11rem_1fr_1.5rem] gap-1 md:gap-6 py-4 items-baseline cursor-pointer group"
+                      className="w-full text-left grid md:grid-cols-[11rem_1fr_1.5rem] gap-1 md:gap-6 py-4 md:items-center cursor-pointer group"
                     >
                       <span className="text-xs tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
                         {item.period}
                       </span>
-                      <span className="min-w-0">
+                      <span className="min-w-0 flex gap-3 items-center">
+                        <span
+                          className="w-9 h-9 rounded-md border border-[var(--border)] flex items-center justify-center text-[10px] font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
+                          style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
+                          aria-hidden="true"
+                        >
+                          {item.logo ? (
+                            <img src={item.logo} alt="" className="w-full h-full object-contain p-0.5" loading="lazy" />
+                          ) : (
+                            item.logoInitials ?? item.organization[0]
+                          )}
+                        </span>
+                        <span className="min-w-0">
                         <span className="block font-serif text-lg leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
                           {item.title}
                           {item.current && <span className="ml-2 font-sans text-xs text-[var(--sec)]">· now</span>}
                         </span>
                         <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
+                        </span>
                       </span>
                       <span className="hidden md:block text-right text-[var(--muted)]" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                     </button>
