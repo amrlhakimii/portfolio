@@ -155,6 +155,14 @@ export default function Career() {
 
   const visible = filter === 'all' ? timeline : timeline.filter(t => t.type === filter)
 
+  const groups = visible.reduce<{ year: string; items: Milestone[] }[]>((acc, item) => {
+    const year = item.period.match(/\d{4}/)?.[0] ?? ''
+    const last = acc[acc.length - 1]
+    if (last && last.year === year) last.items.push(item)
+    else acc.push({ year, items: [item] })
+    return acc
+  }, [])
+
   const stats = [
     { value: timeline.filter(t => t.type === 'internship').length, label: 'internships' },
     { value: timeline.filter(t => t.type === 'freelance').length,  label: 'freelance roles' },
@@ -206,109 +214,103 @@ export default function Career() {
         })}
       </div>
 
-      <ol className="fade-up fade-up-4 relative space-y-4 pl-6 sm:pl-8">
-        <span
-          aria-hidden="true"
-          className="absolute left-[7px] sm:left-[9px] top-3 bottom-3 w-px"
-          style={{ background: 'var(--border)' }}
-        />
-        {visible.map((item) => {
-          const id = `${item.title}|${item.organization}|${item.period}`
-          const isOpen = expanded === id
-          return (
-            <li key={id} className="relative">
-              <span
-                aria-hidden="true"
-                className="absolute -left-6 sm:-left-8 top-6 w-[15px] h-[15px] sm:w-[19px] sm:h-[19px] rounded-full border-2 flex items-center justify-center"
-                style={{
-                  background: 'var(--bg)',
-                  borderColor: item.current ? 'var(--sec)' : 'var(--border-hover)',
-                }}
+      <div className="fade-up fade-up-4 space-y-12">
+        {groups.map(({ year, items }) => (
+          <section key={year} className="grid md:grid-cols-[8rem_1fr] gap-x-8 gap-y-4">
+            <div className="md:sticky md:top-8 self-start">
+              <h2
+                className="font-serif tabular-nums"
+                style={{ fontSize: 'clamp(2.5rem, 8vw, 3.75rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--gold)' }}
               >
-                {item.current && <span className="sec-dot" />}
-              </span>
+                {year}
+              </h2>
+              <p className="mt-2 text-xs text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
+                {items.length} {items.length === 1 ? 'entry' : 'entries'}
+              </p>
+            </div>
 
-              <div
-                className="rounded-2xl border transition-colors duration-150 hover:border-[var(--border-hover)]"
-                style={{
-                  borderColor: isOpen ? 'var(--border-hover)' : 'var(--border)',
-                  background: isOpen ? 'rgba(var(--border-rgb),0.25)' : 'rgba(var(--border-rgb),0.12)',
-                }}
-              >
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setExpanded(isOpen ? null : id)}
-                  className="w-full text-left p-4 sm:p-5 cursor-pointer group"
-                >
-                  <span className="flex items-start gap-3 sm:gap-4">
-                    <span
-                      className="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
-                      style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
+            <ol className="space-y-3 min-w-0">
+              {items.map((item) => {
+                const id = `${item.title}|${item.organization}|${item.period}`
+                const isOpen = expanded === id
+                return (
+                  <li
+                    key={id}
+                    className="rounded-2xl border overflow-hidden transition-colors duration-150 hover:border-[var(--border-hover)]"
+                    style={{
+                      borderColor: isOpen ? 'var(--border-hover)' : 'var(--border)',
+                      background: isOpen ? 'rgba(var(--border-rgb),0.25)' : 'transparent',
+                      borderLeft: `3px solid ${item.current ? 'var(--sec)' : 'var(--border-hover)'}`,
+                    }}
+                  >
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setExpanded(isOpen ? null : id)}
+                      className="w-full text-left p-4 sm:p-5 cursor-pointer group flex items-center gap-4"
                     >
-                      {item.logo ? (
-                        <img src={item.logo} alt="" className="w-full h-full object-contain p-1" loading="lazy" />
-                      ) : (
-                        item.logoInitials ?? item.organization[0]
-                      )}
-                    </span>
-                    <span className="min-w-0 flex-1 space-y-1">
-                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
-                        <span className="tabular-nums text-[var(--muted)]" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>
-                          {item.period}
-                        </span>
-                        <span
-                          className="px-2 py-0.5 rounded-full border capitalize text-[var(--text-sec)]"
-                          style={{ borderColor: 'var(--border)' }}
-                        >
-                          {item.type}
-                        </span>
-                        {item.current && (
-                          <span className="inline-flex items-center gap-1.5 text-[var(--sec)]">
-                            <span className="sec-dot" aria-hidden="true" />
-                            Active
-                          </span>
+                      <span
+                        className="w-12 h-12 rounded-xl border border-[var(--border)] flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden text-[var(--text-sec)]"
+                        style={{ background: item.logo ? '#ffffff' : 'rgba(var(--border-rgb),0.5)' }}
+                      >
+                        {item.logo ? (
+                          <img src={item.logo} alt="" className="w-full h-full object-contain p-1" loading="lazy" />
+                        ) : (
+                          item.logoInitials ?? item.organization[0]
                         )}
                       </span>
-                      <span className="block font-serif text-lg sm:text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
-                        {item.title}
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-serif text-lg sm:text-xl leading-snug text-[var(--text-pri)] group-hover:text-[var(--accent)] transition-colors duration-150">
+                          {item.title}
+                        </span>
+                        <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
+                        <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--muted)]">
+                          <span className="tabular-nums" style={{ fontFamily: 'ui-monospace, Consolas, monospace' }}>{item.period}</span>
+                          <span className="capitalize">· {item.type}</span>
+                          {item.current && (
+                            <span className="inline-flex items-center gap-1.5 text-[var(--sec)]">
+                              <span className="sec-dot" aria-hidden="true" />
+                              Active
+                            </span>
+                          )}
+                        </span>
                       </span>
-                      <span className="block text-sm text-[var(--text-sec)]">{item.organization}</span>
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="shrink-0 mt-1 text-[var(--muted)] transition-transform duration-200"
-                      style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </span>
-                  </span>
-
-                  <span className={`mt-3 text-sm text-[var(--text-sec)] leading-relaxed ${isOpen ? 'block' : 'line-clamp-2'}`}>
-                    {item.description}
-                  </span>
-                </button>
-
-                {isOpen && item.tags && item.tags.length > 0 && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 flex flex-wrap gap-2">
-                    {item.tags.map(tag => (
                       <span
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded-md border text-[var(--text-sec)]"
-                        style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
+                        aria-hidden="true"
+                        className="shrink-0 text-[var(--muted)] transition-transform duration-200"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
                       >
-                        {tag}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
                       </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </li>
-          )
-        })}
-      </ol>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-5 space-y-4 border-t border-[var(--border)] pt-4">
+                        <p className="text-sm text-[var(--text-sec)] leading-relaxed">{item.description}</p>
+                        {item.tags && item.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {item.tags.map(tag => (
+                              <span
+                                key={tag}
+                                className="text-xs px-2 py-1 rounded-md border text-[var(--text-sec)]"
+                                style={{ borderColor: 'var(--border)', background: 'rgba(var(--border-rgb),0.3)' }}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </li>
+                )
+              })}
+            </ol>
+          </section>
+        ))}
+      </div>
 
       <p className="fade-up fade-up-6 text-xs text-[var(--muted)]">Tap an entry to read more · {timeline.length} total</p>
     </div>
