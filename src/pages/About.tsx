@@ -108,18 +108,18 @@ const TEASER_PHOTOS = ['/1.png', '/3.png', '/5.png', '/6.png']
 
 export default function About() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-10 sm:space-y-16">
 
-      <header className="on-red fade-up fade-up-1 rounded-3xl p-6 sm:p-10 sm:-mx-8">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-10">
+      <header className="on-red fade-up fade-up-1 rounded-3xl p-5 sm:p-10 sm:-mx-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
 
-          <div className="flex-1 space-y-6 min-w-0">
+          <div className="flex-1 space-y-5 sm:space-y-6 min-w-0">
             <p className="text-xs" style={{ fontFamily: 'ui-monospace, Consolas, monospace', color: 'var(--muted)' }}>
               <span style={{ color: 'var(--accent)' }}>//</span> portfolio 2026
             </p>
 
             <div className="space-y-3">
-              <h1 className="font-serif" style={{ fontSize: 'clamp(3.5rem, 14vw, 6.5rem)', fontWeight: 500, lineHeight: 0.95, letterSpacing: '-0.035em', color: 'var(--text-pri)' }}>
+              <h1 className="font-serif" style={{ fontSize: 'clamp(3rem, 14vw, 6.5rem)', fontWeight: 500, lineHeight: 0.95, letterSpacing: '-0.035em', color: 'var(--text-pri)' }}>
                 Amirul<br />Hakimi<span style={{ color: 'var(--gold-on-red)' }}>.</span>
               </h1>
               <p className="text-base text-[var(--text-sec)] max-w-prose">
@@ -131,8 +131,8 @@ export default function About() {
               {ROLES.join(' · ')}
             </p>
 
-            <p className="flex items-center gap-2 text-sm text-[var(--text-pri)]">
-              <span className="sec-dot" aria-hidden="true" />
+            <p className="flex items-start gap-2 text-sm text-[var(--text-pri)]">
+              <span className="sec-dot mt-1.5 shrink-0" aria-hidden="true" />
               Joining ExxonMobil as Cybersecurity Technologist - Advanced, Dec 2026
             </p>
 
@@ -217,7 +217,7 @@ export default function About() {
           </div>
 
           <div className="shrink-0 w-full sm:w-60 space-y-3">
-            <div className="rounded-2xl overflow-hidden border border-[var(--border)] h-80 sm:h-[22rem]">
+            <div className="rounded-2xl overflow-hidden border border-[var(--border)] h-64 sm:h-[22rem]">
               <img
                 src="/avatar.jpg"
                 alt="Amirul Hakimi"

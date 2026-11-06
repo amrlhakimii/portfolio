@@ -7,7 +7,7 @@ interface ContainerProps {
 
 export default function Container({ children }: ContainerProps) {
   return (
-    <main className="max-w-[960px] mx-auto px-4 pt-12 pb-44">
+    <main className="max-w-[960px] mx-auto px-4 pt-8 sm:pt-12 pb-40">
       {children}
       <Footer />
     </main>
